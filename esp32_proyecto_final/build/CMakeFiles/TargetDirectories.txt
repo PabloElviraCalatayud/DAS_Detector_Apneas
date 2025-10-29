@@ -126,6 +126,7 @@
 /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/esp-idf/esptool_py/CMakeFiles/install/strip.dir
 /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/esp-idf/partition_table/CMakeFiles/partition_table_bin.dir
 /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/esp-idf/partition_table/CMakeFiles/partition-table.dir
+/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/esp-idf/partition_table/CMakeFiles/partition_table.dir
 /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/esp-idf/partition_table/CMakeFiles/partition-table-flash.dir
 /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/esp-idf/partition_table/CMakeFiles/encrypted-partition-table-flash.dir
 /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/esp-idf/partition_table/CMakeFiles/partition_table-flash.dir

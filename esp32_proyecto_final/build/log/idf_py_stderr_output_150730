@@ -1,2 +1,0 @@
-Command: ninja all
-ninja: error: '/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/partitions.csv', needed by 'partition_table/partition-table.bin', missing and no known rule to make it
