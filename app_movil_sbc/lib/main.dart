@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
-import 'core/app_theme.dart';
-import 'ui/pages/ble_page.dart';
+import 'common/core/themes.dart';
+import 'screens/onboarding/onboarding_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const InsoleApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class InsoleApp extends StatelessWidget {
+  const InsoleApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'BLE Bidireccional ESP32',
+      title: 'DAS',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.darkTheme,
-      home: const BlePage(),
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ThemeMode.system,
+      home: const OnboardingPage(),
     );
   }
 }
