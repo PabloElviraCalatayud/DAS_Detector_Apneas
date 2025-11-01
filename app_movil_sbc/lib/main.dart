@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'common/core/themes.dart';
-import 'screens/onboarding/onboarding_page.dart';
+import 'app_router.dart';
 
 void main() {
   runApp(const InsoleApp());
@@ -17,7 +17,8 @@ class InsoleApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.system,
-      home: const OnboardingPage(),
+      initialRoute: '/onboarding',
+      onGenerateRoute: AppRouter.generateRoute,
     );
   }
 }
