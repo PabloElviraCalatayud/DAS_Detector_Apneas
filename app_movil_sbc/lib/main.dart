@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'common/core/themes.dart';
 import 'app_router.dart';
+import 'data/bluetooth/ble_manager.dart';
 
 void main() {
-  runApp(const InsoleApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => BleManager()), // ✅ instancia global
+      ],
+      child: const InsoleApp(),
+    ),
+  );
 }
 
 class InsoleApp extends StatelessWidget {

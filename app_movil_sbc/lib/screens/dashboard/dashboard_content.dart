@@ -9,7 +9,7 @@ class DashboardContent extends StatelessWidget {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: HeartBeatWidget(bpm: 72),
+        child: HeartBeatWidget(),
       ),
     );
   }

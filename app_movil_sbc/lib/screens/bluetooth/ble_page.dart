@@ -1,9 +1,13 @@
 import 'dart:async';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
-import '../../common/core/permissions.dart';
-import '../../data/bluetooth/ble_manager.dart';
+import 'package:provider/provider.dart';
 
+import '../../common/core/permissions.dart';
+import '../../common/widgets/primary_button.dart';
+import '../../data/bluetooth/ble_manager.dart';
+import '../../common/core/colors.dart';
 
 class BlePage extends StatefulWidget {
   const BlePage({super.key});
@@ -13,7 +17,6 @@ class BlePage extends StatefulWidget {
 }
 
 class _BlePageState extends State<BlePage> {
-  final BleManager _ble = BleManager();
   StreamSubscription<DiscoveredDevice>? _scanSub;
   final List<DiscoveredDevice> _devices = [];
 
@@ -25,13 +28,17 @@ class _BlePageState extends State<BlePage> {
   void initState() {
     super.initState();
 
-    _ble.messages.listen((msg) {
+    final ble = context.read<BleManager>();
+
+    ble.messages.listen((msg) {
+      if (!mounted) return;
       setState(() {
         _lastMessage = msg;
       });
     });
 
-    _ble.connectionStream.listen((connected) {
+    ble.connectionStream.listen((connected) {
+      if (!mounted) return;
       setState(() {
         _status = connected ? "Conectado" : "Desconectado";
       });
@@ -39,15 +46,16 @@ class _BlePageState extends State<BlePage> {
   }
 
   Future<void> _scan() async {
+    final ble = context.read<BleManager>();
     await PermissionService.requestBlePermissions();
 
     setState(() {
       _isScanning = true;
       _devices.clear();
-      _status = "Escaneando...";
+      _status = "Buscando dispositivos...";
     });
 
-    final stream = await _ble.scan();
+    final stream = await ble.scan();
 
     _scanSub = stream.listen((device) {
       if (device.name.isNotEmpty && !_devices.any((d) => d.id == device.id)) {
@@ -56,7 +64,6 @@ class _BlePageState extends State<BlePage> {
         });
       }
     });
-
   }
 
   Future<void> _stopScan() async {
@@ -68,87 +75,141 @@ class _BlePageState extends State<BlePage> {
   }
 
   Future<void> _connect(DiscoveredDevice device) async {
+    final ble = context.read<BleManager>();
+
     setState(() {
       _status = "Conectando...";
     });
-    await _ble.connect(device);
+
+    await ble.connect(device);
+
+    // ✅ añadir dispositivo manual si no está listado
+    if (!_devices.any((d) => d.id == device.id)) {
+      setState(() {
+        _devices.add(
+          DiscoveredDevice(
+            id: device.id,
+            name: device.name,
+            serviceData: const {},
+            manufacturerData: Uint8List(0), // ✅ FIX
+            rssi: 0,
+            serviceUuids: const [],
+          ),
+        );
+      });
+    }
   }
 
   Future<void> _disconnect() async {
-    await _ble.disconnect();
+    final ble = context.read<BleManager>();
+    await ble.disconnect();
   }
 
   @override
   void dispose() {
     _scanSub?.cancel();
-    _ble.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final connected = _ble.connectedDevice != null;
+    final ble = context.watch<BleManager>();
+    final connected = ble.connectedDevice != null;
+    final theme = Theme.of(context).brightness;
 
     return Scaffold(
+      backgroundColor: theme == Brightness.dark
+          ? AppColors.darkBackground
+          : AppColors.lightBackground,
       appBar: AppBar(
         title: const Text("Conexión Bluetooth"),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Text("Estado: $_status", style: const TextStyle(fontWeight: FontWeight.bold)),
+            Text(
+              "Estado: $_status",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: theme == Brightness.dark
+                    ? AppColors.darkText
+                    : AppColors.lightText,
+              ),
+            ),
             const SizedBox(height: 14),
 
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: _isScanning ? null : _scan,
-                    child: Text(_isScanning ? "Buscando..." : "Buscar dispositivos"),
-                  ),
-                ),
-                const SizedBox(width: 10),
+            // ✅ Botón de scan o stop reutilizando tu PrimaryButton
+            if (!_isScanning)
+              PrimaryButton(
+                text: "Buscar dispositivos",
+                onPressed: _scan,
+              )
+            else
+              PrimaryButton(
+                text: "Buscando...",
+                onPressed: _stopScan,
+              ),
 
-                if (_isScanning)
-                  ElevatedButton(
-                    onPressed: _stopScan,
-                    child: const Text("Detener"),
-                  ),
-
-                if (! _isScanning && connected)
-                  ElevatedButton(
-                    onPressed: _disconnect,
-                    child: const Text("Desconectar"),
-                  ),
-              ],
-            ),
-
-            const SizedBox(height: 18),
+            const SizedBox(height: 14),
 
             Expanded(
-              child: ListView.builder(
-                itemCount: _devices.length,
-                itemBuilder: (context, index) {
-                  final d = _devices[index];
-
-                  return Card(
-                    child: ListTile(
-                      title: Text(d.name),
-                      subtitle: Text(d.id),
-                      trailing: _ble.connectedDevice?.id == d.id
-                          ? const Icon(Icons.check_circle, color: Colors.green)
-                          : const Icon(Icons.bluetooth),
-                      onTap: () => _connect(d),
+              child: ListView(
+                children: [
+                  // ✅ Mostrar SIEMPRE el conectado
+                  if (ble.connectedDevice != null)
+                    Card(
+                      color: theme == Brightness.dark
+                          ? AppColors.darkSurface
+                          : AppColors.lightSecondary,
+                      child: ListTile(
+                        title: Text(
+                          ble.connectedDevice!.name.isNotEmpty
+                              ? ble.connectedDevice!.name
+                              : "Dispositivo conectado",
+                        ),
+                        subtitle: Text(ble.connectedDevice!.id),
+                        trailing: Icon(Icons.check_circle,
+                            color: Colors.green.shade600),
+                        onTap: _disconnect, // ✅ permite desconectar
+                      ),
                     ),
-                  );
-                },
+
+                  // ✅ Mostrar lista de dispositivos encontrados
+                  ..._devices.map((d) {
+                    final isConnected = ble.connectedDevice?.id == d.id;
+
+                    return Card(
+                      color: theme == Brightness.dark
+                          ? AppColors.darkSurface
+                          : AppColors.lightSurface,
+                      child: ListTile(
+                        title: Text(d.name),
+                        subtitle: Text(d.id),
+                        trailing: Icon(
+                          Icons.bluetooth,
+                          color: isConnected ? Colors.green : null,
+                        ),
+                        onTap: () => _connect(d),
+                      ),
+                    );
+                  }),
+                ],
               ),
             ),
 
             if (connected) ...[
               const Divider(),
-              Text("Último mensaje: $_lastMessage"),
+              Text(
+                "Último mensaje: $_lastMessage",
+                style: TextStyle(
+                  color: theme == Brightness.dark
+                      ? AppColors.darkText
+                      : AppColors.lightText,
+                ),
+              ),
             ],
           ],
         ),

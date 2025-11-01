@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'ble_constants.dart';
 
-class BleManager {
+class BleManager extends ChangeNotifier {
   final FlutterReactiveBle _ble = FlutterReactiveBle();
 
   DiscoveredDevice? connectedDevice;
@@ -19,7 +20,11 @@ class BleManager {
   final StreamController<bool> _connectionController = StreamController<bool>.broadcast();
   Stream<bool> get connectionStream => _connectionController.stream;
 
-  /// Scan for BLE devices
+  bool _shouldStayConnected = false;
+
+  // ✅ almacena el último mensaje
+  String lastMessage = "0";
+
   Future<Stream<DiscoveredDevice>> scan() async {
     return _ble.scanForDevices(
       withServices: const [],
@@ -28,21 +33,26 @@ class BleManager {
     );
   }
 
-  /// Connect to device
   Future<void> connect(DiscoveredDevice device) async {
-    _connSub = _ble.connectToDevice(id: device.id).listen((update) async {
+    _shouldStayConnected = true;
+    await _startConnection(device);
+  }
+
+  Future<void> _startConnection(DiscoveredDevice device) async {
+    print("🔗 Attempting connection to ${device.id}");
+
+    _connSub = _ble.connectToDevice(
+      id: device.id,
+      connectionTimeout: const Duration(seconds: 10),
+    ).listen((update) async {
       switch (update.connectionState) {
-        case DeviceConnectionState.connected:
+        case DeviceConnectionState.connected: {
           print("✅ Connected to ${device.id}");
           connectedDevice = device;
           _connectionController.add(true);
 
-          // ✅ Descubrir servicios según nueva API
           print("🔍 Discovering services...");
           await _ble.discoverAllServices(device.id);
-
-          final services = await _ble.getDiscoveredServices(device.id);
-          print("📡 Services discovered: $services");
 
           writeChar = QualifiedCharacteristic(
             serviceId: BleConstants.serviceUuid,
@@ -57,13 +67,20 @@ class BleManager {
           );
 
           _subscribe();
-          break;
+        } break;
 
-        case DeviceConnectionState.disconnected:
-          print("⚠️ Disconnected from ${device.id}");
+        case DeviceConnectionState.disconnected: {
+          print("⚠️ Device disconnected");
+
           connectedDevice = null;
           _connectionController.add(false);
-          break;
+
+          if (_shouldStayConnected) {
+            print("♻️ Reconnecting...");
+            await Future.delayed(const Duration(seconds: 2));
+            await _startConnection(device);
+          }
+        } break;
 
         default:
           break;
@@ -71,7 +88,6 @@ class BleManager {
     });
   }
 
-  /// Subscribe to notifications
   void _subscribe() {
     if (notifyChar == null) {
       print("⚠️ notifyChar is NULL");
@@ -84,7 +100,11 @@ class BleManager {
           (data) {
         final msg = utf8.decode(data);
         print("📩 Received: $msg");
+
+        // ✅ Guardar último mensaje + notificar UI
+        lastMessage = msg;
         _messages.add(msg);
+        notifyListeners();
       },
       onError: (e) {
         print("❌ Notification error: $e");
@@ -92,29 +112,32 @@ class BleManager {
     );
   }
 
-  /// Send message to ESP32
   Future<void> send(String text) async {
     if (writeChar == null || text.isEmpty) return;
 
     print("📤 Sending: $text");
-
     await _ble.writeCharacteristicWithResponse(
       writeChar!,
       value: utf8.encode(text),
     );
   }
 
-  /// Disconnect BLE device
   Future<void> disconnect() async {
     print("🔌 Manual disconnect");
+
+    _shouldStayConnected = false;
+
     await _connSub?.cancel();
     await _notifySub?.cancel();
+
     connectedDevice = null;
     _connectionController.add(false);
   }
 
-  /// DO NOT call this when changing pages, only when closing the whole app
+  @override
   void dispose() {
+    super.dispose();
+    _shouldStayConnected = false;
     _connSub?.cancel();
     _notifySub?.cancel();
     _messages.close();
