@@ -9,9 +9,11 @@ static const char *TAG = "PULSE_SENSOR";
 
 static adc_continuous_handle_t adc_handle;
 
+#define SEND_FILTERED 1  // 1 = filtrado, 0 = raw
+
 static uint16_t smooth_value(uint16_t new_val) {
   static float filtered = 0;
-  const float alpha = 0.1f; // filtro exponencial simple
+  const float alpha = 0.1f;
   filtered = (alpha * new_val) + ((1.0f - alpha) * filtered);
   return (uint16_t)filtered;
 }
@@ -28,13 +30,18 @@ void pulse_sensor_task(void *arg) {
     uint16_t raw = result.average;
     uint16_t filtered = smooth_value(raw);
 
+    // Selección del valor a enviar
+    uint16_t value_to_send = SEND_FILTERED ? filtered : raw;
+
     char msg[32];
-    snprintf(msg, sizeof(msg), "HR_RAW:%u", filtered);
+    snprintf(msg, sizeof(msg), "HR_RAW:%u", value_to_send);
 
     send_notification_to_connected(msg);
-    ESP_LOGI(TAG, "💓 PulseSensor valor ADC filtrado: %u", filtered);
+    ESP_LOGI(TAG, "💓 PulseSensor valor%s: %u",
+             SEND_FILTERED ? " (filtrado)" : " (raw)",
+             value_to_send);
 
-    vTaskDelay(pdMS_TO_TICKS(2000)); // 2s como el simulador
+    vTaskDelay(pdMS_TO_TICKS(1000)); // 1 Hz
   }
 }
 
