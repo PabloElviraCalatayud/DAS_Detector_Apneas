@@ -16,6 +16,10 @@ void bluetooth_init(void);
  * @param msg Mensaje a enviar como notificación.
  */
 void send_notification(uint16_t conn_handle, const char *msg);
+/**
+ * @brief Envía una notificación al cliente conectado (si existe).
+ */
+void send_notification_to_connected(const char *msg);
 
 /**
  * @brief Tarea principal del host BLE. No debe llamarse directamente.

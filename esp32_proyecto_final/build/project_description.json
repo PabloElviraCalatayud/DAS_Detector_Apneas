@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "esp32_proyecto_final",
-    "project_version":    "53ed9de-dirty",
+    "project_version":    "8960b9f-dirty",
     "project_path":       "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final",
     "idf_path":           "/home/pelvira/esp/esp-idf",
     "build_dir":          "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build",
@@ -1225,8 +1225,8 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/esp-idf/main/libmain.a",
-            "sources": [ "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/main/main.c", "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/main/network/bluetooth.c" ],
-            "include_dirs": [ ".", "network" ]
+            "sources": [ "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/main/main.c", "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/main/network/bluetooth.c", "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/main/sensors/simulator.c" ],
+            "include_dirs": [ ".", "network", "sensors" ]
         },
         "mbedtls": {
             "alias": "idf::mbedtls",
@@ -2911,7 +2911,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": [ ".", "network" ]
+            "include_dirs": [ ".", "network", "sensors" ]
         }
     },
     "debug_prefix_map_gdbinit": "",

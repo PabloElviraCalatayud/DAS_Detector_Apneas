@@ -1,9 +1,8 @@
 #include "bluetooth.h"
+#include "sensors/simulator.h"
 
 void app_main(void) {
   bluetooth_init();
-
-  // Aquí podrías añadir otras inicializaciones o tareas
-  // Ejemplo: enviar notificaciones periódicas, etc.
+  simulator_start();  // <-- arrancamos la simulación
 }
 
