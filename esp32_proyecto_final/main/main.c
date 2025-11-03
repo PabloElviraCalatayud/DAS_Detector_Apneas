@@ -1,8 +1,11 @@
 #include "bluetooth.h"
-#include "sensors/simulator.h"
+#include "sensors/pulse_sensor.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
 void app_main(void) {
   bluetooth_init();
-  simulator_start();  // <-- arrancamos la simulación
+  pulse_sensor_start();
+
 }
 

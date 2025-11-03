@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "esp32_proyecto_final",
-    "project_version":    "8960b9f-dirty",
+    "project_version":    "3c52b3b-dirty",
     "project_path":       "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final",
     "idf_path":           "/home/pelvira/esp/esp-idf",
     "build_dir":          "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build",
@@ -1220,13 +1220,13 @@
             "dir": "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/main",
             "type": "LIBRARY",
             "lib": "__idf_main",
-            "reqs": [ "bt", "nvs_flash" ],
+            "reqs": [ "bt", "nvs_flash", "esp_adc" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/esp-idf/main/libmain.a",
-            "sources": [ "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/main/main.c", "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/main/network/bluetooth.c", "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/main/sensors/simulator.c" ],
-            "include_dirs": [ ".", "network", "sensors" ]
+            "sources": [ "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/main/main.c", "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/main/network/bluetooth.c", "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/main/drivers/adc_driver.c", "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/main/sensors/pulse_sensor.c" ],
+            "include_dirs": [ ".", "network", "drivers", "sensors" ]
         },
         "mbedtls": {
             "alias": "idf::mbedtls",
@@ -2907,11 +2907,11 @@
             "prefix": "idf",
             "dir": "/home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/main",
             "lib": "__idf_main",
-            "reqs": [ "bt", "nvs_flash" ],
+            "reqs": [ "bt", "nvs_flash", "esp_adc" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": [ ".", "network", "sensors" ]
+            "include_dirs": [ ".", "network", "drivers", "sensors" ]
         }
     },
     "debug_prefix_map_gdbinit": "",

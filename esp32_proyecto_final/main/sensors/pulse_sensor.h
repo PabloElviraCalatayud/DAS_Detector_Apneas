@@ -1,4 +1,4 @@
 #pragma once
 
-void pulse_sensor_init(void);
+void pulse_sensor_start();
 
