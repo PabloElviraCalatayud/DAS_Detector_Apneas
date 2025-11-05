@@ -1,3 +1,4 @@
+#include "../utils/ota/ota.h"
 #include "bluetooth.h"
 #include "esp_log.h"
 #include "nvs_flash.h"
@@ -45,7 +46,8 @@ static int gatt_char_access_cb(uint16_t conn_handle, uint16_t attr_handle,
     received_message[len] = '\0';
     ESP_LOGI(TAG, "📩 Mensaje recibido del cliente: %s", received_message);
 
-    /* Aquí podrías procesar received_message o ejecutar callbacks internos */
+  ota_process_chunk((uint8_t *)received_message, len);
+
   }
   return 0;
 }

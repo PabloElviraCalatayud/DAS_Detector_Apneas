@@ -4,14 +4,17 @@ idf_component_register(
     "network/bluetooth.c"
     "drivers/adc_driver.c"
     "sensors/pulse_sensor.c"
+    "utils/ota/ota.c"
   INCLUDE_DIRS
     "."
     "network"
     "drivers"
     "sensors"
+    "utils/ota"
   REQUIRES 
-    bt 
+    bt
     nvs_flash
     esp_adc
+    app_update
 )
 
