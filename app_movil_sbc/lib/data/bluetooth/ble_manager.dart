@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'ble_constants.dart';
@@ -22,7 +23,6 @@ class BleManager extends ChangeNotifier {
 
   bool _shouldStayConnected = false;
 
-  // ✅ almacena el último mensaje
   String lastMessage = "0";
 
   Future<Stream<DiscoveredDevice>> scan() async {
@@ -46,7 +46,7 @@ class BleManager extends ChangeNotifier {
       connectionTimeout: const Duration(seconds: 10),
     ).listen((update) async {
       switch (update.connectionState) {
-        case DeviceConnectionState.connected: {
+        case DeviceConnectionState.connected:
           print("✅ Connected to ${device.id}");
           connectedDevice = device;
           _connectionController.add(true);
@@ -67,11 +67,10 @@ class BleManager extends ChangeNotifier {
           );
 
           _subscribe();
-        } break;
+          break;
 
-        case DeviceConnectionState.disconnected: {
+        case DeviceConnectionState.disconnected:
           print("⚠️ Device disconnected");
-
           connectedDevice = null;
           _connectionController.add(false);
 
@@ -80,7 +79,7 @@ class BleManager extends ChangeNotifier {
             await Future.delayed(const Duration(seconds: 2));
             await _startConnection(device);
           }
-        } break;
+          break;
 
         default:
           break;
@@ -89,19 +88,12 @@ class BleManager extends ChangeNotifier {
   }
 
   void _subscribe() {
-    if (notifyChar == null) {
-      print("⚠️ notifyChar is NULL");
-      return;
-    }
-
-    print("📡 Subscribing to notifications...");
+    if (notifyChar == null) return;
 
     _notifySub = _ble.subscribeToCharacteristic(notifyChar!).listen(
           (data) {
         final msg = utf8.decode(data);
         print("📩 Received: $msg");
-
-        // ✅ Guardar último mensaje + notificar UI
         lastMessage = msg;
         _messages.add(msg);
         notifyListeners();
@@ -114,33 +106,48 @@ class BleManager extends ChangeNotifier {
 
   Future<void> send(String text) async {
     if (writeChar == null || text.isEmpty) return;
+    await _ble.writeCharacteristicWithResponse(writeChar!, value: utf8.encode(text));
+  }
 
-    print("📤 Sending: $text");
-    await _ble.writeCharacteristicWithResponse(
-      writeChar!,
-      value: utf8.encode(text),
-    );
+  Future<void> write(Uint8List data) async {
+    if (writeChar == null) return;
+    try {
+      await _ble.writeCharacteristicWithResponse(writeChar!, value: data);
+      print("📤 Enviado ${data.length} bytes");
+    } catch (e) {
+      print("❌ Error enviando datos binarios: $e");
+      rethrow;
+    }
+  }
+
+  /// Solicitar MTU (Android)
+  Future<int> requestMtu(int mtu) async {
+    if (connectedDevice == null) throw Exception("No device connected");
+    try {
+      final negotiatedMtu = await _ble.requestMtu(deviceId: connectedDevice!.id, mtu: mtu);
+      print("MTU negotiated: $negotiatedMtu");
+      return negotiatedMtu;
+    } catch (e) {
+      print("❌ MTU request failed: $e");
+      rethrow;
+    }
   }
 
   Future<void> disconnect() async {
-    print("🔌 Manual disconnect");
-
     _shouldStayConnected = false;
-
     await _connSub?.cancel();
     await _notifySub?.cancel();
-
     connectedDevice = null;
     _connectionController.add(false);
   }
 
   @override
   void dispose() {
-    super.dispose();
     _shouldStayConnected = false;
     _connSub?.cancel();
     _notifySub?.cancel();
     _messages.close();
     _connectionController.close();
+    super.dispose();
   }
 }
