@@ -17,5 +17,10 @@ idf_component_register(
     nvs_flash
     esp_adc
     app_update
+    driver
+    freertos
+    esp_system
+    esp_timer
+    esp_common
 )
 

@@ -1,0 +1,1050 @@
+Command: /home/pelvira/.espressif/python_env/idf5.5_py3.13_env/bin/python /home/pelvira/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/esp32_proyecto_final.elf /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/bootloader/bootloader.elf -m '/home/pelvira/.espressif/python_env/idf5.5_py3.13_env/bin/python' '/home/pelvira/esp/esp-idf/tools/idf.py'
+ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6380
+ho 0 tail 12 room 4
+load:0x40078000,len:15916
+load:0x40080400,len:3860
+entry 0x40080638
+[0;32mI (29) boot: ESP-IDF v5.5.1-dirty 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Nov 11 2025 12:15:38[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v1.0[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+[0;32mI (64) boot:  1 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (71) boot:  2 phy_init         RF data          01 01 00010000 00001000[0m
+[0;32mI (77) boot:  3 factory          factory app      00 00 00020000 00140000[0m
+[0;32mI (84) boot:  4 ota_0            OTA app          00 10 00160000 00140000[0m
+[0;32mI (90) boot:  5 ota_1            OTA app          00 11 002a0000 00140000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (100) boot: Defaulting to factory image[0m
+[0;32mI (104) esp_image: segment 0: paddr=00020020 vaddr=3f400020 size=152e0h ( 86752) map[0m
+[0;32mI (141) esp_image: segment 1: paddr=00035308 vaddr=3ffbdb60 size=04ae8h ( 19176) load[0m
+[0;32mI (149) esp_image: segment 2: paddr=00039df8 vaddr=40080000 size=06220h ( 25120) load[0m
+[0;32mI (159) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=57ed4h (360148) map[0m
+[0;32mI (282) esp_image: segment 4: paddr=00097efc vaddr=40086220 size=12fc0h ( 77760) load[0m
+[0;32mI (312) esp_image: segment 5: paddr=000aaec4 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (325) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (325) boot: Disabling RNG early entropy source...[0m
+[0;32mI (336) cpu_start: Multicore app[0m
+[0;32mI (344) cpu_start: Pro cpu start user code[0m
+[0;32mI (344) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (344) app_init: Application information:[0m
+[0;32mI (344) app_init: Project name:     esp32_proyecto_final[0m
+[0;32mI (349) app_init: App version:      80d8eab-dirty[0m
+[0;32mI (354) app_init: Compile time:     Nov 11 2025 12:09:32[0m
+[0;32mI (359) app_init: ELF file SHA256:  24934981a...[0m
+[0;32mI (363) app_init: ESP-IDF:          v5.5.1-dirty[0m
+[0;32mI (367) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (371) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (375) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (379) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (385) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (390) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (396) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (401) heap_init: At 3FFC52B0 len 0001AD50 (107 KiB): DRAM[0m
+[0;32mI (406) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (411) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (417) heap_init: At 400991E0 len 00006E20 (27 KiB): IRAM[0m
+[0;33mW (424) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (435) spi_flash: detected chip: generic[0m
+[0;32mI (439) spi_flash: flash io: dio[0m
+[0;33mW (442) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (452) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (456) main_task: Started on CPU0[0m
+[0;32mI (466) main_task: Calling app_main()[0m
+[0;32mI (466) MAIN: ✅ Inicializando Bluetooth...[0m
+[0;32mI (486) BTDM_INIT: BT controller compile version [722c907][0m
+[0;32mI (486) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (486) BTDM_INIT: Bluetooth MAC: 24:62:ab:f2:1c:72[0m
+[0;32mI (486) phy_init: phy_version 4861,b71b5ad,Aug  5 2025,11:16:06[0m
+[0;32mI (566) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (916) MAIN: ✅ Iniciando sensor de pulso...[0m
+[0;32mI (926) MAIN: ✅ Iniciando MPU6050...[0m
+[0;32mI (936) MPU6050: MPU6050 inicializado en I2C0 (SDA=21, SCL=22)[0m
+[0;33mW (936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 2[0m
+[0;32mI (956) NimBLE: Failed to restore IRKs from store; status=8[0m
+
+[0;32mI (956) BLE_BIDIRECTIONAL: Dirección BLE: 24:62:AB:F2:1C:72[0m
+[0;32mI (966) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (966) NimBLE: disc_mode=2[0m
+[0;32mI (966) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (976) NimBLE: [0m
+
+[0;32mI (986) BLE_BIDIRECTIONAL: 📢 Advertising iniciado...[0m
+[0;32mI (1296) MPU6050: Calibrado: ax=9909 ay=11919 az=-21786 gx=92 gy=264 gz=-218[0m
+[0;32mI (1296) MAIN: Accel: X=7.13 Y=6.00 Z=-3.25 | Gyro: X=1.98 Y=-0.20 Z=-0.66[0m
+[0;33mW (1936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (1936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 8[0m
+[0;32mI (2306) MAIN: Accel: X=0.08 Y=0.01 Z=9.74 | Gyro: X=-0.38 Y=-0.89 Z=1.12[0m
+[0;33mW (2936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (2936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 11[0m
+[0;32mI (3306) MAIN: Accel: X=0.07 Y=0.09 Z=9.73 | Gyro: X=1.58 Y=-0.81 Z=2.57[0m
+[0;33mW (3936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (3936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 16[0m
+[0;32mI (4306) MAIN: Accel: X=-0.03 Y=-0.00 Z=9.76 | Gyro: X=-0.25 Y=-1.34 Z=1.11[0m
+[0;33mW (4936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (4936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 19[0m
+[0;32mI (5306) MAIN: Accel: X=-0.00 Y=0.06 Z=9.70 | Gyro: X=0.42 Y=-0.42 Z=0.76[0m
+[0;33mW (5936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (5936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 22[0m
+[0;32mI (6306) MAIN: Accel: X=0.03 Y=0.04 Z=9.72 | Gyro: X=-0.10 Y=-1.01 Z=1.31[0m
+[0;33mW (6936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (6936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 24[0m
+[0;32mI (7306) MAIN: Accel: X=0.02 Y=0.01 Z=9.74 | Gyro: X=-0.18 Y=-0.79 Z=0.69[0m
+[0;33mW (7936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (7936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 24[0m
+[0;32mI (8306) MAIN: Accel: X=0.03 Y=0.00 Z=9.81 | Gyro: X=0.15 Y=-0.85 Z=0.83[0m
+[0;33mW (8936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (8936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 25[0m
+[0;32mI (9306) MAIN: Accel: X=0.00 Y=0.02 Z=9.87 | Gyro: X=0.04 Y=-0.96 Z=1.20[0m
+[0;33mW (9936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (9936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 26[0m
+[0;32mI (10306) MAIN: Accel: X=0.00 Y=-0.00 Z=9.78 | Gyro: X=0.07 Y=-0.85 Z=0.93[0m
+[0;33mW (10936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (10936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 28[0m
+[0;32mI (11306) MAIN: Accel: X=0.02 Y=0.01 Z=9.77 | Gyro: X=0.10 Y=-0.88 Z=0.93[0m
+[0;33mW (11936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (11936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (12306) MAIN: Accel: X=0.03 Y=-0.01 Z=9.74 | Gyro: X=0.15 Y=-0.92 Z=1.49[0m
+[0;33mW (12936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (12936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (13306) MAIN: Accel: X=0.01 Y=0.17 Z=9.76 | Gyro: X=1.25 Y=0.08 Z=3.52[0m
+[0;33mW (13936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (13936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (14306) MAIN: Accel: X=-0.01 Y=-0.01 Z=9.78 | Gyro: X=-0.15 Y=-0.88 Z=1.02[0m
+[0;33mW (14936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (14936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (15306) MAIN: Accel: X=0.03 Y=0.05 Z=9.78 | Gyro: X=-0.07 Y=-0.97 Z=1.08[0m
+[0;33mW (15936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (15936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (16306) MAIN: Accel: X=0.08 Y=0.04 Z=9.80 | Gyro: X=-0.27 Y=-0.76 Z=1.02[0m
+[0;33mW (16936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (16936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (17306) MAIN: Accel: X=0.04 Y=0.04 Z=9.85 | Gyro: X=-0.22 Y=-0.95 Z=1.03[0m
+[0;33mW (17936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (17936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (18306) MAIN: Accel: X=0.01 Y=-0.03 Z=9.82 | Gyro: X=-0.11 Y=-1.03 Z=1.09[0m
+[0;33mW (18936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (18936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (19306) MAIN: Accel: X=0.03 Y=0.03 Z=9.70 | Gyro: X=-0.23 Y=-0.88 Z=0.60[0m
+[0;33mW (19936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (19936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 33[0m
+[0;32mI (20306) MAIN: Accel: X=-0.02 Y=-0.03 Z=9.73 | Gyro: X=-0.27 Y=-1.05 Z=0.93[0m
+[0;33mW (20936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (20936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (21306) MAIN: Accel: X=0.03 Y=0.05 Z=9.68 | Gyro: X=-0.42 Y=-1.11 Z=1.08[0m
+[0;33mW (21936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (21936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (22306) MAIN: Accel: X=0.00 Y=-0.01 Z=9.73 | Gyro: X=-0.45 Y=-0.97 Z=0.83[0m
+[0;33mW (22936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (22936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (23306) MAIN: Accel: X=0.04 Y=0.02 Z=9.77 | Gyro: X=-1.21 Y=-0.56 Z=1.08[0m
+[0;33mW (23936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (23936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (24306) MAIN: Accel: X=-1.96 Y=0.12 Z=9.31 | Gyro: X=13.11 Y=-14.95 Z=-24.80[0m
+[0;33mW (24936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (24936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (25306) MAIN: Accel: X=5.82 Y=2.25 Z=7.86 | Gyro: X=0.88 Y=162.58 Z=-49.18[0m
+[0;33mW (25936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (25936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (26306) MAIN: Accel: X=-11.43 Y=-1.20 Z=3.77 | Gyro: X=-35.26 Y=-49.93 Z=-13.75[0m
+[0;33mW (26936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (26936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (27306) MAIN: Accel: X=-2.37 Y=0.50 Z=10.16 | Gyro: X=3.32 Y=-13.65 Z=20.40[0m
+[0;33mW (27936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (27936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 29[0m
+[0;32mI (28306) MAIN: Accel: X=-0.15 Y=0.24 Z=10.04 | Gyro: X=-0.41 Y=1.61 Z=-0.25[0m
+[0;33mW (28936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (28936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 28[0m
+[0;32mI (29306) MAIN: Accel: X=-0.10 Y=0.23 Z=9.90 | Gyro: X=-0.32 Y=-0.85 Z=0.85[0m
+[0;33mW (29936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (29936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 29[0m
+[0;32mI (30306) MAIN: Accel: X=-0.07 Y=0.26 Z=9.92 | Gyro: X=-0.06 Y=-1.08 Z=1.01[0m
+[0;33mW (30936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (30936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (31306) MAIN: Accel: X=-0.07 Y=0.24 Z=9.93 | Gyro: X=-0.39 Y=-0.77 Z=1.01[0m
+[0;33mW (31936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (31936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (32306) MAIN: Accel: X=-0.08 Y=0.21 Z=9.88 | Gyro: X=-0.31 Y=-0.72 Z=0.88[0m
+[0;33mW (32936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (32936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (33306) MAIN: Accel: X=-0.04 Y=0.24 Z=9.93 | Gyro: X=0.16 Y=-1.02 Z=1.45[0m
+[0;33mW (33936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (33936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (34306) MAIN: Accel: X=-0.04 Y=0.25 Z=9.99 | Gyro: X=0.13 Y=-0.86 Z=1.31[0m
+[0;33mW (34936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (34936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (35306) MAIN: Accel: X=-0.10 Y=0.19 Z=9.95 | Gyro: X=-0.09 Y=-0.92 Z=2.14[0m
+[0;33mW (35936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (35936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (36306) MAIN: Accel: X=-0.14 Y=0.19 Z=9.88 | Gyro: X=-0.02 Y=-0.95 Z=0.82[0m
+[0;33mW (36936) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (36936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (37306) MAIN: Accel: X=-0.04 Y=0.21 Z=9.84 | Gyro: X=-0.05 Y=-0.92 Z=0.78[0m
+[0;32mI (37836) BLE_BIDIRECTIONAL: ✅ Cliente conectado (handle=0).[0m
+[0;32mI (37936) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (37936) NimBLE: att_handle=18[0m
+
+[0;32mI (37936) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:32[0m
+[0;32mI (37936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (38306) MAIN: Accel: X=-0.10 Y=0.24 Z=9.84 | Gyro: X=-0.10 Y=-0.89 Z=0.99[0m
+[0;32mI (38946) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (38946) NimBLE: att_handle=18[0m
+
+[0;32mI (38946) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:34[0m
+[0;32mI (38946) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 34[0m
+[0;32mI (39306) MAIN: Accel: X=-0.12 Y=0.19 Z=9.90 | Gyro: X=-0.44 Y=-1.06 Z=1.03[0m
+[0;32mI (39956) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (39956) NimBLE: att_handle=18[0m
+
+[0;32mI (39956) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:34[0m
+[0;32mI (39956) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 34[0m
+[0;32mI (40306) MAIN: Accel: X=-0.15 Y=0.13 Z=9.75 | Gyro: X=-0.10 Y=-0.90 Z=0.91[0m
+[0;32mI (40966) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (40966) NimBLE: att_handle=18[0m
+
+[0;32mI (40966) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:35[0m
+[0;32mI (40966) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (41306) MAIN: Accel: X=-0.06 Y=0.22 Z=9.87 | Gyro: X=-0.11 Y=-1.13 Z=0.85[0m
+[0;32mI (41976) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (41976) NimBLE: att_handle=18[0m
+
+[0;32mI (41976) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:36[0m
+[0;32mI (41976) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (42306) MAIN: Accel: X=-0.10 Y=0.09 Z=9.81 | Gyro: X=0.15 Y=-0.46 Z=1.29[0m
+[0;32mI (42986) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (42986) NimBLE: att_handle=18[0m
+
+[0;32mI (42986) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:35[0m
+[0;32mI (42986) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (43306) MAIN: Accel: X=-0.09 Y=0.21 Z=9.80 | Gyro: X=-0.18 Y=-0.59 Z=1.06[0m
+[0;32mI (43996) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (43996) NimBLE: att_handle=18[0m
+
+[0;32mI (43996) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (43996) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (44306) MAIN: Accel: X=-0.05 Y=0.21 Z=9.75 | Gyro: X=-0.20 Y=-1.08 Z=0.96[0m
+[0;32mI (45006) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (45006) NimBLE: att_handle=18[0m
+
+[0;32mI (45006) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:36[0m
+[0;32mI (45006) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (45306) MAIN: Accel: X=-0.09 Y=0.16 Z=9.81 | Gyro: X=-0.09 Y=-0.97 Z=0.95[0m
+[0;32mI (46016) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (46016) NimBLE: att_handle=18[0m
+
+[0;32mI (46016) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (46016) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (46306) MAIN: Accel: X=-0.15 Y=0.23 Z=9.89 | Gyro: X=-0.37 Y=-1.02 Z=1.15[0m
+[0;32mI (47026) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (47026) NimBLE: att_handle=18[0m
+
+[0;32mI (47026) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:36[0m
+[0;32mI (47026) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (47306) MAIN: Accel: X=-0.07 Y=0.22 Z=9.84 | Gyro: X=0.15 Y=-1.08 Z=1.02[0m
+[0;32mI (48036) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (48036) NimBLE: att_handle=18[0m
+
+[0;32mI (48036) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (48036) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (48306) MAIN: Accel: X=-0.10 Y=0.23 Z=9.76 | Gyro: X=-0.07 Y=-1.04 Z=1.11[0m
+[0;32mI (49046) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (49046) NimBLE: att_handle=18[0m
+
+[0;32mI (49046) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (49046) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (49306) MAIN: Accel: X=-0.04 Y=0.21 Z=9.77 | Gyro: X=0.12 Y=-0.86 Z=1.27[0m
+[0;32mI (50056) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (50056) NimBLE: att_handle=18[0m
+
+[0;32mI (50056) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:38[0m
+[0;32mI (50056) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 38[0m
+[0;32mI (50306) MAIN: Accel: X=-0.10 Y=0.19 Z=9.75 | Gyro: X=-0.18 Y=-0.77 Z=0.92[0m
+[0;32mI (51066) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (51066) NimBLE: att_handle=18[0m
+
+[0;32mI (51066) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (51066) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (51306) MAIN: Accel: X=-0.07 Y=0.24 Z=9.94 | Gyro: X=-0.08 Y=-0.55 Z=1.17[0m
+[0;32mI (52076) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (52076) NimBLE: att_handle=18[0m
+
+[0;32mI (52076) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (52076) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (52306) MAIN: Accel: X=-0.10 Y=0.18 Z=9.79 | Gyro: X=-0.02 Y=-0.82 Z=1.21[0m
+[0;32mI (53086) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (53086) NimBLE: att_handle=18[0m
+
+[0;32mI (53086) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:35[0m
+[0;32mI (53086) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (53306) MAIN: Accel: X=-0.12 Y=0.18 Z=9.85 | Gyro: X=-0.22 Y=-0.86 Z=0.88[0m
+[0;32mI (54096) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (54096) NimBLE: att_handle=18[0m
+
+[0;32mI (54096) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:36[0m
+[0;32mI (54096) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (54306) MAIN: Accel: X=-0.05 Y=0.16 Z=9.83 | Gyro: X=-0.22 Y=-0.88 Z=1.14[0m
+[0;32mI (55106) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (55106) NimBLE: att_handle=18[0m
+
+[0;32mI (55106) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:35[0m
+[0;32mI (55106) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (55306) MAIN: Accel: X=-0.08 Y=0.23 Z=9.72 | Gyro: X=-0.15 Y=-0.76 Z=1.48[0m
+[0;32mI (56116) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (56116) NimBLE: att_handle=18[0m
+
+[0;32mI (56116) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:36[0m
+[0;32mI (56116) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (56306) MAIN: Accel: X=-0.12 Y=0.20 Z=9.75 | Gyro: X=0.60 Y=-0.92 Z=1.11[0m
+[0;32mI (57126) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (57126) NimBLE: att_handle=18[0m
+
+[0;32mI (57126) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:35[0m
+[0;32mI (57126) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (57306) MAIN: Accel: X=-0.07 Y=0.16 Z=9.84 | Gyro: X=-0.11 Y=-0.84 Z=0.82[0m
+[0;32mI (58136) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (58136) NimBLE: att_handle=18[0m
+
+[0;32mI (58136) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:36[0m
+[0;32mI (58136) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (58306) MAIN: Accel: X=-0.07 Y=0.16 Z=9.74 | Gyro: X=-0.21 Y=-0.83 Z=1.16[0m
+[0;32mI (59146) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (59146) NimBLE: att_handle=18[0m
+
+[0;32mI (59146) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:34[0m
+[0;32mI (59146) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 34[0m
+[0;32mI (59306) MAIN: Accel: X=-0.06 Y=0.17 Z=9.84 | Gyro: X=0.25 Y=-0.97 Z=0.86[0m
+[0;32mI (60156) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (60156) NimBLE: att_handle=18[0m
+
+[0;32mI (60156) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:35[0m
+[0;32mI (60156) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (60306) MAIN: Accel: X=-0.11 Y=0.12 Z=9.85 | Gyro: X=-0.27 Y=-0.91 Z=0.98[0m
+[0;32mI (61166) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (61166) NimBLE: att_handle=18[0m
+
+[0;32mI (61166) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:34[0m
+[0;32mI (61166) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 34[0m
+[0;32mI (61306) MAIN: Accel: X=-0.07 Y=0.22 Z=9.89 | Gyro: X=-0.13 Y=-1.16 Z=1.05[0m
+[0;32mI (62176) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (62176) NimBLE: att_handle=18[0m
+
+[0;32mI (62176) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:35[0m
+[0;32mI (62176) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (62306) MAIN: Accel: X=-0.11 Y=0.22 Z=9.80 | Gyro: X=0.15 Y=-1.02 Z=1.03[0m
+[0;32mI (63186) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (63186) NimBLE: att_handle=18[0m
+
+[0;32mI (63186) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:35[0m
+[0;32mI (63186) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (63306) MAIN: Accel: X=-0.12 Y=0.16 Z=9.89 | Gyro: X=-0.04 Y=-0.95 Z=0.72[0m
+[0;32mI (63866) BLE_BIDIRECTIONAL: 🔌 Cliente desconectado. Reiniciando advertising...[0m
+[0;32mI (63876) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (63876) NimBLE: disc_mode=2[0m
+[0;32mI (63876) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (63886) NimBLE: [0m
+
+[0;33mW (64196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (64196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (64306) MAIN: Accel: X=-0.07 Y=0.21 Z=9.80 | Gyro: X=-0.11 Y=-0.97 Z=1.06[0m
+[0;33mW (65196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (65196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (65306) MAIN: Accel: X=-0.09 Y=0.21 Z=9.82 | Gyro: X=-0.13 Y=-1.05 Z=0.88[0m
+[0;33mW (66196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (66196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 34[0m
+[0;32mI (66306) MAIN: Accel: X=-0.10 Y=0.20 Z=9.79 | Gyro: X=-0.11 Y=-0.91 Z=1.05[0m
+[0;33mW (67196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (67196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 33[0m
+[0;32mI (67306) MAIN: Accel: X=-0.11 Y=0.13 Z=9.73 | Gyro: X=-0.05 Y=-0.95 Z=1.05[0m
+[0;33mW (68196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (68196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (68306) MAIN: Accel: X=-0.03 Y=0.17 Z=9.87 | Gyro: X=-0.25 Y=-1.06 Z=1.27[0m
+[0;33mW (69196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (69196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (69306) MAIN: Accel: X=-0.17 Y=0.16 Z=9.83 | Gyro: X=-0.47 Y=-0.90 Z=0.85[0m
+[0;33mW (70196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (70196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (70306) MAIN: Accel: X=-0.09 Y=0.16 Z=9.80 | Gyro: X=-0.07 Y=-0.77 Z=1.22[0m
+[0;33mW (71196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (71196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (71306) MAIN: Accel: X=-0.08 Y=0.16 Z=9.80 | Gyro: X=-0.44 Y=-0.97 Z=1.11[0m
+[0;33mW (72196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (72196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (72306) MAIN: Accel: X=-0.11 Y=0.18 Z=9.80 | Gyro: X=-0.22 Y=-0.79 Z=0.81[0m
+[0;33mW (73196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (73196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (73306) MAIN: Accel: X=-0.10 Y=0.16 Z=9.79 | Gyro: X=-0.24 Y=-1.16 Z=0.84[0m
+[0;33mW (74196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (74196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 34[0m
+[0;32mI (74306) MAIN: Accel: X=-0.17 Y=0.18 Z=9.82 | Gyro: X=-0.31 Y=-1.09 Z=1.05[0m
+[0;33mW (75196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (75196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 34[0m
+[0;32mI (75306) MAIN: Accel: X=-0.16 Y=0.15 Z=9.74 | Gyro: X=0.21 Y=-2.04 Z=0.15[0m
+[0;33mW (76196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (76196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (76306) MAIN: Accel: X=-0.07 Y=0.18 Z=9.82 | Gyro: X=-0.31 Y=-1.21 Z=0.54[0m
+[0;33mW (77196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (77196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (77306) MAIN: Accel: X=-0.11 Y=0.13 Z=9.72 | Gyro: X=-0.12 Y=-0.82 Z=1.46[0m
+[0;33mW (78196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (78196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 38[0m
+[0;32mI (78306) MAIN: Accel: X=-0.10 Y=0.14 Z=9.78 | Gyro: X=-0.27 Y=-0.89 Z=0.89[0m
+[0;33mW (79196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (79196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (79306) MAIN: Accel: X=-0.11 Y=0.17 Z=9.78 | Gyro: X=-0.16 Y=-0.73 Z=1.20[0m
+[0;33mW (80196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (80196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (80306) MAIN: Accel: X=-0.14 Y=0.22 Z=9.78 | Gyro: X=-0.23 Y=-0.88 Z=1.07[0m
+[0;33mW (81196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (81196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (81306) MAIN: Accel: X=-0.15 Y=0.17 Z=9.71 | Gyro: X=-0.18 Y=-1.06 Z=0.99[0m
+[0;33mW (82196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (82196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (82306) MAIN: Accel: X=-0.08 Y=0.21 Z=9.73 | Gyro: X=-0.12 Y=-0.89 Z=0.90[0m
+[0;33mW (83196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (83196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (83306) MAIN: Accel: X=-0.10 Y=0.16 Z=9.71 | Gyro: X=-0.18 Y=-1.08 Z=1.06[0m
+[0;33mW (84196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (84196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (84306) MAIN: Accel: X=-0.09 Y=0.16 Z=9.71 | Gyro: X=-0.42 Y=-1.01 Z=1.07[0m
+[0;33mW (85196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (85196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (85306) MAIN: Accel: X=-0.11 Y=0.18 Z=9.80 | Gyro: X=-0.10 Y=-0.88 Z=1.00[0m
+[0;33mW (86196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (86196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (86306) MAIN: Accel: X=-0.08 Y=0.22 Z=9.82 | Gyro: X=-0.11 Y=-1.37 Z=0.84[0m
+[0;33mW (87196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (87196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (87306) MAIN: Accel: X=-0.11 Y=0.14 Z=9.74 | Gyro: X=0.27 Y=-0.92 Z=1.55[0m
+[0;33mW (88196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (88196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (88306) MAIN: Accel: X=-0.09 Y=0.10 Z=9.78 | Gyro: X=-0.27 Y=-0.98 Z=1.11[0m
+[0;33mW (89196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (89196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (89306) MAIN: Accel: X=-0.06 Y=0.22 Z=9.78 | Gyro: X=-0.31 Y=-1.03 Z=0.92[0m
+[0;33mW (90196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (90196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (90306) MAIN: Accel: X=-0.15 Y=0.20 Z=9.78 | Gyro: X=-0.14 Y=-1.10 Z=0.85[0m
+[0;33mW (91196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (91196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (91306) MAIN: Accel: X=-0.07 Y=0.22 Z=9.72 | Gyro: X=-0.37 Y=-1.08 Z=1.19[0m
+[0;33mW (92196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (92196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 34[0m
+[0;32mI (92306) MAIN: Accel: X=-0.12 Y=0.17 Z=9.76 | Gyro: X=0.02 Y=-0.84 Z=1.05[0m
+[0;33mW (93196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (93196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 33[0m
+[0;32mI (93306) MAIN: Accel: X=-0.16 Y=0.18 Z=9.80 | Gyro: X=-0.39 Y=-0.89 Z=1.02[0m
+[0;33mW (94196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (94196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (94306) MAIN: Accel: X=-0.13 Y=0.18 Z=9.67 | Gyro: X=-0.12 Y=-0.87 Z=1.02[0m
+[0;33mW (95196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (95196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (95306) MAIN: Accel: X=-0.15 Y=0.15 Z=9.69 | Gyro: X=-0.08 Y=-1.18 Z=0.95[0m
+[0;33mW (96196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (96196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (96306) MAIN: Accel: X=-0.10 Y=0.14 Z=9.73 | Gyro: X=-0.02 Y=-1.05 Z=1.02[0m
+[0;33mW (97196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (97196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 33[0m
+[0;32mI (97306) MAIN: Accel: X=-0.10 Y=0.22 Z=9.84 | Gyro: X=-0.18 Y=-0.85 Z=1.09[0m
+[0;33mW (98196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (98196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (98306) MAIN: Accel: X=-0.06 Y=0.19 Z=9.84 | Gyro: X=-0.28 Y=-1.11 Z=0.94[0m
+[0;33mW (99196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (99196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (99306) MAIN: Accel: X=-0.16 Y=0.19 Z=9.76 | Gyro: X=-0.18 Y=-0.94 Z=1.07[0m
+[0;33mW (100196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (100196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (100306) MAIN: Accel: X=-0.10 Y=0.19 Z=9.70 | Gyro: X=-0.30 Y=-0.96 Z=0.80[0m
+[0;33mW (101196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (101196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 29[0m
+[0;32mI (101306) MAIN: Accel: X=-0.16 Y=0.18 Z=9.68 | Gyro: X=-0.18 Y=-1.08 Z=1.31[0m
+[0;33mW (102196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (102196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 29[0m
+[0;32mI (102306) MAIN: Accel: X=-0.10 Y=0.17 Z=9.80 | Gyro: X=0.25 Y=-0.89 Z=0.82[0m
+[0;33mW (103196) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (103196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (103306) MAIN: Accel: X=-0.09 Y=0.23 Z=9.74 | Gyro: X=-0.27 Y=-0.99 Z=1.04[0m
+[0;32mI (103836) BLE_BIDIRECTIONAL: ✅ Cliente conectado (handle=0).[0m
+[0;32mI (104196) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (104196) NimBLE: att_handle=18[0m
+
+[0;32mI (104196) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:28[0m
+[0;32mI (104196) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 28[0m
+[0;32mI (104306) MAIN: Accel: X=-0.07 Y=0.24 Z=9.70 | Gyro: X=-0.24 Y=-0.99 Z=1.08[0m
+[0;32mI (105206) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (105206) NimBLE: att_handle=18[0m
+
+[0;32mI (105206) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:27[0m
+[0;32mI (105206) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 27[0m
+[0;32mI (105306) MAIN: Accel: X=-0.11 Y=0.20 Z=9.72 | Gyro: X=-0.31 Y=-0.82 Z=1.12[0m
+[0;32mI (106216) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (106216) NimBLE: att_handle=18[0m
+
+[0;32mI (106216) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:28[0m
+[0;32mI (106216) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 28[0m
+[0;32mI (106306) MAIN: Accel: X=-0.10 Y=0.19 Z=9.86 | Gyro: X=-0.37 Y=-0.95 Z=1.06[0m
+[0;32mI (107226) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (107226) NimBLE: att_handle=18[0m
+
+[0;32mI (107226) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:28[0m
+[0;32mI (107226) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 28[0m
+[0;32mI (107306) MAIN: Accel: X=-0.09 Y=0.19 Z=9.65 | Gyro: X=0.01 Y=-0.86 Z=0.80[0m
+[0;32mI (108236) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (108236) NimBLE: att_handle=18[0m
+
+[0;32mI (108236) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:27[0m
+[0;32mI (108236) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 27[0m
+[0;32mI (108306) MAIN: Accel: X=-0.10 Y=0.18 Z=9.68 | Gyro: X=-0.19 Y=-0.99 Z=0.73[0m
+[0;32mI (109246) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (109246) NimBLE: att_handle=18[0m
+
+[0;32mI (109246) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:28[0m
+[0;32mI (109246) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 28[0m
+[0;32mI (109306) MAIN: Accel: X=-0.07 Y=0.23 Z=9.73 | Gyro: X=-0.26 Y=-0.84 Z=0.83[0m
+[0;32mI (110256) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (110256) NimBLE: att_handle=18[0m
+
+[0;32mI (110256) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:28[0m
+[0;32mI (110256) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 28[0m
+[0;32mI (110306) MAIN: Accel: X=-0.06 Y=0.16 Z=9.77 | Gyro: X=-0.15 Y=-0.98 Z=0.98[0m
+[0;32mI (111266) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (111266) NimBLE: att_handle=18[0m
+
+[0;32mI (111266) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:28[0m
+[0;32mI (111266) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 28[0m
+[0;32mI (111306) MAIN: Accel: X=-0.13 Y=0.21 Z=9.81 | Gyro: X=-0.39 Y=-1.04 Z=1.02[0m
+[0;32mI (112276) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (112276) NimBLE: att_handle=18[0m
+
+[0;32mI (112276) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:29[0m
+[0;32mI (112276) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 29[0m
+[0;32mI (112306) MAIN: Accel: X=-0.13 Y=0.21 Z=9.74 | Gyro: X=-0.21 Y=-0.97 Z=1.08[0m
+[0;32mI (113286) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (113286) NimBLE: att_handle=18[0m
+
+[0;32mI (113286) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:29[0m
+[0;32mI (113286) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 29[0m
+[0;32mI (113306) MAIN: Accel: X=-0.09 Y=0.13 Z=9.73 | Gyro: X=0.02 Y=-1.22 Z=0.87[0m
+[0;32mI (114296) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (114296) NimBLE: att_handle=18[0m
+
+[0;32mI (114296) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:30[0m
+[0;32mI (114296) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (114306) MAIN: Accel: X=-0.04 Y=0.16 Z=9.73 | Gyro: X=-0.34 Y=-1.09 Z=0.69[0m
+[0;32mI (115306) MAIN: Accel: X=-0.15 Y=0.22 Z=9.72 | Gyro: X=0.11 Y=-0.76 Z=1.06[0m
+[0;32mI (115306) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (115306) NimBLE: att_handle=18[0m
+
+[0;32mI (115306) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:29[0m
+[0;32mI (115316) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 29[0m
+[0;32mI (116306) MAIN: Accel: X=-0.03 Y=0.21 Z=9.83 | Gyro: X=-0.15 Y=-0.96 Z=1.18[0m
+[0;32mI (116316) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (116316) NimBLE: att_handle=18[0m
+
+[0;32mI (116316) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:29[0m
+[0;32mI (116316) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 29[0m
+[0;32mI (117306) MAIN: Accel: X=-0.05 Y=0.21 Z=9.68 | Gyro: X=-0.14 Y=-1.15 Z=1.27[0m
+[0;32mI (117326) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (117326) NimBLE: att_handle=18[0m
+
+[0;32mI (117326) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:30[0m
+[0;32mI (117326) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (118306) MAIN: Accel: X=-0.10 Y=0.18 Z=9.65 | Gyro: X=0.08 Y=-0.95 Z=0.89[0m
+[0;32mI (118336) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (118336) NimBLE: att_handle=18[0m
+
+[0;32mI (118336) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:30[0m
+[0;32mI (118336) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (119306) MAIN: Accel: X=-0.08 Y=0.12 Z=9.72 | Gyro: X=-0.01 Y=-1.12 Z=0.85[0m
+[0;32mI (119346) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (119346) NimBLE: att_handle=18[0m
+
+[0;32mI (119346) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:30[0m
+[0;32mI (119346) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (120306) MAIN: Accel: X=-0.08 Y=0.18 Z=9.62 | Gyro: X=-0.36 Y=-1.08 Z=1.12[0m
+[0;32mI (120356) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (120356) NimBLE: att_handle=18[0m
+
+[0;32mI (120356) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:34[0m
+[0;32mI (120356) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 34[0m
+[0;32mI (121306) MAIN: Accel: X=-0.11 Y=0.20 Z=9.77 | Gyro: X=-0.21 Y=-1.10 Z=1.10[0m
+[0;32mI (121366) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (121366) NimBLE: att_handle=18[0m
+
+[0;32mI (121366) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:34[0m
+[0;32mI (121366) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 34[0m
+[0;32mI (122306) MAIN: Accel: X=-0.14 Y=0.12 Z=9.69 | Gyro: X=-0.09 Y=-0.89 Z=1.11[0m
+[0;32mI (122376) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (122376) NimBLE: att_handle=18[0m
+
+[0;32mI (122376) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:35[0m
+[0;32mI (122376) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (123306) MAIN: Accel: X=-0.10 Y=0.18 Z=9.73 | Gyro: X=-0.23 Y=-0.76 Z=1.15[0m
+[0;32mI (123386) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (123386) NimBLE: att_handle=18[0m
+
+[0;32mI (123386) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:34[0m
+[0;32mI (123386) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 34[0m
+[0;32mI (124306) MAIN: Accel: X=-0.08 Y=0.16 Z=9.65 | Gyro: X=-0.05 Y=-0.87 Z=0.97[0m
+[0;32mI (124396) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (124396) NimBLE: att_handle=18[0m
+
+[0;32mI (124396) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:34[0m
+[0;32mI (124396) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 34[0m
+[0;32mI (125306) MAIN: Accel: X=-0.11 Y=0.14 Z=9.81 | Gyro: X=-0.13 Y=-1.14 Z=1.05[0m
+[0;32mI (125406) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (125406) NimBLE: att_handle=18[0m
+
+[0;32mI (125406) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:35[0m
+[0;32mI (125406) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (126306) MAIN: Accel: X=-0.11 Y=0.17 Z=9.76 | Gyro: X=-0.23 Y=-1.13 Z=1.03[0m
+[0;32mI (126416) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (126416) NimBLE: att_handle=18[0m
+
+[0;32mI (126416) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:36[0m
+[0;32mI (126416) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (127306) MAIN: Accel: X=-0.05 Y=0.18 Z=9.65 | Gyro: X=-0.19 Y=-1.08 Z=0.98[0m
+[0;32mI (127426) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (127426) NimBLE: att_handle=18[0m
+
+[0;32mI (127426) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:35[0m
+[0;32mI (127426) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (128306) MAIN: Accel: X=-0.10 Y=0.15 Z=9.77 | Gyro: X=-0.11 Y=-0.77 Z=1.23[0m
+[0;32mI (128436) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (128436) NimBLE: att_handle=18[0m
+
+[0;32mI (128436) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (128436) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (129306) MAIN: Accel: X=-0.10 Y=0.16 Z=9.77 | Gyro: X=-0.11 Y=-0.76 Z=0.96[0m
+[0;32mI (129446) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (129446) NimBLE: att_handle=18[0m
+
+[0;32mI (129446) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:36[0m
+[0;32mI (129446) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (130306) MAIN: Accel: X=-0.12 Y=0.18 Z=9.70 | Gyro: X=-0.08 Y=-1.05 Z=1.05[0m
+[0;32mI (130456) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (130456) NimBLE: att_handle=18[0m
+
+[0;32mI (130456) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (130456) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (131306) MAIN: Accel: X=-0.06 Y=0.16 Z=9.72 | Gyro: X=-0.17 Y=-0.92 Z=1.11[0m
+[0;32mI (131466) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (131466) NimBLE: att_handle=18[0m
+
+[0;32mI (131466) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (131466) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (132306) MAIN: Accel: X=-0.05 Y=0.20 Z=9.72 | Gyro: X=-0.43 Y=-1.11 Z=1.27[0m
+[0;32mI (132476) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (132476) NimBLE: att_handle=18[0m
+
+[0;32mI (132476) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (132476) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (133306) MAIN: Accel: X=-0.06 Y=0.16 Z=9.80 | Gyro: X=-0.40 Y=-0.95 Z=1.01[0m
+[0;32mI (133486) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (133486) NimBLE: att_handle=18[0m
+
+[0;32mI (133486) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:36[0m
+[0;32mI (133486) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (134306) MAIN: Accel: X=-0.18 Y=0.21 Z=9.77 | Gyro: X=0.04 Y=-1.14 Z=0.85[0m
+[0;32mI (134496) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (134496) NimBLE: att_handle=18[0m
+
+[0;32mI (134496) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (134496) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (135306) MAIN: Accel: X=-0.10 Y=0.20 Z=9.67 | Gyro: X=-0.10 Y=-0.92 Z=1.23[0m
+[0;32mI (135506) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (135506) NimBLE: att_handle=18[0m
+
+[0;32mI (135506) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:36[0m
+[0;32mI (135506) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (136306) MAIN: Accel: X=-0.12 Y=0.17 Z=9.72 | Gyro: X=-0.21 Y=-0.92 Z=1.15[0m
+[0;32mI (136516) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (136516) NimBLE: att_handle=18[0m
+
+[0;32mI (136516) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (136516) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (137306) MAIN: Accel: X=-0.07 Y=0.15 Z=9.72 | Gyro: X=-0.02 Y=-0.93 Z=1.13[0m
+[0;32mI (137526) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (137526) NimBLE: att_handle=18[0m
+
+[0;32mI (137526) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (137526) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (138306) MAIN: Accel: X=-0.09 Y=0.10 Z=9.68 | Gyro: X=-0.14 Y=-0.88 Z=0.98[0m
+[0;32mI (138536) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (138536) NimBLE: att_handle=18[0m
+
+[0;32mI (138536) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (138536) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (139306) MAIN: Accel: X=-0.15 Y=0.09 Z=9.65 | Gyro: X=-0.39 Y=-1.02 Z=0.93[0m
+[0;32mI (139546) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (139546) NimBLE: att_handle=18[0m
+
+[0;32mI (139546) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:38[0m
+[0;32mI (139546) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 38[0m
+[0;32mI (140306) MAIN: Accel: X=-0.06 Y=0.18 Z=9.72 | Gyro: X=-0.21 Y=-1.01 Z=1.22[0m
+[0;32mI (140556) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (140556) NimBLE: att_handle=18[0m
+
+[0;32mI (140556) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (140556) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (141306) MAIN: Accel: X=-0.10 Y=0.13 Z=9.71 | Gyro: X=-0.16 Y=-0.87 Z=0.75[0m
+[0;32mI (141566) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (141566) NimBLE: att_handle=18[0m
+
+[0;32mI (141566) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:35[0m
+[0;32mI (141566) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (142306) MAIN: Accel: X=-0.07 Y=0.16 Z=9.69 | Gyro: X=0.14 Y=-0.73 Z=1.12[0m
+[0;32mI (142576) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (142576) NimBLE: att_handle=18[0m
+
+[0;32mI (142576) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (142576) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (143306) MAIN: Accel: X=-0.13 Y=0.16 Z=9.67 | Gyro: X=-0.18 Y=-0.78 Z=0.79[0m
+[0;32mI (143586) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (143586) NimBLE: att_handle=18[0m
+
+[0;32mI (143586) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:36[0m
+[0;32mI (143586) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (144306) MAIN: Accel: X=-0.10 Y=0.18 Z=9.72 | Gyro: X=-0.29 Y=-0.92 Z=1.05[0m
+[0;32mI (144596) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (144596) NimBLE: att_handle=18[0m
+
+[0;32mI (144596) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (144596) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (145306) MAIN: Accel: X=-0.02 Y=0.12 Z=9.68 | Gyro: X=-0.25 Y=-0.98 Z=1.18[0m
+[0;32mI (145606) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (145606) NimBLE: att_handle=18[0m
+
+[0;32mI (145606) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (145606) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (146306) MAIN: Accel: X=-0.13 Y=0.18 Z=9.70 | Gyro: X=-0.28 Y=-0.96 Z=0.95[0m
+[0;32mI (146616) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (146616) NimBLE: att_handle=18[0m
+
+[0;32mI (146616) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (146616) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (147306) MAIN: Accel: X=-0.07 Y=0.12 Z=9.74 | Gyro: X=-0.09 Y=-1.02 Z=1.28[0m
+[0;32mI (147626) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (147626) NimBLE: att_handle=18[0m
+
+[0;32mI (147626) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:38[0m
+[0;32mI (147626) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 38[0m
+[0;32mI (148306) MAIN: Accel: X=-0.05 Y=0.18 Z=9.71 | Gyro: X=-0.02 Y=-0.95 Z=1.21[0m
+[0;32mI (148636) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (148636) NimBLE: att_handle=18[0m
+
+[0;32mI (148636) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:36[0m
+[0;32mI (148636) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (149306) MAIN: Accel: X=-0.07 Y=0.16 Z=9.77 | Gyro: X=-0.07 Y=-1.13 Z=0.79[0m
+[0;32mI (149646) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (149646) NimBLE: att_handle=18[0m
+
+[0;32mI (149646) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:34[0m
+[0;32mI (149646) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 34[0m
+[0;32mI (150306) MAIN: Accel: X=-0.07 Y=0.10 Z=9.76 | Gyro: X=-0.18 Y=-1.02 Z=1.11[0m
+[0;32mI (150656) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (150656) NimBLE: att_handle=18[0m
+
+[0;32mI (150656) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:34[0m
+[0;32mI (150656) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 34[0m
+[0;32mI (151306) MAIN: Accel: X=-0.13 Y=0.21 Z=9.70 | Gyro: X=0.02 Y=-0.92 Z=1.08[0m
+[0;32mI (151666) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (151666) NimBLE: att_handle=18[0m
+
+[0;32mI (151666) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:32[0m
+[0;32mI (151666) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (152306) MAIN: Accel: X=-0.09 Y=0.18 Z=9.71 | Gyro: X=0.07 Y=-0.83 Z=1.35[0m
+[0;32mI (152676) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (152676) NimBLE: att_handle=18[0m
+
+[0;32mI (152676) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:32[0m
+[0;32mI (152676) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (153306) MAIN: Accel: X=-0.13 Y=0.20 Z=9.78 | Gyro: X=0.01 Y=-0.79 Z=1.07[0m
+[0;32mI (153686) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (153686) NimBLE: att_handle=18[0m
+
+[0;32mI (153686) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:33[0m
+[0;32mI (153686) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 33[0m
+[0;32mI (154306) MAIN: Accel: X=-0.17 Y=0.15 Z=9.65 | Gyro: X=-0.09 Y=-0.83 Z=0.92[0m
+[0;32mI (154696) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (154696) NimBLE: att_handle=18[0m
+
+[0;32mI (154696) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:32[0m
+[0;32mI (154696) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (155306) MAIN: Accel: X=-0.12 Y=0.11 Z=9.77 | Gyro: X=0.09 Y=-0.63 Z=1.12[0m
+[0;32mI (155706) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (155706) NimBLE: att_handle=18[0m
+
+[0;32mI (155706) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:33[0m
+[0;32mI (155706) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 33[0m
+[0;32mI (156306) MAIN: Accel: X=-0.12 Y=0.19 Z=9.70 | Gyro: X=0.13 Y=-0.91 Z=0.69[0m
+[0;32mI (156716) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (156716) NimBLE: att_handle=18[0m
+
+[0;32mI (156716) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:31[0m
+[0;32mI (156716) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (157306) MAIN: Accel: X=-0.07 Y=0.17 Z=9.75 | Gyro: X=-0.57 Y=-1.27 Z=0.85[0m
+[0;32mI (157726) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (157726) NimBLE: att_handle=18[0m
+
+[0;32mI (157726) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:32[0m
+[0;32mI (157726) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (158306) MAIN: Accel: X=-0.07 Y=0.20 Z=9.75 | Gyro: X=0.05 Y=-1.06 Z=1.03[0m
+[0;32mI (158736) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (158736) NimBLE: att_handle=18[0m
+
+[0;32mI (158736) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:32[0m
+[0;32mI (158736) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (159306) MAIN: Accel: X=-0.11 Y=0.11 Z=9.75 | Gyro: X=-0.36 Y=-1.11 Z=0.69[0m
+[0;32mI (159746) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (159746) NimBLE: att_handle=18[0m
+
+[0;32mI (159746) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:33[0m
+[0;32mI (159746) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 33[0m
+[0;32mI (160306) MAIN: Accel: X=-0.13 Y=0.23 Z=9.70 | Gyro: X=-0.33 Y=-0.95 Z=0.74[0m
+[0;32mI (160756) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (160756) NimBLE: att_handle=18[0m
+
+[0;32mI (160756) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:32[0m
+[0;32mI (160756) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (161306) MAIN: Accel: X=-0.06 Y=0.18 Z=9.80 | Gyro: X=-0.21 Y=-0.92 Z=0.98[0m
+[0;32mI (161766) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (161766) NimBLE: att_handle=18[0m
+
+[0;32mI (161766) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:32[0m
+[0;32mI (161766) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (162306) MAIN: Accel: X=-0.10 Y=0.10 Z=9.67 | Gyro: X=-0.11 Y=-0.84 Z=1.06[0m
+[0;32mI (162776) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (162776) NimBLE: att_handle=18[0m
+
+[0;32mI (162776) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:31[0m
+[0;32mI (162776) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (163306) MAIN: Accel: X=-0.17 Y=0.15 Z=9.82 | Gyro: X=-0.05 Y=-1.09 Z=0.95[0m
+[0;32mI (163786) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (163786) NimBLE: att_handle=18[0m
+
+[0;32mI (163786) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:32[0m
+[0;32mI (163786) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (164306) MAIN: Accel: X=-0.13 Y=0.10 Z=9.76 | Gyro: X=-0.19 Y=-0.91 Z=0.99[0m
+[0;32mI (164796) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (164796) NimBLE: att_handle=18[0m
+
+[0;32mI (164796) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:31[0m
+[0;32mI (164796) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (165306) MAIN: Accel: X=-0.11 Y=0.21 Z=9.74 | Gyro: X=-0.35 Y=-0.95 Z=1.05[0m
+[0;32mI (165806) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (165806) NimBLE: att_handle=18[0m
+
+[0;32mI (165806) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:31[0m
+[0;32mI (165806) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (166306) MAIN: Accel: X=-0.07 Y=0.11 Z=9.76 | Gyro: X=-0.01 Y=-0.90 Z=1.21[0m
+[0;32mI (166816) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (166816) NimBLE: att_handle=18[0m
+
+[0;32mI (166816) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:30[0m
+[0;32mI (166816) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (167306) MAIN: Accel: X=-0.13 Y=0.21 Z=9.66 | Gyro: X=-0.15 Y=-1.14 Z=1.03[0m
+[0;32mI (167826) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (167826) NimBLE: att_handle=18[0m
+
+[0;32mI (167826) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:30[0m
+[0;32mI (167826) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (168306) MAIN: Accel: X=-0.11 Y=0.16 Z=9.74 | Gyro: X=-0.56 Y=-0.82 Z=0.92[0m
+[0;32mI (168836) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (168836) NimBLE: att_handle=18[0m
+
+[0;32mI (168836) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:29[0m
+[0;32mI (168836) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 29[0m
+[0;32mI (169306) MAIN: Accel: X=-0.08 Y=0.23 Z=9.77 | Gyro: X=0.54 Y=-0.88 Z=1.99[0m
+[0;32mI (169846) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (169846) NimBLE: att_handle=18[0m
+
+[0;32mI (169846) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:29[0m
+[0;32mI (169846) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 29[0m
+[0;32mI (170306) MAIN: Accel: X=-0.13 Y=0.13 Z=9.76 | Gyro: X=0.04 Y=-1.10 Z=0.93[0m
+[0;32mI (170856) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (170856) NimBLE: att_handle=18[0m
+
+[0;32mI (170856) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:29[0m
+[0;32mI (170856) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 29[0m
+[0;32mI (171306) MAIN: Accel: X=-0.07 Y=0.22 Z=9.70 | Gyro: X=-0.23 Y=-0.94 Z=1.05[0m
+[0;32mI (171866) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (171866) NimBLE: att_handle=18[0m
+
+[0;32mI (171866) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:30[0m
+[0;32mI (171866) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (172306) MAIN: Accel: X=-0.05 Y=0.15 Z=9.68 | Gyro: X=-0.87 Y=-1.50 Z=-0.03[0m
+[0;32mI (172876) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (172876) NimBLE: att_handle=18[0m
+
+[0;32mI (172876) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:31[0m
+[0;32mI (172876) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 31[0m
+[0;32mI (173306) MAIN: Accel: X=-0.12 Y=0.20 Z=9.75 | Gyro: X=-0.36 Y=-0.66 Z=1.16[0m
+[0;32mI (173886) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (173886) NimBLE: att_handle=18[0m
+
+[0;32mI (173886) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:30[0m
+[0;32mI (173886) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (174306) MAIN: Accel: X=-0.10 Y=0.17 Z=9.72 | Gyro: X=0.21 Y=-1.22 Z=1.44[0m
+[0;32mI (174896) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (174896) NimBLE: att_handle=18[0m
+
+[0;32mI (174896) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:30[0m
+[0;32mI (174896) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 30[0m
+[0;32mI (175306) MAIN: Accel: X=-0.06 Y=0.12 Z=9.61 | Gyro: X=0.04 Y=-0.66 Z=0.85[0m
+[0;32mI (175906) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (175906) NimBLE: att_handle=18[0m
+
+[0;32mI (175906) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:32[0m
+[0;32mI (175906) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 32[0m
+[0;32mI (176306) MAIN: Accel: X=-0.11 Y=0.12 Z=9.71 | Gyro: X=0.09 Y=-1.13 Z=1.35[0m
+[0;32mI (176916) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (176916) NimBLE: att_handle=18[0m
+
+[0;32mI (176916) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:33[0m
+[0;32mI (176916) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 33[0m
+[0;32mI (177306) MAIN: Accel: X=-0.10 Y=0.10 Z=9.64 | Gyro: X=-0.55 Y=-1.09 Z=0.10[0m
+[0;32mI (177926) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (177926) NimBLE: att_handle=18[0m
+
+[0;32mI (177926) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:34[0m
+[0;32mI (177926) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 34[0m
+[0;32mI (178306) MAIN: Accel: X=-0.15 Y=0.13 Z=9.64 | Gyro: X=-0.04 Y=-1.07 Z=1.03[0m
+[0;32mI (178936) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (178936) NimBLE: att_handle=18[0m
+
+[0;32mI (178936) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:35[0m
+[0;32mI (178936) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (179306) MAIN: Accel: X=-0.10 Y=0.12 Z=9.74 | Gyro: X=0.17 Y=-0.81 Z=1.26[0m
+[0;32mI (179946) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (179946) NimBLE: att_handle=18[0m
+
+[0;32mI (179946) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:35[0m
+[0;32mI (179946) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 35[0m
+[0;32mI (180306) MAIN: Accel: X=-0.06 Y=0.11 Z=9.64 | Gyro: X=0.89 Y=-1.08 Z=1.31[0m
+[0;32mI (180956) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (180956) NimBLE: att_handle=18[0m
+
+[0;32mI (180956) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:37[0m
+[0;32mI (180956) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 37[0m
+[0;32mI (181306) MAIN: Accel: X=-0.14 Y=0.06 Z=9.72 | Gyro: X=0.01 Y=-1.05 Z=1.40[0m
+[0;32mI (181966) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (181966) NimBLE: att_handle=18[0m
+
+[0;32mI (181966) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:36[0m
+[0;32mI (181966) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 36[0m
+[0;32mI (182306) MAIN: Accel: X=-0.13 Y=0.13 Z=9.64 | Gyro: X=-0.08 Y=-1.11 Z=0.39[0m
+[0;32mI (182976) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (182976) NimBLE: att_handle=18[0m
+
+[0;32mI (182976) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:38[0m
+[0;32mI (182976) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 38[0m
+[0;32mI (183306) MAIN: Accel: X=-0.07 Y=0.18 Z=9.70 | Gyro: X=0.09 Y=-0.95 Z=1.34[0m
+[0;32mI (183986) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (183986) NimBLE: att_handle=18[0m
+
+[0;32mI (183986) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:39[0m
+[0;32mI (183986) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 39[0m
+[0;32mI (184306) MAIN: Accel: X=-0.09 Y=0.15 Z=9.60 | Gyro: X=-0.53 Y=-0.85 Z=0.91[0m
+[0;32mI (184996) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (184996) NimBLE: att_handle=18[0m
+
+[0;32mI (184996) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:39[0m
+[0;32mI (184996) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 39[0m
+[0;32mI (185306) MAIN: Accel: X=-0.13 Y=0.18 Z=9.76 | Gyro: X=-0.47 Y=-1.22 Z=0.22[0m
+[0;32mI (186006) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (186006) NimBLE: att_handle=18[0m
+
+[0;32mI (186006) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:39[0m
+[0;32mI (186006) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 39[0m
+[0;32mI (186306) MAIN: Accel: X=-0.13 Y=0.17 Z=9.73 | Gyro: X=-1.09 Y=-1.02 Z=0.11[0m
+[0;32mI (187016) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (187016) NimBLE: att_handle=18[0m
+
+[0;32mI (187016) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:41[0m
+[0;32mI (187016) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 41[0m
+[0;32mI (187306) MAIN: Accel: X=-0.00 Y=0.16 Z=9.67 | Gyro: X=-1.46 Y=-0.89 Z=-0.08[0m
+[0;32mI (188026) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (188026) NimBLE: att_handle=18[0m
+
+[0;32mI (188026) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:40[0m
+[0;32mI (188026) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 40[0m
+[0;32mI (188306) MAIN: Accel: X=-0.06 Y=0.17 Z=9.61 | Gyro: X=0.50 Y=-0.79 Z=1.50[0m
+[0;32mI (189036) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (189036) NimBLE: att_handle=18[0m
+
+[0;32mI (189036) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:41[0m
+[0;32mI (189036) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 41[0m
+[0;32mI (189306) MAIN: Accel: X=-0.17 Y=0.20 Z=9.68 | Gyro: X=-0.02 Y=-0.98 Z=1.13[0m
+[0;32mI (190046) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (190046) NimBLE: att_handle=18[0m
+
+[0;32mI (190046) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:40[0m
+[0;32mI (190046) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 40[0m
+[0;32mI (190306) MAIN: Accel: X=-0.12 Y=0.06 Z=9.63 | Gyro: X=-0.05 Y=-1.02 Z=0.93[0m
+[0;32mI (191056) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (191056) NimBLE: att_handle=18[0m
+
+[0;32mI (191056) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:42[0m
+[0;32mI (191056) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 42[0m
+[0;32mI (191306) MAIN: Accel: X=-0.08 Y=0.16 Z=9.70 | Gyro: X=0.02 Y=-0.79 Z=1.10[0m
+[0;32mI (192066) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (192066) NimBLE: att_handle=18[0m
+
+[0;32mI (192066) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:42[0m
+[0;32mI (192066) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 42[0m
+[0;32mI (192306) MAIN: Accel: X=-0.11 Y=0.11 Z=9.59 | Gyro: X=1.11 Y=-0.81 Z=2.37[0m
+[0;32mI (193076) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (193076) NimBLE: att_handle=18[0m
+
+[0;32mI (193076) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:43[0m
+[0;32mI (193076) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 43[0m
+[0;32mI (193306) MAIN: Accel: X=-0.08 Y=0.19 Z=9.64 | Gyro: X=-0.85 Y=-0.53 Z=1.51[0m
+[0;32mI (194086) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (194086) NimBLE: att_handle=18[0m
+
+[0;32mI (194086) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:42[0m
+[0;32mI (194086) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 42[0m
+[0;32mI (194306) MAIN: Accel: X=-0.10 Y=0.17 Z=9.66 | Gyro: X=-0.24 Y=-0.59 Z=0.79[0m
+[0;32mI (195096) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (195096) NimBLE: att_handle=18[0m
+
+[0;32mI (195096) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:44[0m
+[0;32mI (195096) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 44[0m
+[0;32mI (195306) MAIN: Accel: X=-0.08 Y=0.10 Z=9.63 | Gyro: X=1.21 Y=-1.02 Z=2.21[0m
+[0;32mI (196106) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (196106) NimBLE: att_handle=18[0m
+
+[0;32mI (196106) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:43[0m
+[0;32mI (196106) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 43[0m
+[0;32mI (196306) MAIN: Accel: X=-0.11 Y=0.06 Z=9.57 | Gyro: X=-1.28 Y=-1.16 Z=1.00[0m
+[0;32mI (197116) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (197116) NimBLE: att_handle=18[0m
+
+[0;32mI (197116) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:44[0m
+[0;32mI (197116) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 44[0m
+[0;32mI (197306) MAIN: Accel: X=-0.07 Y=0.17 Z=9.74 | Gyro: X=-0.04 Y=-1.14 Z=0.48[0m
+[0;32mI (198126) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (198126) NimBLE: att_handle=18[0m
+
+[0;32mI (198126) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:43[0m
+[0;32mI (198126) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 43[0m
+[0;32mI (198306) MAIN: Accel: X=-0.10 Y=0.11 Z=9.61 | Gyro: X=-0.63 Y=-0.45 Z=0.98[0m
+[0;32mI (199136) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (199136) NimBLE: att_handle=18[0m
+
+[0;32mI (199136) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:43[0m
+[0;32mI (199136) PULSE_SENSOR: 💓 PulseSensor valor (filtrado): 43[0m
+[0;32mI (199306) MAIN: Accel: X=-0.10 Y=0.19 Z=9.64 | Gyro: X=0.28 Y=-1.07 Z=1.60[0m
