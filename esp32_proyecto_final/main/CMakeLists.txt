@@ -4,6 +4,7 @@ idf_component_register(
     "network/bluetooth.c"
     "drivers/adc_driver.c"
     "sensors/pulse_sensor.c"
+    "sensors/mpu6050.c"
     "utils/ota/ota.c"
   INCLUDE_DIRS
     "."
