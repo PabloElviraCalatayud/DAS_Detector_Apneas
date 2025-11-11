@@ -58,7 +58,7 @@ class _BlePageState extends State<BlePage> {
     final stream = await ble.scan();
 
     _scanSub = stream.listen((device) {
-      if (device.name.isNotEmpty && !_devices.any((d) => d.id == device.id)) {
+      if (device.name.isNotEmpty && device.name.startsWith("ESP") && !_devices.any((d) => d.id == device.id)) {
         setState(() {
           _devices.add(device);
         });
