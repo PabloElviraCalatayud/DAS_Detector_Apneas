@@ -1,0 +1,3 @@
+Esto es una cutrez pero es que sino me olvido
+  Pulsometro->SP
+  Acelerometro + Gyro-> SDA:21 SCL: 22 (Usan el I2C_1)
