@@ -23,18 +23,28 @@ class _OtaPageState extends State<OtaPage> {
   String _status = "Esperando archivo...";
 
   Future<void> _selectFile() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['bin'],
-    );
+    try {
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['bin'],
+        allowMultiple: false,
+        withData: false,
+        allowCompression: false,
+      );
 
-    if (result != null && result.files.single.path != null) {
+      if (result != null && result.files.single.path != null) {
+        setState(() {
+          _filePath = result.files.single.path;
+          _status = "Archivo seleccionado: ${result.files.single.name}";
+        });
+      }
+    } catch (e) {
       setState(() {
-        _filePath = result.files.single.path;
-        _status = "Archivo seleccionado: ${result.files.single.name}";
+        _status = "Error al seleccionar archivo: $e";
       });
     }
   }
+
 
   Future<void> _startOta() async {
     if (_filePath == null) {
@@ -43,36 +53,52 @@ class _OtaPageState extends State<OtaPage> {
     }
 
     final ble = context.read<BleManager>();
+    if (ble.connectedDevice == null) {
+      setState(() => _status = "⚠️ No hay dispositivo conectado.");
+      return;
+    }
+
     final ota = OtaBleService(ble);
-
     final file = File(_filePath!);
-    final bytes = await file.readAsBytes();
 
-    setState(() {
-      _uploading = true;
-      _progress = 0;
-      _status = "Iniciando OTA...";
-    });
+    try {
+      final bytes = await file.readAsBytes();
 
-    await ota.startOta(
-      bytes,
-      onProgress: (p) {
-        setState(() => _progress = p);
-      },
-      onStatus: (s) {
-        setState(() => _status = s);
-      },
-    );
+      setState(() {
+        _uploading = true;
+        _progress = 0;
+        _status = "Iniciando OTA...";
+      });
 
-    setState(() {
-      _uploading = false;
-      _status = "✅ OTA finalizada, el ESP32 se reiniciará.";
-    });
+      await ota.startOta(
+        bytes,
+        onProgress: (p) => setState(() => _progress = p),
+        onStatus: (s) => setState(() => _status = s),
+      );
+
+      setState(() {
+        _uploading = false;
+        _status = "✅ OTA finalizada, el ESP32 se reiniciará.";
+      });
+    } catch (e) {
+      setState(() {
+        _uploading = false;
+        _status = "❌ Error durante la OTA: $e";
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).brightness;
+
+    final textColor =
+    theme == Brightness.dark ? AppColors.darkText : AppColors.lightText;
+    final surfaceColor = theme == Brightness.dark
+        ? AppColors.darkSurface
+        : AppColors.lightSecondary;
+    final primaryColor =
+    theme == Brightness.dark ? AppColors.darkPrimary : AppColors.lightPrimary;
 
     return Scaffold(
       backgroundColor: theme == Brightness.dark
@@ -90,11 +116,7 @@ class _OtaPageState extends State<OtaPage> {
           children: [
             Text(
               _status,
-              style: TextStyle(
-                color: theme == Brightness.dark
-                    ? AppColors.darkText
-                    : AppColors.lightText,
-              ),
+              style: TextStyle(color: textColor),
             ),
             const SizedBox(height: 24),
             PrimaryButton(
@@ -105,12 +127,7 @@ class _OtaPageState extends State<OtaPage> {
             if (_filePath != null)
               Text(
                 _filePath!,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: theme == Brightness.dark
-                      ? AppColors.darkSecondary
-                      : AppColors.lightSecondary,
-                ),
+                style: TextStyle(fontSize: 12, color: textColor.withOpacity(0.6)),
               ),
             const SizedBox(height: 24),
             PrimaryButton(
@@ -121,12 +138,8 @@ class _OtaPageState extends State<OtaPage> {
             if (_uploading)
               LinearProgressIndicator(
                 value: _progress,
-                backgroundColor: theme == Brightness.dark
-                    ? AppColors.darkSurface
-                    : AppColors.lightSecondary,
-                color: theme == Brightness.dark
-                    ? AppColors.darkPrimary
-                    : AppColors.lightPrimary,
+                backgroundColor: surfaceColor,
+                color: primaryColor,
               ),
           ],
         ),

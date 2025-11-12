@@ -9,6 +9,9 @@ import '../../common/widgets/primary_button.dart';
 import '../../data/bluetooth/ble_manager.dart';
 import '../../common/core/colors.dart';
 
+import '../../screens/OTA/ota_page.dart';
+
+
 class BlePage extends StatefulWidget {
   const BlePage({super.key});
 
@@ -30,6 +33,7 @@ class _BlePageState extends State<BlePage> {
 
     final ble = context.read<BleManager>();
 
+    // 🟢 Escuchar mensajes BLE (para actualizar estado o logs)
     ble.messages.listen((msg) {
       if (!mounted) return;
       setState(() {
@@ -37,13 +41,25 @@ class _BlePageState extends State<BlePage> {
       });
     });
 
+    // 🟢 Escuchar el estado de conexión BLE
     ble.connectionStream.listen((connected) {
       if (!mounted) return;
       setState(() {
         _status = connected ? "Conectado" : "Desconectado";
       });
+
+      // 🚀 Si se conecta → abrir la pantalla OTA automáticamente
+      if (connected) {
+        Future.microtask(() {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => const OtaPage()),
+          );
+        });
+      }
     });
   }
+
 
   Future<void> _scan() async {
     final ble = context.read<BleManager>();
