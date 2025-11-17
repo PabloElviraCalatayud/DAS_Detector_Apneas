@@ -1,0 +1,123 @@
+Command: /home/pelvira/.espressif/python_env/idf5.5_py3.12_env/bin/python /home/pelvira/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/DAS_Detector_Apneas/esp32_proyecto_final/build/esp32_proyecto_final.elf /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/DAS_Detector_Apneas/esp32_proyecto_final/build/bootloader/bootloader.elf -m '/home/pelvira/.espressif/python_env/idf5.5_py3.12_env/bin/python' '/home/pelvira/esp/esp-idf/tools/idf.py'
+[0;32mI (139) esp_imagets Jul 29 2019 12:21:46[0m
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6380
+ho 0 tail 12 room 4
+load:0x40078000,len:15916
+load:0x40080400,len:3860
+entry 0x40080638
+[0;32mI (29) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Nov 17 2025 12:45:44[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (33) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (44) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (51) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+[0;32mI (64) boot:  1 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (71) boot:  2 phy_init         RF data          01 01 00010000 00001000[0m
+[0;32mI (77) boot:  3 factory          factory app      00 00 00020000 00140000[0m
+[0;32mI (84) boot:  4 ota_0            OTA app          00 10 00160000 00140000[0m
+[0;32mI (90) boot:  5 ota_1            OTA app          00 11 002a0000 00140000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (100) boot: Defaulting to factory image[0m
+[0;32mI (104) esp_image: segment 0: paddr=00020020 vaddr=3f400020 size=13684h ( 79492) map[0m
+[0;32mI (139) esp_image: segment 1: paddr=000336ac vaddr=3ffbdb60 size=04a68h ( 19048) load[0m
+[0;32mI (146) esp_image: segment 2: paddr=0003811c vaddr=40080000 size=07efch ( 32508) load[0m
+[0;32mI (159) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=54204h (344580) map[0m
+[0;32mI (277) esp_image: segment 4: paddr=0009422c vaddr=40087efc size=0fc7ch ( 64636) load[0m
+[0;32mI (302) esp_image: segment 5: paddr=000a3eb0 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (314) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (314) boot: Disabling RNG early entropy source...[0m
+[0;32mI (325) cpu_start: Multicore app[0m
+[0;32mI (333) cpu_start: Pro cpu start user code[0m
+[0;32mI (333) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (333) app_init: Application information:[0m
+[0;32mI (333) app_init: Project name:     esp32_proyecto_final[0m
+[0;32mI (338) app_init: App version:      2e6a068-dirty[0m
+[0;32mI (343) app_init: Compile time:     Nov 17 2025 12:47:41[0m
+[0;32mI (348) app_init: ELF file SHA256:  964ca073c...[0m
+[0;32mI (352) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (356) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (360) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (364) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (368) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (374) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (379) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (384) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (389) heap_init: At 3FFC5210 len 0001ADF0 (107 KiB): DRAM[0m
+[0;32mI (395) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (400) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (406) heap_init: At 40097B78 len 00008488 (33 KiB): IRAM[0m
+[0;33mW (412) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (424) spi_flash: detected chip: generic[0m
+[0;32mI (427) spi_flash: flash io: dio[0m
+[0;32mI (431) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (435) main_task: Started on CPU0[0m
+[0;32mI (445) main_task: Calling app_main()[0m
+[0;32mI (445) MAIN: ==============================[0m
+[0;32mI (445) MAIN:   🚀 SIMULATION MODE ACTIVADO[0m
+[0;32mI (445) MAIN: ==============================[0m
+[0;32mI (445) MAIN: ➡ Inicializando Bluetooth...[0m
+[0;32mI (465) BTDM_INIT: BT controller compile version [722c907][0m
+[0;32mI (465) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (465) BTDM_INIT: Bluetooth MAC: ec:e3:34:b3:be:72[0m
+[0;32mI (475) phy_init: phy_version 4861,b71b5ad,Aug  5 2025,11:16:06[0m
+[0;32mI (555) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (815) MAIN: ➡ Inicializando Packet Manager (pm_init)...[0m
+[0;32mI (815) PM_NEW: pm_task started[0m
+[0;32mI (815) PM_NEW: pm_init done[0m
+[0;32mI (815) MAIN: ➡ Iniciando simulador de pulso...[0m
+[0;33mW (815) PULSE_SIM: Pulse simulator started[0m
+[0;32mI (815) MAIN: ➡ Iniciando IMU simulada...[0m
+[0;32mI (825) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (825) MAIN: PULSE_SIM → 608 (simulator)[0m
+[0;32mI (855) BLE_BIDIRECTIONAL: Dirección BLE: EC:E3:34:B3:BE:72[0m
+[0;33mW (865) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (865) BLE_BIDIRECTIONAL: 📢 Advertising iniciado...[0m
+[0;33mW (915) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (965) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1015) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1065) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1115) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1165) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1205) BLE_BIDIRECTIONAL: ✅ Cliente conectado (handle=0).[0m
+[0;32mI (1835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (1835) MAIN: PULSE_SIM → 888 (simulator)[0m
+[0;32mI (2835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (2835) MAIN: PULSE_SIM → 654 (simulator)[0m
+[0;32mI (3835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (3835) MAIN: PULSE_SIM → 752 (simulator)[0m
+[0;32mI (4835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (4835) MAIN: PULSE_SIM → 845 (simulator)[0m
+[0;32mI (5835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (5835) MAIN: PULSE_SIM → 603 (simulator)[0m
+[0;32mI (6835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (6835) MAIN: PULSE_SIM → 895 (simulator)[0m
+[0;32mI (7835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (7835) MAIN: PULSE_SIM → 659 (simulator)[0m
+[0;32mI (8835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (8835) MAIN: PULSE_SIM → 757 (simulator)[0m
+[0;32mI (9835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (9835) MAIN: PULSE_SIM → 847 (simulator)[0m
+[0;32mI (10835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (10835) MAIN: PULSE_SIM → 599 (simulator)[0m
+[0;32mI (11835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (11835) MAIN: PULSE_SIM → 897 (simulator)[0m
+[0;32mI (12835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (12835) MAIN: PULSE_SIM → 659 (simulator)[0m
+[0;32mI (13835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (13835) MAIN: PULSE_SIM → 756 (simulator)[0m
+[0;32mI (14835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (14835) MAIN: PULSE_SIM → 841 (simulator)[0m
+[0;32mI (15835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (15835) MAIN: PULSE_SIM → 602 (simulator)[0m
+[0;32mI (16835) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=0.00 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;32mI (16835) MAIN: PULSE_SIM → 898 (simulator)[0m

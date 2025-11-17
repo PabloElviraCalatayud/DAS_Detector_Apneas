@@ -22,4 +22,4 @@ set confirm off
 set confirm on
 
 # Load application symbols
-file /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/bootloader/bootloader.elf
+file /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/DAS_Detector_Apneas/esp32_proyecto_final/build/bootloader/bootloader.elf

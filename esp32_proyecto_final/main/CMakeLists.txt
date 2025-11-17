@@ -5,13 +5,17 @@ idf_component_register(
     "drivers/adc_driver.c"
     "sensors/pulse_sensor.c"
     "sensors/mpu6050.c"
+    "sensors/simulador_pulso.c"
+    "sensors/simulador_imu.c"
     "utils/ota/ota.c"
+    "utils/packet_manager.c"
   INCLUDE_DIRS
     "."
     "network"
     "drivers"
     "sensors"
     "utils/ota"
+    "utils"
   REQUIRES 
     bt
     nvs_flash

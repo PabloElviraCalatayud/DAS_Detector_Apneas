@@ -9,7 +9,7 @@ import '../../common/widgets/primary_button.dart';
 import '../../data/bluetooth/ble_manager.dart';
 import '../../common/core/colors.dart';
 
-import '../../screens/OTA/ota_page.dart';
+import '../OTA/OTA_page.dart';
 
 
 class BlePage extends StatefulWidget {

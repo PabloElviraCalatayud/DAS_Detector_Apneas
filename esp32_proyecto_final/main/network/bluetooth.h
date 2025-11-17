@@ -25,6 +25,7 @@ void send_notification_to_connected(const char *msg);
  * @brief Tarea principal del host BLE. No debe llamarse directamente.
  */
 void ble_host_task(void *param);
+void send_notification_binary(const uint8_t *data, uint16_t len);
 
 #endif // BLUETOOTH_H
 

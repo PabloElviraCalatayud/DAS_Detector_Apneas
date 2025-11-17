@@ -1,0 +1,271 @@
+Command: /home/pelvira/.espressif/python_env/idf5.5_py3.12_env/bin/python /home/pelvira/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/DAS_Detector_Apneas/esp32_proyecto_final/build/esp32_proyecto_final.elf /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/DAS_Detector_Apneas/esp32_proyecto_final/build/bootloader/bootloader.elf -m '/home/pelvira/.espressif/python_env/idf5.5_py3.12_env/bin/python' '/home/pelvira/esp/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6380
+ho 0 tail 12 room 4
+load:0x40078000,len:15916
+load:0x40080400,len:3860
+entry 0x40080638
+[0;32mI (29) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Nov 17 2025 12:45:44[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (33) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (44) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (51) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+[0;32mI (64) boot:  1 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (71) boot:  2 phy_init         RF data          01 01 00010000 00001000[0m
+[0;32mI (77) boot:  3 factory          factory app      00 00 00020000 00140000[0m
+[0;32mI (84) boot:  4 ota_0            OTA app          00 10 00160000 00140000[0m
+[0;32mI (90) boot:  5 ota_1            OTA app          00 11 002a0000 00140000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (100) boot: Defaulting to factory image[0m
+[0;32mI (104) esp_image: segment 0: paddr=00020020 vaddr=3f400020 size=13724h ( 79652) map[0m
+[0;32mI (139) esp_image: segment 1: paddr=0003374c vaddr=3ffbdb60 size=04a68h ( 19048) load[0m
+[0;32mI (146) esp_image: segment 2: paddr=000381bc vaddr=40080000 size=07e5ch ( 32348) load[0m
+[0;32mI (159) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=5442ch (345132) map[0m
+[0;32mI (277) esp_image: segment 4: paddr=00094454 vaddr=40087e5c size=0fd1ch ( 64796) load[0m
+[0;32mI (302) esp_image: segment 5: paddr=000a4178 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (314) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (314) boot: Disabling RNG early entropy source...[0m
+[0;32mI (325) cpu_start: Multicore app[0m
+[0;32mI (333) cpu_start: Pro cpu start user code[0m
+[0;32mI (333) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (334) app_init: Application information:[0m
+[0;32mI (334) app_init: Project name:     esp32_proyecto_final[0m
+[0;32mI (339) app_init: App version:      2e6a068-dirty[0m
+[0;32mI (343) app_init: Compile time:     Nov 17 2025 12:47:41[0m
+[0;32mI (348) app_init: ELF file SHA256:  04d470294...[0m
+[0;32mI (352) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (356) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (360) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (364) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (368) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (374) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (379) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (384) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (390) heap_init: At 3FFC5208 len 0001ADF8 (107 KiB): DRAM[0m
+[0;32mI (395) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (400) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (406) heap_init: At 40097B78 len 00008488 (33 KiB): IRAM[0m
+[0;33mW (412) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (424) spi_flash: detected chip: generic[0m
+[0;32mI (428) spi_flash: flash io: dio[0m
+[0;32mI (432) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (436) main_task: Started on CPU0[0m
+[0;32mI (446) main_task: Calling app_main()[0m
+[0;32mI (446) MAIN: ==============================[0m
+[0;32mI (446) MAIN:   🚀 SIMULATION MODE ACTIVADO[0m
+[0;32mI (446) MAIN: ==============================[0m
+[0;32mI (446) MAIN: ➡ Inicializando Bluetooth...[0m
+[0;32mI (466) BTDM_INIT: BT controller compile version [722c907][0m
+[0;32mI (466) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (466) BTDM_INIT: Bluetooth MAC: ec:e3:34:b3:be:72[0m
+[0;32mI (466) phy_init: phy_version 4861,b71b5ad,Aug  5 2025,11:16:06[0m
+[0;32mI (796) MAIN: ➡ Inicializando Packet Manager (pm_init)...[0m
+[0;32mI (796) PM_NEW: pm_task started[0m
+[0;32mI (796) PM_NEW: pm_init done[0m
+[0;32mI (796) MAIN: ➡ Iniciando simulador de pulso...[0m
+[0;33mW (806) PULSE_SIM: Pulse simulator started[0m
+[0;33mW (806) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (806) MAIN: ➡ Iniciando IMU simulada...[0m
+[0;33mW (816) IMU_SIM: Starting IMU simulator...[0m
+[0;33mW (816) IMU_SIM: IMU simulator task started[0m
+[0;33mW (826) IMU_SIM: Simulated IMU calibration: 50 samples[0m
+[0;33mW (826) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (836) BLE_BIDIRECTIONAL: Dirección BLE: EC:E3:34:B3:BE:72[0m
+[0;32mI (836) MAIN: IMU_SIM → Ax=0.00 Ay=0.00 Az=9.81 | Gx=0.00 Gy=0.00 Gz=0.00[0m
+[0;33mW (846) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (846) BLE_BIDIRECTIONAL: 📢 Advertising iniciado...[0m
+[0;32mI (856) MAIN: PULSE_SIM → 621 (simulator)[0m
+[0;33mW (866) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (886) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (906) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (926) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (946) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (966) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (986) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1006) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1026) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1046) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1066) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1086) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1106) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1126) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1146) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1166) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1186) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1206) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1226) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1246) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1266) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1286) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1306) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1326) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1346) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1366) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1386) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1406) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1426) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1446) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1466) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1486) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1506) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1526) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1546) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1566) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1586) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1606) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1626) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1646) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1666) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1686) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1706) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1726) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1746) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1766) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1786) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1806) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1826) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1846) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1866) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1866) MAIN: IMU_SIM → Ax=-0.04 Ay=-0.01 Az=9.83 | Gx=0.28 Gy=0.36 Gz=-0.29[0m
+[0;32mI (1866) MAIN: PULSE_SIM → 892 (simulator)[0m
+[0;33mW (1886) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1906) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1926) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1946) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1966) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1986) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2006) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2026) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2046) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2066) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2086) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2106) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2126) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2146) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2166) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2186) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2206) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2226) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2246) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2266) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2286) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2306) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2326) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2346) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2366) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2386) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2406) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2426) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2446) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2466) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2486) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2506) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2526) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2546) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2566) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2586) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2606) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2626) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2646) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2666) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2686) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2706) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2726) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2746) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2766) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2786) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2806) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2826) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2846) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2866) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2866) MAIN: IMU_SIM → Ax=-0.03 Ay=0.01 Az=9.80 | Gx=-0.62 Gy=-0.50 Gz=0.21[0m
+[0;32mI (2866) MAIN: PULSE_SIM → 618 (simulator)[0m
+[0;33mW (2886) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2906) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2926) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2946) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2966) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2986) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3006) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3026) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3046) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3066) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3086) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3096) BLE_BIDIRECTIONAL: ✅ Cliente conectado (handle=0).[0m
+[0;32mI (3866) MAIN: IMU_SIM → Ax=0.02 Ay=-0.02 Az=9.79 | Gx=0.87 Gy=0.26 Gz=0.10[0m
+[0;32mI (3866) MAIN: PULSE_SIM → 841 (simulator)[0m
+[0;32mI (4866) MAIN: IMU_SIM → Ax=0.05 Ay=0.02 Az=9.82 | Gx=-0.99 Gy=0.16 Gz=-0.30[0m
+[0;32mI (4866) MAIN: PULSE_SIM → 746 (simulator)[0m
+[0;32mI (5866) MAIN: IMU_SIM → Ax=0.00 Ay=-0.02 Az=9.82 | Gx=0.96 Gy=-0.47 Gz=0.16[0m
+[0;32mI (5866) MAIN: PULSE_SIM → 654 (simulator)[0m
+[0;32mI (6866) MAIN: IMU_SIM → Ax=-0.05 Ay=0.03 Az=9.79 | Gx=-0.78 Gy=0.43 Gz=0.15[0m
+[0;32mI (6866) MAIN: PULSE_SIM → 898 (simulator)[0m
+[0;32mI (7866) MAIN: IMU_SIM → Ax=-0.03 Ay=-0.03 Az=9.81 | Gx=0.49 Gy=-0.07 Gz=-0.30[0m
+[0;32mI (7866) MAIN: PULSE_SIM → 602 (simulator)[0m
+[0;32mI (8866) MAIN: IMU_SIM → Ax=0.03 Ay=0.03 Az=9.83 | Gx=-0.12 Gy=-0.34 Gz=0.11[0m
+[0;32mI (8866) MAIN: PULSE_SIM → 832 (simulator)[0m
+[0;32mI (9866) MAIN: IMU_SIM → Ax=0.05 Ay=-0.04 Az=9.81 | Gx=-0.27 Gy=0.50 Gz=0.20[0m
+[0;32mI (9866) MAIN: PULSE_SIM → 746 (simulator)[0m
+[0;32mI (10866) MAIN: IMU_SIM → Ax=-0.00 Ay=0.04 Az=9.79 | Gx=0.62 Gy=-0.28 Gz=-0.29[0m
+[0;32mI (10866) MAIN: PULSE_SIM → 656 (simulator)[0m
+[0;32mI (11866) MAIN: IMU_SIM → Ax=-0.05 Ay=-0.04 Az=9.82 | Gx=-0.87 Gy=-0.14 Gz=0.06[0m
+[0;32mI (11866) MAIN: PULSE_SIM → 888 (simulator)[0m
+[0;32mI (12866) MAIN: IMU_SIM → Ax=-0.02 Ay=0.04 Az=9.83 | Gx=0.99 Gy=0.46 Gz=0.24[0m
+[0;32mI (12866) MAIN: PULSE_SIM → 603 (simulator)[0m
+[0;32mI (13866) MAIN: IMU_SIM → Ax=0.03 Ay=-0.04 Az=9.80 | Gx=-0.96 Gy=-0.44 Gz=-0.27[0m
+[0;32mI (13866) MAIN: PULSE_SIM → 835 (simulator)[0m
+[0;32mI (14866) MAIN: IMU_SIM → Ax=0.04 Ay=0.04 Az=9.80 | Gx=0.79 Gy=0.09 Gz=0.01[0m
+[0;32mI (14866) MAIN: PULSE_SIM → 748 (simulator)[0m
+[0;32mI (15866) MAIN: IMU_SIM → Ax=-0.01 Ay=-0.04 Az=9.83 | Gx=-0.50 Gy=0.33 Gz=0.27[0m
+[0;32mI (15866) MAIN: PULSE_SIM → 656 (simulator)[0m
+[0;32mI (16866) MAIN: IMU_SIM → Ax=-0.05 Ay=0.04 Az=9.81 | Gx=0.13 Gy=-0.50 Gz=-0.24[0m
+[0;32mI (16866) MAIN: PULSE_SIM → 894 (simulator)[0m
+[0;32mI (17866) MAIN: IMU_SIM → Ax=-0.02 Ay=-0.04 Az=9.79 | Gx=0.26 Gy=0.30 Gz=-0.05[0m
+[0;32mI (17866) MAIN: PULSE_SIM → 616 (simulator)[0m
+[0;32mI (18866) MAIN: IMU_SIM → Ax=0.04 Ay=0.03 Az=9.81 | Gx=-0.61 Gy=0.12 Gz=0.29[0m
+[0;32mI (18866) MAIN: PULSE_SIM → 839 (simulator)[0m
+[0;32mI (19866) MAIN: IMU_SIM → Ax=0.04 Ay=-0.03 Az=9.83 | Gx=0.87 Gy=-0.45 Gz=-0.21[0m
+[0;32mI (19866) MAIN: PULSE_SIM → 750 (simulator)[0m
+[0;32mI (20866) MAIN: IMU_SIM → Ax=-0.02 Ay=0.03 Az=9.80 | Gx=-0.99 Gy=0.45 Gz=-0.10[0m
+[0;32mI (20866) MAIN: PULSE_SIM → 664 (simulator)[0m
+[0;32mI (21866) MAIN: IMU_SIM → Ax=-0.05 Ay=-0.03 Az=9.79 | Gx=0.97 Gy=-0.11 Gz=0.30[0m
+[0;32mI (21866) MAIN: PULSE_SIM → 889 (simulator)[0m
+[0;32mI (22866) MAIN: IMU_SIM → Ax=-0.01 Ay=0.02 Az=9.83 | Gx=-0.80 Gy=-0.31 Gz=-0.16[0m
+[0;32mI (22866) MAIN: PULSE_SIM → 602 (simulator)[0m
+[0;32mI (23866) MAIN: IMU_SIM → Ax=0.04 Ay=-0.02 Az=9.82 | Gx=0.50 Gy=0.50 Gz=-0.15[0m
+[0;32mI (23866) MAIN: PULSE_SIM → 826 (simulator)[0m
+[0;32mI (24866) MAIN: IMU_SIM → Ax=0.04 Ay=0.02 Az=9.79 | Gx=-0.14 Gy=-0.32 Gz=0.30[0m
+[0;32mI (24866) MAIN: PULSE_SIM → 762 (simulator)[0m
+[0;32mI (25866) MAIN: IMU_SIM → Ax=-0.02 Ay=-0.01 Az=9.81 | Gx=-0.25 Gy=-0.10 Gz=-0.12[0m
+[0;32mI (25866) MAIN: PULSE_SIM → 657 (simulator)[0m
+[0;32mI (26866) MAIN: IMU_SIM → Ax=-0.05 Ay=0.01 Az=9.83 | Gx=0.60 Gy=0.45 Gz=-0.20[0m
+[0;32mI (26866) MAIN: PULSE_SIM → 892 (simulator)[0m
+[0;32mI (27866) MAIN: IMU_SIM → Ax=-0.01 Ay=-0.00 Az=9.81 | Gx=-0.86 Gy=-0.46 Gz=0.29[0m
+[0;32mI (27866) MAIN: PULSE_SIM → 607 (simulator)[0m
+[0;32mI (28866) MAIN: IMU_SIM → Ax=0.05 Ay=-0.00 Az=9.79 | Gx=0.99 Gy=0.13 Gz=-0.06[0m
+[0;32mI (28866) MAIN: PULSE_SIM → 824 (simulator)[0m
+[0;32mI (29866) MAIN: IMU_SIM → Ax=0.03 Ay=0.01 Az=9.82 | Gx=-0.97 Gy=0.30 Gz=-0.23[0m
+[0;32mI (29866) MAIN: PULSE_SIM → 747 (simulator)[0m
+[0;32mI (30866) MAIN: IMU_SIM → Ax=-0.03 Ay=-0.01 Az=9.82 | Gx=0.80 Gy=-0.50 Gz=0.27[0m
+[0;32mI (30866) MAIN: PULSE_SIM → 667 (simulator)[0m
+[0;32mI (31866) MAIN: IMU_SIM → Ax=-0.05 Ay=0.01 Az=9.79 | Gx=-0.51 Gy=0.33 Gz=-0.01[0m
+[0;32mI (31866) MAIN: PULSE_SIM → 902 (simulator)[0m
+[0;32mI (32866) MAIN: IMU_SIM → Ax=0.00 Ay=-0.02 Az=9.80 | Gx=0.15 Gy=0.08 Gz=-0.26[0m
+[0;32mI (32866) MAIN: PULSE_SIM → 617 (simulator)[0m
+[0;32mI (33866) MAIN: IMU_SIM → Ax=0.05 Ay=0.02 Az=9.83 | Gx=0.24 Gy=-0.44 Gz=0.24[0m
+[0;32mI (33866) MAIN: PULSE_SIM → 836 (simulator)[0m
+[0;32mI (34866) MAIN: IMU_SIM → Ax=0.03 Ay=-0.02 Az=9.81 | Gx=-0.59 Gy=0.46 Gz=0.05[0m
+[0;32mI (34866) MAIN: PULSE_SIM → 760 (simulator)[0m
+[0;32mI (35866) MAIN: IMU_SIM → Ax=-0.03 Ay=0.03 Az=9.79 | Gx=0.86 Gy=-0.15 Gz=-0.29[0m
+[0;32mI (35866) MAIN: PULSE_SIM → 666 (simulator)[0m

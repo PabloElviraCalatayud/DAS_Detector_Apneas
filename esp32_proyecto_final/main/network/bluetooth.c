@@ -205,4 +205,26 @@ void bluetooth_init(void) {
 
   nimble_port_freertos_init(ble_host_task);
 }
+void send_notification_binary(const uint8_t *data, uint16_t len) {
+  if (g_conn_handle < 0) {
+    ESP_LOGW(TAG, "No hay cliente conectado para notificar binario.");
+    return;
+  }
+
+  if (notify_handle == 0) {
+    ESP_LOGW(TAG, "notify_handle == 0. ¿Se inicializó la característica?");
+    return;
+  }
+
+  struct os_mbuf *om = ble_hs_mbuf_from_flat(data, len);
+  if (!om) {
+    ESP_LOGE(TAG, "Fallo creando mbuf para notificación binaria");
+    return;
+  }
+
+  int rc = ble_gattc_notify_custom(g_conn_handle, notify_handle, om);
+  if (rc != 0) {
+    ESP_LOGE(TAG, "Error enviando notificación binaria rc=%d", rc);
+  }
+}
 
