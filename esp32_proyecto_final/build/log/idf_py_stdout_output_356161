@@ -1,0 +1,394 @@
+Command: /home/pelvira/.espressif/python_env/idf5.5_py3.13_env/bin/python /home/pelvira/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/esp32_proyecto_final.elf /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/bootloader/bootloader.elf -m '/home/pelvira/.espressif/python_env/idf5.5_py3.13_env/bin/python' '/home/pelvira/esp/esp-idf/tools/idf.py'
+ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6380
+ho 0 tail 12 room 4
+load:0x40078000,len:15916
+load:0x40080400,len:3860
+entry 0x40080638
+[0;32mI (29) boot: ESP-IDF v5.5.1-dirty 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Nov 11 2025 12:15:38[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v1.0[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (44) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+[0;32mI (64) boot:  1 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (71) boot:  2 phy_init         RF data          01 01 00010000 00001000[0m
+[0;32mI (77) boot:  3 factory          factory app      00 00 00020000 00140000[0m
+[0;32mI (84) boot:  4 ota_0            OTA app          00 10 00160000 00140000[0m
+[0;32mI (90) boot:  5 ota_1            OTA app          00 11 002a0000 00140000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (100) boot: Defaulting to factory image[0m
+[0;32mI (104) esp_image: segment 0: paddr=00020020 vaddr=3f400020 size=152e0h ( 86752) map[0m
+[0;32mI (141) esp_image: segment 1: paddr=00035308 vaddr=3ffbdb60 size=04ae8h ( 19176) load[0m
+[0;32mI (149) esp_image: segment 2: paddr=00039df8 vaddr=40080000 size=06220h ( 25120) load[0m
+[0;32mI (159) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=5800ch (360460) map[0m
+[0;32mI (282) esp_image: segment 4: paddr=00098034 vaddr=40086220 size=12fc0h ( 77760) load[0m
+[0;32mI (312) esp_image: segment 5: paddr=000aaffc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (325) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (325) boot: Disabling RNG early entropy source...[0m
+[0;32mI (336) cpu_start: Multicore app[0m
+[0;32mI (344) cpu_start: Pro cpu start user code[0m
+[0;32mI (344) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (344) app_init: Application information:[0m
+[0;32mI (344) app_init: Project name:     esp32_proyecto_final[0m
+[0;32mI (349) app_init: App version:      948cf3b-dirty[0m
+[0;32mI (354) app_init: Compile time:     Nov 12 2025 12:18:59[0m
+[0;32mI (359) app_init: ELF file SHA256:  d1c6edfc8...[0m
+[0;32mI (363) app_init: ESP-IDF:          v5.5.1-dirty[0m
+[0;32mI (367) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (371) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (375) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (379) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (385) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (390) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (396) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (401) heap_init: At 3FFC52B0 len 0001AD50 (107 KiB): DRAM[0m
+[0;32mI (406) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (411) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (417) heap_init: At 400991E0 len 00006E20 (27 KiB): IRAM[0m
+[0;33mW (424) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (435) spi_flash: detected chip: generic[0m
+[0;32mI (439) spi_flash: flash io: dio[0m
+[0;33mW (442) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (452) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (457) main_task: Started on CPU0[0m
+[0;32mI (467) main_task: Calling app_main()[0m
+[0;32mI (467) MAIN: ✅ Inicializando Bluetooth...[0m
+[0;32mI (487) BTDM_INIT: BT controller compile version [722c907][0m
+[0;32mI (487) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (487) BTDM_INIT: Bluetooth MAC: 24:62:ab:f2:1c:72[0m
+[0;32mI (487) phy_init: phy_version 4861,b71b5ad,Aug  5 2025,11:16:06[0m
+[0;32mI (807) MAIN: ✅ Iniciando sensor de pulso...[0m
+[0;32mI (817) MAIN: ✅ Iniciando MPU6050...[0m
+[1;31mE (817) MPU6050: No se pudo iniciar MPU6050[0m
+[1;31mE (817) MAIN: Fallo al iniciar MPU6050[0m
+[0;32mI (847) NimBLE: Failed to restore IRKs from store; status=8[0m
+
+[0;32mI (847) BLE_BIDIRECTIONAL: Dirección BLE: 24:62:AB:F2:1C:72[0m
+[0;32mI (847) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (847) NimBLE: disc_mode=2[0m
+[0;32mI (857) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (867) NimBLE: [0m
+
+[0;32mI (867) BLE_BIDIRECTIONAL: 📢 Advertising iniciado...[0m
+[0;33mW (1327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (1327) PULSE_SENSOR: 💓 RAW:198  BPM:0.0[0m
+[0;33mW (1827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (1827) PULSE_SENSOR: 💓 RAW:201  BPM:0.0[0m
+[0;33mW (2327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (2327) PULSE_SENSOR: 💓 RAW:198  BPM:0.0[0m
+[0;33mW (2827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (2827) PULSE_SENSOR: 💓 RAW:195  BPM:0.0[0m
+[0;33mW (3327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (3327) PULSE_SENSOR: 💓 RAW:195  BPM:0.0[0m
+[0;33mW (3827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (3827) PULSE_SENSOR: 💓 RAW:195  BPM:0.0[0m
+[0;33mW (4327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (4327) PULSE_SENSOR: 💓 RAW:179  BPM:0.0[0m
+[0;33mW (4827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (4827) PULSE_SENSOR: 💓 RAW:177  BPM:0.0[0m
+[0;33mW (5327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (5327) PULSE_SENSOR: 💓 RAW:187  BPM:0.0[0m
+[0;33mW (5827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (5827) PULSE_SENSOR: 💓 RAW:188  BPM:0.0[0m
+[0;33mW (6327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (6327) PULSE_SENSOR: 💓 RAW:194  BPM:0.0[0m
+[0;33mW (6827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (6827) PULSE_SENSOR: 💓 RAW:197  BPM:0.0[0m
+[0;33mW (7327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (7327) PULSE_SENSOR: 💓 RAW:193  BPM:0.0[0m
+[0;33mW (7827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (7827) PULSE_SENSOR: 💓 RAW:193  BPM:0.0[0m
+[0;33mW (8327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (8327) PULSE_SENSOR: 💓 RAW:194  BPM:0.0[0m
+[0;32mI (8707) BLE_BIDIRECTIONAL: ✅ Cliente conectado (handle=0).[0m
+[0;32mI (8827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (8827) NimBLE: att_handle=18[0m
+
+[0;32mI (8827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:193 | BPM:0.0[0m
+[0;32mI (8827) PULSE_SENSOR: 💓 RAW:193  BPM:0.0[0m
+[0;32mI (9327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (9327) NimBLE: att_handle=18[0m
+
+[0;32mI (9327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:184 | BPM:0.0[0m
+[0;32mI (9327) PULSE_SENSOR: 💓 RAW:184  BPM:0.0[0m
+[0;32mI (9827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (9827) NimBLE: att_handle=18[0m
+
+[0;32mI (9827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:181 | BPM:0.0[0m
+[0;32mI (9827) PULSE_SENSOR: 💓 RAW:181  BPM:0.0[0m
+[0;32mI (10327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (10327) NimBLE: att_handle=18[0m
+
+[0;32mI (10327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:183 | BPM:0.0[0m
+[0;32mI (10327) PULSE_SENSOR: 💓 RAW:183  BPM:0.0[0m
+[0;32mI (10827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (10827) NimBLE: att_handle=18[0m
+
+[0;32mI (10827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:183 | BPM:0.0[0m
+[0;32mI (10827) PULSE_SENSOR: 💓 RAW:183  BPM:0.0[0m
+[0;32mI (11327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (11327) NimBLE: att_handle=18[0m
+
+[0;32mI (11327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:180 | BPM:0.0[0m
+[0;32mI (11327) PULSE_SENSOR: 💓 RAW:180  BPM:0.0[0m
+[0;32mI (11827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (11827) NimBLE: att_handle=18[0m
+
+[0;32mI (11827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:178 | BPM:0.0[0m
+[0;32mI (11827) PULSE_SENSOR: 💓 RAW:178  BPM:0.0[0m
+[0;32mI (12327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (12327) NimBLE: att_handle=18[0m
+
+[0;32mI (12327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:192 | BPM:0.0[0m
+[0;32mI (12327) PULSE_SENSOR: 💓 RAW:192  BPM:0.0[0m
+[0;32mI (12827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (12827) NimBLE: att_handle=18[0m
+
+[0;32mI (12827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:194 | BPM:0.0[0m
+[0;32mI (12827) PULSE_SENSOR: 💓 RAW:194  BPM:0.0[0m
+[0;32mI (13137) BLE_BIDIRECTIONAL: 🔌 Cliente desconectado. Reiniciando advertising...[0m
+[0;32mI (13137) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (13137) NimBLE: disc_mode=2[0m
+[0;32mI (13147) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (13147) NimBLE: [0m
+
+[0;33mW (13327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (13327) PULSE_SENSOR: 💓 RAW:184  BPM:0.0[0m
+[0;33mW (13827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (13827) PULSE_SENSOR: 💓 RAW:186  BPM:0.0[0m
+[0;33mW (14327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (14327) PULSE_SENSOR: 💓 RAW:190  BPM:0.0[0m
+[0;33mW (14827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (14827) PULSE_SENSOR: 💓 RAW:185  BPM:0.0[0m
+[0;33mW (15327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (15327) PULSE_SENSOR: 💓 RAW:186  BPM:0.0[0m
+[0;33mW (15827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (15827) PULSE_SENSOR: 💓 RAW:187  BPM:0.0[0m
+[0;33mW (16327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (16327) PULSE_SENSOR: 💓 RAW:178  BPM:0.0[0m
+[0;33mW (16827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (16827) PULSE_SENSOR: 💓 RAW:171  BPM:0.0[0m
+[0;33mW (17327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (17327) PULSE_SENSOR: 💓 RAW:175  BPM:0.0[0m
+[0;33mW (17827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (17827) PULSE_SENSOR: 💓 RAW:176  BPM:0.0[0m
+[0;33mW (18327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (18327) PULSE_SENSOR: 💓 RAW:171  BPM:0.0[0m
+[0;33mW (18827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (18827) PULSE_SENSOR: 💓 RAW:167  BPM:0.0[0m
+[0;33mW (19327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (19327) PULSE_SENSOR: 💓 RAW:170  BPM:0.0[0m
+[0;33mW (19827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (19827) PULSE_SENSOR: 💓 RAW:169  BPM:0.0[0m
+[0;33mW (20327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (20327) PULSE_SENSOR: 💓 RAW:182  BPM:0.0[0m
+[0;33mW (20827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (20827) PULSE_SENSOR: 💓 RAW:182  BPM:0.0[0m
+[0;33mW (21327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (21327) PULSE_SENSOR: 💓 RAW:184  BPM:0.0[0m
+[0;33mW (21827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (21827) PULSE_SENSOR: 💓 RAW:197  BPM:0.0[0m
+[0;33mW (22327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar.[0m
+[0;32mI (22327) PULSE_SENSOR: 💓 RAW:192  BPM:0.0[0m
+[0;32mI (22547) BLE_BIDIRECTIONAL: ✅ Cliente conectado (handle=0).[0m
+[0;32mI (22827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (22827) NimBLE: att_handle=18[0m
+
+[0;32mI (22827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:192 | BPM:0.0[0m
+[0;32mI (22827) PULSE_SENSOR: 💓 RAW:192  BPM:0.0[0m
+[0;32mI (23327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (23327) NimBLE: att_handle=18[0m
+
+[0;32mI (23327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:181 | BPM:0.0[0m
+[0;32mI (23327) PULSE_SENSOR: 💓 RAW:181  BPM:0.0[0m
+[0;32mI (23827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (23827) NimBLE: att_handle=18[0m
+
+[0;32mI (23827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:181 | BPM:0.0[0m
+[0;32mI (23827) PULSE_SENSOR: 💓 RAW:181  BPM:0.0[0m
+[0;32mI (24327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (24327) NimBLE: att_handle=18[0m
+
+[0;32mI (24327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:182 | BPM:0.0[0m
+[0;32mI (24327) PULSE_SENSOR: 💓 RAW:182  BPM:0.0[0m
+[0;32mI (24827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (24827) NimBLE: att_handle=18[0m
+
+[0;32mI (24827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:209 | BPM:0.0[0m
+[0;32mI (24827) PULSE_SENSOR: 💓 RAW:209  BPM:0.0[0m
+[0;32mI (25327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (25327) NimBLE: att_handle=18[0m
+
+[0;32mI (25327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:203 | BPM:0.0[0m
+[0;32mI (25327) PULSE_SENSOR: 💓 RAW:203  BPM:0.0[0m
+[0;32mI (25827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (25827) NimBLE: att_handle=18[0m
+
+[0;32mI (25827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:186 | BPM:0.0[0m
+[0;32mI (25827) PULSE_SENSOR: 💓 RAW:186  BPM:0.0[0m
+[0;32mI (26327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (26327) NimBLE: att_handle=18[0m
+
+[0;32mI (26327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:184 | BPM:0.0[0m
+[0;32mI (26327) PULSE_SENSOR: 💓 RAW:184  BPM:0.0[0m
+[0;32mI (26827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (26827) NimBLE: att_handle=18[0m
+
+[0;32mI (26827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:182 | BPM:0.0[0m
+[0;32mI (26827) PULSE_SENSOR: 💓 RAW:182  BPM:0.0[0m
+[0;32mI (27327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (27327) NimBLE: att_handle=18[0m
+
+[0;32mI (27327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:182 | BPM:0.0[0m
+[0;32mI (27327) PULSE_SENSOR: 💓 RAW:182  BPM:0.0[0m
+[0;32mI (27827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (27827) NimBLE: att_handle=18[0m
+
+[0;32mI (27827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:181 | BPM:0.0[0m
+[0;32mI (27827) PULSE_SENSOR: 💓 RAW:181  BPM:0.0[0m
+[0;32mI (28327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (28327) NimBLE: att_handle=18[0m
+
+[0;32mI (28327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:177 | BPM:0.0[0m
+[0;32mI (28327) PULSE_SENSOR: 💓 RAW:177  BPM:0.0[0m
+[0;32mI (28827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (28827) NimBLE: att_handle=18[0m
+
+[0;32mI (28827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:177 | BPM:0.0[0m
+[0;32mI (28827) PULSE_SENSOR: 💓 RAW:177  BPM:0.0[0m
+[0;32mI (29327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (29327) NimBLE: att_handle=18[0m
+
+[0;32mI (29327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:169 | BPM:0.0[0m
+[0;32mI (29327) PULSE_SENSOR: 💓 RAW:169  BPM:0.0[0m
+[0;32mI (29827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (29827) NimBLE: att_handle=18[0m
+
+[0;32mI (29827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:167 | BPM:0.0[0m
+[0;32mI (29827) PULSE_SENSOR: 💓 RAW:167  BPM:0.0[0m
+[0;32mI (30327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (30327) NimBLE: att_handle=18[0m
+
+[0;32mI (30327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:164 | BPM:0.0[0m
+[0;32mI (30327) PULSE_SENSOR: 💓 RAW:164  BPM:0.0[0m
+[0;32mI (30827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (30827) NimBLE: att_handle=18[0m
+
+[0;32mI (30827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:168 | BPM:0.0[0m
+[0;32mI (30827) PULSE_SENSOR: 💓 RAW:168  BPM:0.0[0m
+[0;32mI (31327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (31327) NimBLE: att_handle=18[0m
+
+[0;32mI (31327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:175 | BPM:0.0[0m
+[0;32mI (31327) PULSE_SENSOR: 💓 RAW:175  BPM:0.0[0m
+[0;32mI (31827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (31827) NimBLE: att_handle=18[0m
+
+[0;32mI (31827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:172 | BPM:0.0[0m
+[0;32mI (31827) PULSE_SENSOR: 💓 RAW:172  BPM:0.0[0m
+[0;32mI (32327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (32327) NimBLE: att_handle=18[0m
+
+[0;32mI (32327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:164 | BPM:0.0[0m
+[0;32mI (32327) PULSE_SENSOR: 💓 RAW:164  BPM:0.0[0m
+[0;32mI (32827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (32827) NimBLE: att_handle=18[0m
+
+[0;32mI (32827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:180 | BPM:0.0[0m
+[0;32mI (32827) PULSE_SENSOR: 💓 RAW:180  BPM:0.0[0m
+[0;32mI (33327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (33327) NimBLE: att_handle=18[0m
+
+[0;32mI (33327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:182 | BPM:0.0[0m
+[0;32mI (33327) PULSE_SENSOR: 💓 RAW:182  BPM:0.0[0m
+[0;32mI (33827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (33827) NimBLE: att_handle=18[0m
+
+[0;32mI (33827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:179 | BPM:0.0[0m
+[0;32mI (33827) PULSE_SENSOR: 💓 RAW:179  BPM:0.0[0m
+[0;32mI (34327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (34327) NimBLE: att_handle=18[0m
+
+[0;32mI (34327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:175 | BPM:0.0[0m
+[0;32mI (34327) PULSE_SENSOR: 💓 RAW:175  BPM:0.0[0m
+[0;32mI (34827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (34827) NimBLE: att_handle=18[0m
+
+[0;32mI (34827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:175 | BPM:0.0[0m
+[0;32mI (34827) PULSE_SENSOR: 💓 RAW:175  BPM:0.0[0m
+[0;32mI (35327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (35327) NimBLE: att_handle=18[0m
+
+[0;32mI (35327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:172 | BPM:0.0[0m
+[0;32mI (35327) PULSE_SENSOR: 💓 RAW:172  BPM:0.0[0m
+[0;32mI (35827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (35827) NimBLE: att_handle=18[0m
+
+[0;32mI (35827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:171 | BPM:0.0[0m
+[0;32mI (35827) PULSE_SENSOR: 💓 RAW:171  BPM:0.0[0m
+[0;32mI (36327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (36327) NimBLE: att_handle=18[0m
+
+[0;32mI (36327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:170 | BPM:0.0[0m
+[0;32mI (36327) PULSE_SENSOR: 💓 RAW:170  BPM:0.0[0m
+[0;32mI (36827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (36827) NimBLE: att_handle=18[0m
+
+[0;32mI (36827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:170 | BPM:0.0[0m
+[0;32mI (36827) PULSE_SENSOR: 💓 RAW:170  BPM:0.0[0m
+[0;32mI (37327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (37327) NimBLE: att_handle=18[0m
+
+[0;32mI (37327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:170 | BPM:0.0[0m
+[0;32mI (37327) PULSE_SENSOR: 💓 RAW:170  BPM:0.0[0m
+[0;32mI (37827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (37827) NimBLE: att_handle=18[0m
+
+[0;32mI (37827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:178 | BPM:0.0[0m
+[0;32mI (37827) PULSE_SENSOR: 💓 RAW:178  BPM:0.0[0m
+[0;32mI (38327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (38327) NimBLE: att_handle=18[0m
+
+[0;32mI (38327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:180 | BPM:0.0[0m
+[0;32mI (38327) PULSE_SENSOR: 💓 RAW:180  BPM:0.0[0m
+[0;32mI (38827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (38827) NimBLE: att_handle=18[0m
+
+[0;32mI (38827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:172 | BPM:0.0[0m
+[0;32mI (38827) PULSE_SENSOR: 💓 RAW:172  BPM:0.0[0m
+[0;32mI (39327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (39327) NimBLE: att_handle=18[0m
+
+[0;32mI (39327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:177 | BPM:0.0[0m
+[0;32mI (39327) PULSE_SENSOR: 💓 RAW:177  BPM:0.0[0m
+[0;32mI (39827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (39827) NimBLE: att_handle=18[0m
+
+[0;32mI (39827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:182 | BPM:0.0[0m
+[0;32mI (39827) PULSE_SENSOR: 💓 RAW:182  BPM:0.0[0m
+[0;32mI (40327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (40327) NimBLE: att_handle=18[0m
+
+[0;32mI (40327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:190 | BPM:0.0[0m
+[0;32mI (40327) PULSE_SENSOR: 💓 RAW:190  BPM:0.0[0m
+[0;32mI (40827) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (40827) NimBLE: att_handle=18[0m
+
+[0;32mI (40827) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:187 | BPM:0.0[0m
+[0;32mI (40827) PULSE_SENSOR: 💓 RAW:187  BPM:0.0[0m
+[0;32mI (41327) NimBLE: GATT procedure initiated: notify; [0m
+[0;32mI (41327) NimBLE: att_handle=18[0m
+
+[0;32mI (41327) BLE_BIDIRECTIONAL: 📤 Notificación enviada (handle 0): HR_RAW:184 | BPM:0.0[0m
+[0;32mI (41327) PULSE_SENSOR: 💓 RAW:184  BPM:0.0[0m

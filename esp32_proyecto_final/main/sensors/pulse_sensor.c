@@ -1,52 +1,84 @@
 #include "pulse_sensor.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "esp_log.h"
 #include "../drivers/adc_driver.h"
 #include "../network/bluetooth.h"
 
-static const char *TAG = "PULSE_SENSOR";
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "esp_log.h"
+#include "esp_timer.h"
+#include <math.h>
+#include <string.h>
+
+#define REPORT_PERIOD_MS 500
+#define TAG "PULSE_SENSOR"
 
 static adc_continuous_handle_t adc_handle;
+static float last_bpm = 0.0f;
 
-#define SEND_FILTERED 1  // 1 = filtrado, 0 = raw
-
-static uint16_t smooth_value(uint16_t new_val) {
-  static float filtered = 0;
-  const float alpha = 0.1f;
-  filtered = (alpha * new_val) + ((1.0f - alpha) * filtered);
-  return (uint16_t)filtered;
-}
-
-void pulse_sensor_task(void *arg) {
-  adc_channel_result_t result = {
-    .channel = 0,
-    .average = 0
+void pulse_sensor_task(void *pvParameters) {
+  adc_channel_result_t results[] = {
+    {.channel = ADC_CHANNEL_0, .average = 0},
   };
 
+  float bpm = 0.0f;
+  float threshold = 2000.0f;
+  bool pulse_detected = false;
+  int64_t last_pulse_time = 0;
+  int64_t last_report_time = 0;
+
+  ESP_LOGI(TAG, "💓 Iniciando lectura continua del ADC...");
+
   while (1) {
-    adc_driver_read_multi(adc_handle, &result, 1);
+    int samples = adc_driver_read_multi(adc_handle, results, 1);
+    if (samples <= 0) {
+      vTaskDelay(pdMS_TO_TICKS(10));
+      continue;
+    }
 
-    uint16_t raw = result.average;
-    uint16_t filtered = smooth_value(raw);
+    int raw = results[0].average;
+    int64_t now = esp_timer_get_time();
 
-    // Selección del valor a enviar
-    uint16_t value_to_send = SEND_FILTERED ? filtered : raw;
+    // Seguimiento dinámico del nivel base
+    threshold = 0.95f * threshold + 0.05f * raw;
 
-    char msg[32];
-    snprintf(msg, sizeof(msg), "HR_RAW:%u", value_to_send);
+    // Detección de cruce de umbral (subida)
+    if (!pulse_detected && raw > threshold + 250) {
+      pulse_detected = true;
 
-    send_notification_to_connected(msg);
-    ESP_LOGI(TAG, "💓 PulseSensor valor%s: %u",
-             SEND_FILTERED ? " (filtrado)" : " (raw)",
-             value_to_send);
+      if (last_pulse_time > 0) {
+        float interval_s = (now - last_pulse_time) / 1000000.0f;
+        float new_bpm = 60.0f / interval_s;
 
-    vTaskDelay(pdMS_TO_TICKS(1000)); // 1 Hz
+        // Filtro suave para estabilizar BPM
+        bpm = 0.8f * last_bpm + 0.2f * new_bpm;
+        last_bpm = bpm;
+      }
+
+      last_pulse_time = now;
+    }
+
+    // Reinicia el flag cuando la señal baja
+    if (pulse_detected && raw < threshold) {
+      pulse_detected = false;
+    }
+
+    // Enviar datos cada 0.5 segundos
+    if ((now - last_report_time) > (REPORT_PERIOD_MS * 1000)) {
+      last_report_time = now;
+      char msg[64];
+      snprintf(msg, sizeof(msg), "BPM:%.1f", bpm);
+      send_notification_to_connected(msg);
+      ESP_LOGI(TAG, "💓 BPM:%.1f", raw, bpm);
+    }
+
+    vTaskDelay(pdMS_TO_TICKS(10)); // pequeño retardo (10 ms)
   }
 }
 
 void pulse_sensor_start() {
-  ESP_ERROR_CHECK(adc_driver_init(&adc_handle));
-  xTaskCreate(pulse_sensor_task, "pulse_task", 4096, NULL, 5, NULL);
+  ESP_LOGI(TAG, "Configurando ADC continuo...");
+  adc_driver_init(&adc_handle);
+
+  xTaskCreate(pulse_sensor_task, "pulse_sensor_task", 4096, NULL, 5, NULL);
 }
 
