@@ -113,74 +113,80 @@ static inline uint64_t now_ms64(void) {
 }
 
 static void pm_task(void *arg) {
-  (void)arg;
-  ESP_LOGI(TAG, "pm_task started");
+    (void)arg;
+    ESP_LOGI(TAG, "pm_task (synced) started");
 
-  for (;;) {
-    pm_imu_compact_t imu_item;
-    pm_pulse_item_t pulse_item;
+    pm_imu_compact_t lastImu = {0};
+    pm_pulse_item_t lastPulse = {0};
 
-    BaseType_t has_imu = xQueueReceive(s_imu_compact_q, &imu_item, pdMS_TO_TICKS(50));
-    BaseType_t has_pulse = xQueueReceive(s_pulse_q, &pulse_item, 0);
+    bool hasImu = false;
+    bool hasPulse = false;
 
-    if (has_imu == pdFALSE) {
-      has_pulse = xQueueReceive(s_pulse_q, &pulse_item, pdMS_TO_TICKS(50));
+    const TickType_t period = pdMS_TO_TICKS(20);   // 50 Hz envío
+    TickType_t lastWake = xTaskGetTickCount();
+
+    for (;;) {
+        // 1) Consumir TODAS las IMUs disponibles
+        pm_imu_compact_t imutmp;
+        while (xQueueReceive(s_imu_compact_q, &imutmp, 0) == pdTRUE) {
+            lastImu = imutmp;
+            hasImu = true;
+        }
+
+        // 2) Consumir TODOS los pulsos disponibles
+        pm_pulse_item_t ptmp;
+        while (xQueueReceive(s_pulse_q, &ptmp, 0) == pdTRUE) {
+            lastPulse = ptmp;
+            hasPulse = true;
+        }
+
+        // 3) Elegir timestamp
+        uint64_t ts = 0;
+        if (hasImu) ts = lastImu.ts;
+        else if (hasPulse) ts = (uint64_t)lastPulse.ts32;
+        else ts = now_ms64(); // fallback
+
+        // 4) Construir paquete
+        int16_t imu_flat[6];
+        uint16_t pulses[1];
+
+        uint8_t imu_count = 0;
+        uint8_t pulse_count = 0;
+
+        if (hasImu) {
+            imu_flat[0] = lastImu.ax;
+            imu_flat[1] = lastImu.ay;
+            imu_flat[2] = lastImu.az;
+            imu_flat[3] = lastImu.gx;
+            imu_flat[4] = lastImu.gy;
+            imu_flat[5] = lastImu.gz;
+            imu_count = 1;
+        }
+
+        if (hasPulse) {
+            pulses[0] = lastPulse.value;
+            pulse_count = 1;
+        }
+
+        // 5) Flags
+        uint8_t flags = 0;
+        if (imu_count && pulse_count) flags = 0xC0;
+        else if (imu_count)         flags = 0x80;
+        else if (pulse_count)       flags = 0x40;
+
+        // 6) Enviar paquete
+        packet_manager_send_compact(
+            flags,
+            ts,
+            (imu_count ? imu_flat : NULL),
+            imu_count,
+            (pulse_count ? pulses : NULL),
+            pulse_count
+        );
+
+        // 7) Esperar próximo envío
+        vTaskDelayUntil(&lastWake, period);
     }
-
-    if (has_imu == pdFALSE && has_pulse == pdFALSE) {
-      vTaskDelay(pdMS_TO_TICKS(100));
-      continue;
-    }
-
-    /* Build payload: prefer to send both if available */
-    int16_t imu_flat[6];
-    uint16_t pulses[4]; // small stack buffer; typical pulse_count==1
-    uint8_t imu_count = 0;
-    uint8_t pulse_count = 0;
-    uint64_t ts_use = now_ms64();
-
-    if (has_imu && has_pulse) {
-      imu_flat[0] = imu_item.ax;
-      imu_flat[1] = imu_item.ay;
-      imu_flat[2] = imu_item.az;
-      imu_flat[3] = imu_item.gx;
-      imu_flat[4] = imu_item.gy;
-      imu_flat[5] = imu_item.gz;
-      imu_count = 1;
-
-      pulses[0] = pulse_item.value;
-      pulse_count = 1;
-
-      ts_use = imu_item.ts;
-    } else if (has_imu) {
-      imu_flat[0] = imu_item.ax;
-      imu_flat[1] = imu_item.ay;
-      imu_flat[2] = imu_item.az;
-      imu_flat[3] = imu_item.gx;
-      imu_flat[4] = imu_item.gy;
-      imu_flat[5] = imu_item.gz;
-      imu_count = 1;
-      pulse_count = 0;
-      ts_use = imu_item.ts;
-    } else if (has_pulse) {
-      pulse_count = 1;
-      pulses[0] = pulse_item.value;
-      imu_count = 0;
-      ts_use = (uint64_t)pulse_item.ts32;
-    }
-
-    /* flags: keep as 0.. (caller policy) - let's set bits as before (1=pulse,2=imu,3=both) */
-    uint8_t flags = 0;
-    if (imu_count && pulse_count) flags = (0x3 << 6);
-    else if (imu_count) flags = (0x2 << 6);
-    else if (pulse_count) flags = (0x1 << 6);
-
-    packet_manager_send_compact(flags, ts_use,
-                                imu_count ? imu_flat : NULL, imu_count,
-                                pulse_count ? pulses : NULL, pulse_count);
-
-    vTaskDelay(pdMS_TO_TICKS(5));
-  }
 }
 
 /* ============================

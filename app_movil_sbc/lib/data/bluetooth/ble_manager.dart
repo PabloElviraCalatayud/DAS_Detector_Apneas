@@ -1,6 +1,5 @@
 // lib/data/bluetooth/ble_manager.dart
 import 'dart:async';
-import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 
@@ -36,7 +35,7 @@ class BleManager extends ChangeNotifier {
     }
 
     // Utilizamos el decoder creado en ble_decoder.dart
-    final pkt = BleDecoder.parsePacket(data);
+    final pkt = decodePacketCompact(data);
     if (pkt == null) {
       if (kDebugMode) print("BLE MANAGER: packet inválido o incompleto");
       return;
@@ -45,8 +44,15 @@ class BleManager extends ChangeNotifier {
     lastPacket = pkt;
 
     // Mensaje para UI (temporal)
-    lastMessage =
-    "IMU=${pkt.imuAx.length}  PULSE=${pkt.pulses.isNotEmpty ? pkt.pulses.last : '-'}";
+    if (pkt.imuCount > 0) {
+      final ax = pkt.imu[0].ax;
+      final ay = pkt.imu[0].ay;
+      final az = pkt.imu[0].az;
+
+      lastMessage = "Acel: ($ax, $ay, $az)  Pulsos: ${pkt.pulses}";
+    } else {
+      lastMessage = "Pulsos: ${pkt.pulses}";
+    }
 
     _msgController.add(lastMessage);
 

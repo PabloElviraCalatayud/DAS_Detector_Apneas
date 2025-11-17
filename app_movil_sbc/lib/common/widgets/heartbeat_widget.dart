@@ -16,9 +16,7 @@ class _HeartBeatWidgetState extends State<HeartBeatWidget>
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
 
-  int bpm = 60;
   int _lastStableBpm = 60;
-
   Timer? _debounce;
 
   @override
@@ -34,29 +32,37 @@ class _HeartBeatWidgetState extends State<HeartBeatWidget>
         .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
+  bool _isValidBpm(int v) => v >= 40 && v <= 180;
+
   void _updateBeatAnimation(int bpm) {
     final period = (60000 / bpm).round();
     _controller.duration = Duration(milliseconds: period);
     _controller.forward(from: 0);
   }
 
-  bool _isValidBpm(int v) => v > 40 && v < 200;
-
   @override
   Widget build(BuildContext context) {
+
     return Selector<BleManager, int?>(
-      selector: (_, ble) => ble.lastPacket?.pulses.last, // ← pulso único parseado
-      builder: (_, newPulse, __) {
-        if (newPulse == null || !_isValidBpm(newPulse)) {
-          newPulse = _lastStableBpm;
+      selector: (_, ble) {
+        final pulses = ble.lastPacket?.pulses;
+        if (pulses == null || pulses.isEmpty) return null;
+        return pulses.last;
+      },
+
+      builder: (_, pulse, __) {
+        int newBpm = pulse ?? _lastStableBpm;
+
+        if (!_isValidBpm(newBpm)) {
+          newBpm = _lastStableBpm;
         }
 
-        // Debounce
+        // Debounce para suavizar variaciones
         _debounce?.cancel();
         _debounce = Timer(const Duration(milliseconds: 500), () {
-          if (newPulse != _lastStableBpm) {
+          if (newBpm != _lastStableBpm) {
             setState(() {
-              _lastStableBpm = newPulse!;
+              _lastStableBpm = newBpm;
               _updateBeatAnimation(_lastStableBpm);
             });
           }
@@ -72,9 +78,11 @@ class _HeartBeatWidgetState extends State<HeartBeatWidget>
             children: [
               ScaleTransition(
                 scale: _scaleAnimation,
-                child: Icon(Icons.favorite,
-                    size: 60,
-                    color: Theme.of(context).colorScheme.primary),
+                child: Icon(
+                  Icons.favorite,
+                  size: 60,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ),
               const SizedBox(width: 16),
               Expanded(
