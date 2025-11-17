@@ -206,25 +206,38 @@ void bluetooth_init(void) {
   nimble_port_freertos_init(ble_host_task);
 }
 void send_notification_binary(const uint8_t *data, uint16_t len) {
-  if (g_conn_handle < 0) {
-    ESP_LOGW(TAG, "No hay cliente conectado para notificar binario.");
-    return;
-  }
+    if (g_conn_handle < 0) {
+        ESP_LOGW(TAG, "No hay cliente conectado para notificar binario.");
+        return;
+    }
 
-  if (notify_handle == 0) {
-    ESP_LOGW(TAG, "notify_handle == 0. ¿Se inicializó la característica?");
-    return;
-  }
+    if (notify_handle == 0) {
+        ESP_LOGW(TAG, "notify_handle == 0. ¿Se inicializó la característica?");
+        return;
+    }
 
-  struct os_mbuf *om = ble_hs_mbuf_from_flat(data, len);
-  if (!om) {
-    ESP_LOGE(TAG, "Fallo creando mbuf para notificación binaria");
-    return;
-  }
+    uint16_t mtu = ble_att_mtu(g_conn_handle);
+    if (mtu < 23) mtu = 23;
 
-  int rc = ble_gattc_notify_custom(g_conn_handle, notify_handle, om);
-  if (rc != 0) {
-    ESP_LOGE(TAG, "Error enviando notificación binaria rc=%d", rc);
-  }
+    uint16_t chunk = mtu - 3;  // MTU payload capacity
+
+    for (uint16_t offset = 0; offset < len; offset += chunk) {
+        uint16_t size = (len - offset > chunk) ? chunk : (len - offset);
+
+        struct os_mbuf *om = ble_hs_mbuf_from_flat(data + offset, size);
+        if (!om) {
+            ESP_LOGE(TAG, "Fallo creando mbuf");
+            return;
+        }
+
+        int rc = ble_gattc_notify_custom(g_conn_handle, notify_handle, om);
+        if (rc != 0) {
+            ESP_LOGE(TAG, "Error enviando chunk rc=%d", rc);
+            return;
+        }
+    }
+
+    ESP_LOGI(TAG, "📤 Enviado paquete en %u notificaciones BLE", 
+             (len + chunk - 1) / chunk);
 }
 

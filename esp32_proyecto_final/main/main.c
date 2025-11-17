@@ -34,9 +34,9 @@ void app_main(void) {
   pulse_sensor_sim_start();
 
   ESP_LOGI(TAG, "➡ Iniciando IMU simulada...");
-  //mpu6050_sim_start();
+  mpu6050_sim_start();
 
-  //mpu6050_sim_calibrate(50);
+  mpu6050_sim_calibrate(50);
 
   while (1) {
     /* --------------------------------------------------

@@ -2,49 +2,45 @@
 #include <stdint.h>
 #include "esp_err.h"
 
-/**
- * Packet manager - versión nueva y minimalista.
- *
- * API:
- *   pm_init()                     - inicializa colas y tarea
- *   pm_feed_pulse(uint16_t v)     - encola valor de pulso (por ejemplo ADC o BPM)
- *   pm_feed_imu(uint16_t v, uint64_t ts) - encola un valor reducido de IMU + timestamp
- *
- * Nueva API compacta:
- *   pm_feed_imu_compact(int16_t ax, int16_t ay, int16_t az,
- *                       int16_t gx, int16_t gy, int16_t gz,
- *                       uint64_t timestamp);
- *
- * Formato compacto (Opción A):
- *   byte0: flags (uint8)
- *   bytes1..8: timestamp (uint64 little-endian)
- *   byte9: count_imu (uint8)
- *   byte10: count_pulse (uint8)
- *   following: for each imu sample -> ax,ay,az,gx,gy,gz (int16 LE each)
- *              for each pulse sample -> uint16 LE
- */
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+/**
+ * API minimalista del Packet Manager (Opción A).
+ *
+ * Formato compacto (Option A):
+ *  byte0: flags (uint8)
+ *  bytes1..8: timestamp (uint64 LE)
+ *  byte9: count_imu (uint8)
+ *  byte10: count_pulse (uint8)
+ *  following: for each imu sample -> ax,ay,az,gx,gy,gz (int16 LE each)
+ *             for each pulse sample -> uint16 LE
+ */
+
+/* Inicializa colas y tarea del packet manager. */
 esp_err_t pm_init(void);
 
 /* Encolar muestra de pulso (no bloqueante). Devuelve 0=ok, -1=drop */
 int pm_feed_pulse(uint16_t value);
 
-/* Encolar muestra reducida de IMU (p. ej. accel magnitude escalada) con timestamp ms.
- * value: uint16_t
- * ts_ms: timestamp en ms (uint64_t) - internamente truncado a 32 bits para paquete (antigua API).
- *
- * Devuelve 0=ok, -1=drop
- */
-int pm_feed_imu(uint16_t value, uint64_t ts_ms);
+/* Encolar muestra compacta de IMU (6 int16 escalados x100) */
+int pm_feed_imu_compact(int16_t ax, int16_t ay, int16_t az,
+                        int16_t gx, int16_t gy, int16_t gz,
+                        uint64_t timestamp_ms);
 
-/* Nueva: Encolar IMU compacta (6 valores int16 escalados ×100) */
-void pm_feed_imu_compact(int16_t ax, int16_t ay, int16_t az,
-                         int16_t gx, int16_t gy, int16_t gz,
-                         uint64_t timestamp);
+/* Función para construir paquete compacto en buffer (devuelve longitud o -1) */
+int packet_manager_build_compact(uint8_t *out, uint8_t max_len,
+                                 uint8_t flags, uint64_t timestamp,
+                                 const int16_t *imu_flat /* ptr to 6*imu_count int16 */,
+                                 uint8_t imu_count,
+                                 const uint16_t *pulses,
+                                 uint8_t pulse_count);
+
+/* Enviar paquete compacto directamente (usa bluetooth send_notification_binary) */
+void packet_manager_send_compact(uint8_t flags, uint64_t timestamp,
+                                 const int16_t *imu_flat, uint8_t imu_count,
+                                 const uint16_t *pulses, uint8_t pulse_count);
 
 #ifdef __cplusplus
 }

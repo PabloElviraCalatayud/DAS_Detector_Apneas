@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../data/bluetooth/ble_manager.dart';
@@ -14,7 +15,11 @@ class _HeartBeatWidgetState extends State<HeartBeatWidget>
 
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
-  int bpm = 0;
+
+  int bpm = 60;
+  int _lastStableBpm = 60;
+
+  Timer? _debounce;
 
   @override
   void initState() {
@@ -29,60 +34,69 @@ class _HeartBeatWidgetState extends State<HeartBeatWidget>
         .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
-  void _updateBeatSpeed(int newBpm) {
-    if (newBpm <= 0) newBpm = 60;
-    double periodMs = 60000 / newBpm;
-    _controller.duration = Duration(milliseconds: periodMs.toInt());
+  void _updateBeatAnimation(int bpm) {
+    final period = (60000 / bpm).round();
+    _controller.duration = Duration(milliseconds: period);
     _controller.forward(from: 0);
   }
 
+  bool _isValidBpm(int v) => v > 40 && v < 200;
+
   @override
   Widget build(BuildContext context) {
-    final ble = context.watch<BleManager>();
-    final raw = ble.lastMessage;
-    final match = RegExp(r'\d+').firstMatch(raw);
-    int newBpm = match != null ? int.parse(match.group(0)!) : bpm;
+    return Selector<BleManager, int?>(
+      selector: (_, ble) => ble.lastPacket?.pulses.last, // ← pulso único parseado
+      builder: (_, newPulse, __) {
+        if (newPulse == null || !_isValidBpm(newPulse)) {
+          newPulse = _lastStableBpm;
+        }
 
-    if (newBpm != bpm) {
-      bpm = newBpm;
-      _updateBeatSpeed(bpm);
-    }
+        // Debounce
+        _debounce?.cancel();
+        _debounce = Timer(const Duration(milliseconds: 500), () {
+          if (newPulse != _lastStableBpm) {
+            setState(() {
+              _lastStableBpm = newPulse!;
+              _updateBeatAnimation(_lastStableBpm);
+            });
+          }
+        });
 
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        children: [
-          ScaleTransition(
-            scale: _scaleAnimation,
-            child: Icon(
-              Icons.favorite,
-              size: 60,
-              color: Theme.of(context).colorScheme.primary,
-            ),
+        return Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
+            borderRadius: BorderRadius.circular(16),
           ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Text(
-              "$bpm BPM",
-              textAlign: TextAlign.right,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontSize: 38,
-                fontWeight: FontWeight.w700,
-                color: Theme.of(context).colorScheme.onSurface,
+          child: Row(
+            children: [
+              ScaleTransition(
+                scale: _scaleAnimation,
+                child: Icon(Icons.favorite,
+                    size: 60,
+                    color: Theme.of(context).colorScheme.primary),
               ),
-            ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  "$_lastStableBpm BPM",
+                  textAlign: TextAlign.right,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontSize: 38,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
   @override
   void dispose() {
+    _debounce?.cancel();
     _controller.dispose();
     super.dispose();
   }
