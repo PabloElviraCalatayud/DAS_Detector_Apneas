@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +19,7 @@ class _OtaPageState extends State<OtaPage> {
   String? _filePath;
   double _progress = 0;
   bool _uploading = false;
-  String _status = "Esperando archivo...";
+  String _status = "Conéctate a un dispositivo para comenzar.";
 
   Future<void> _selectFile() async {
     try {
@@ -34,7 +33,7 @@ class _OtaPageState extends State<OtaPage> {
 
       if (result != null && result.files.single.path != null) {
         setState(() {
-          _filePath = result.files.single.path;
+          _filePath = result.files.single.path!;
           _status = "Archivo seleccionado: ${result.files.single.name}";
         });
       }
@@ -45,23 +44,26 @@ class _OtaPageState extends State<OtaPage> {
     }
   }
 
-
   Future<void> _startOta() async {
     if (_filePath == null) {
-      setState(() => _status = "⚠️ Selecciona un archivo primero.");
+      setState(() {
+        _status = "⚠️ Selecciona un archivo primero.";
+      });
       return;
     }
 
     final ble = context.read<BleManager>();
     if (ble.connectedDevice == null) {
-      setState(() => _status = "⚠️ No hay dispositivo conectado.");
+      setState(() {
+        _status = "⚠️ No hay dispositivo conectado.";
+      });
       return;
     }
 
     final ota = OtaBleService(ble);
-    final file = File(_filePath!);
 
     try {
+      final file = File(_filePath!);
       final bytes = await file.readAsBytes();
 
       setState(() {
@@ -72,13 +74,21 @@ class _OtaPageState extends State<OtaPage> {
 
       await ota.startOta(
         bytes,
-        onProgress: (p) => setState(() => _progress = p),
-        onStatus: (s) => setState(() => _status = s),
+        onProgress: (p) {
+          setState(() {
+            _progress = p;
+          });
+        },
+        onStatus: (s) {
+          setState(() {
+            _status = s;
+          });
+        },
       );
 
       setState(() {
         _uploading = false;
-        _status = "✅ OTA finalizada, el ESP32 se reiniciará.";
+        _status = "✅ OTA finalizada. El ESP32 se reiniciará.";
       });
     } catch (e) {
       setState(() {
@@ -90,15 +100,20 @@ class _OtaPageState extends State<OtaPage> {
 
   @override
   Widget build(BuildContext context) {
+    final ble = context.watch<BleManager>();
+    final isConnected = ble.connectedDevice != null;
+
     final theme = Theme.of(context).brightness;
 
-    final textColor =
-    theme == Brightness.dark ? AppColors.darkText : AppColors.lightText;
+    final textColor = theme == Brightness.dark
+        ? AppColors.darkText
+        : AppColors.lightText;
     final surfaceColor = theme == Brightness.dark
         ? AppColors.darkSurface
         : AppColors.lightSecondary;
-    final primaryColor =
-    theme == Brightness.dark ? AppColors.darkPrimary : AppColors.lightPrimary;
+    final primaryColor = theme == Brightness.dark
+        ? AppColors.darkPrimary
+        : AppColors.lightPrimary;
 
     return Scaffold(
       backgroundColor: theme == Brightness.dark
@@ -106,6 +121,7 @@ class _OtaPageState extends State<OtaPage> {
           : AppColors.lightBackground,
       appBar: AppBar(
         title: const Text("Actualización OTA"),
+        automaticallyImplyLeading: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -119,28 +135,48 @@ class _OtaPageState extends State<OtaPage> {
               style: TextStyle(color: textColor),
             ),
             const SizedBox(height: 24),
-            PrimaryButton(
-              text: "Seleccionar archivo .bin",
-              onPressed: _uploading ? null : _selectFile,
-            ),
-            const SizedBox(height: 12),
-            if (_filePath != null)
+
+            // ❌ SI NO ESTÁ CONECTADO → solo mensaje
+            if (!isConnected) ...{
               Text(
-                _filePath!,
-                style: TextStyle(fontSize: 12, color: textColor.withOpacity(0.6)),
+                "Debes conectarte a un ESP32 antes de iniciar la actualización.",
+                style: TextStyle(color: textColor.withOpacity(0.6)),
               ),
-            const SizedBox(height: 24),
-            PrimaryButton(
-              text: _uploading ? "Enviando..." : "Iniciar actualización",
-              onPressed: _uploading ? null : _startOta,
-            ),
-            const SizedBox(height: 24),
-            if (_uploading)
-              LinearProgressIndicator(
-                value: _progress,
-                backgroundColor: surfaceColor,
-                color: primaryColor,
+            }
+
+            // ✅ SI ESTÁ CONECTADO → mostrar botones directamente
+            else ...{
+              PrimaryButton(
+                text: "Seleccionar archivo .bin",
+                onPressed: _uploading ? null : _selectFile,
               ),
+              const SizedBox(height: 12),
+
+              if (_filePath != null)
+                Text(
+                  _filePath!,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: textColor.withOpacity(0.6),
+                  ),
+                ),
+
+              const SizedBox(height: 24),
+
+              PrimaryButton(
+                text: _uploading ? "Enviando..." : "Iniciar actualización",
+                onPressed: _uploading ? null : _startOta,
+              ),
+
+              const SizedBox(height: 24),
+
+              if (_uploading)
+                LinearProgressIndicator(
+                  value: _progress,
+                  backgroundColor: surfaceColor,
+                  color: primaryColor,
+                ),
+            }
           ],
         ),
       ),

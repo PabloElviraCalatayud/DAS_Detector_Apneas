@@ -1,16 +1,10 @@
 import 'dart:async';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'package:provider/provider.dart';
 
-import '../../common/core/permissions.dart';
-import '../../common/widgets/primary_button.dart';
 import '../../data/bluetooth/ble_manager.dart';
-import '../../common/core/colors.dart';
-
-import '../OTA/OTA_page.dart';
-
+import '../../data/models/sensor_data.dart';
+import '../../data/models/sensor_data_model.dart';
 
 class BlePage extends StatefulWidget {
   const BlePage({super.key});
@@ -20,216 +14,160 @@ class BlePage extends StatefulWidget {
 }
 
 class _BlePageState extends State<BlePage> {
-  StreamSubscription<DiscoveredDevice>? _scanSub;
-  final List<DiscoveredDevice> _devices = [];
+  StreamSubscription<bool>? _connSub;
+  StreamSubscription<SensorData>? _sensorSub;
+  StreamSubscription? _scanSub;
 
-  bool _isScanning = false;
-  String _status = "Desconectado";
-  String _lastMessage = "";
+  bool _connected = false;
+  bool _scanning = false;
+  SensorData? _last;
+
+  List<dynamic> _devices = [];
 
   @override
   void initState() {
     super.initState();
 
     final ble = context.read<BleManager>();
+    final sensor = SensorDataModel.instance;
 
-    // 🟢 Escuchar mensajes BLE (para actualizar estado o logs)
-    ble.messages.listen((msg) {
+    // Conexión
+    _connSub = ble.connectionStatusStream.listen((isConnected) {
       if (!mounted) return;
-      setState(() {
-        _lastMessage = msg;
-      });
+      setState(() => _connected = isConnected);
     });
 
-    // 🟢 Escuchar el estado de conexión BLE
-    ble.connectionStream.listen((connected) {
+    // Sensores
+    _sensorSub = sensor.sensorStream.listen((data) {
       if (!mounted) return;
-      setState(() {
-        _status = connected ? "Conectado" : "Desconectado";
-      });
-
-      // 🚀 Si se conecta → abrir la pantalla OTA automáticamente
-      if (connected) {
-        Future.microtask(() {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (_) => const OtaPage()),
-          );
-        });
-      }
+      setState(() => _last = data);
     });
-  }
-
-
-  Future<void> _scan() async {
-    final ble = context.read<BleManager>();
-    await PermissionService.requestBlePermissions();
-
-    setState(() {
-      _isScanning = true;
-      _devices.clear();
-      _status = "Buscando dispositivos...";
-    });
-
-    final stream = await ble.scan();
-
-    _scanSub = stream.listen((device) {
-      if (device.name.isNotEmpty && device.name.startsWith("ESP") && !_devices.any((d) => d.id == device.id)) {
-        setState(() {
-          _devices.add(device);
-        });
-      }
-    });
-  }
-
-  Future<void> _stopScan() async {
-    await _scanSub?.cancel();
-    setState(() {
-      _isScanning = false;
-      _status = "Escaneo detenido";
-    });
-  }
-
-  Future<void> _connect(DiscoveredDevice device) async {
-    final ble = context.read<BleManager>();
-
-    setState(() {
-      _status = "Conectando...";
-    });
-
-    await ble.connect(device);
-
-    // ✅ añadir dispositivo manual si no está listado
-    if (!_devices.any((d) => d.id == device.id)) {
-      setState(() {
-        _devices.add(
-          DiscoveredDevice(
-            id: device.id,
-            name: device.name,
-            serviceData: const {},
-            manufacturerData: Uint8List(0), // ✅ FIX
-            rssi: 0,
-            serviceUuids: const [],
-          ),
-        );
-      });
-    }
-  }
-
-  Future<void> _disconnect() async {
-    final ble = context.read<BleManager>();
-    await ble.disconnect();
   }
 
   @override
   void dispose() {
+    _connSub?.cancel();
+    _sensorSub?.cancel();
     _scanSub?.cancel();
     super.dispose();
   }
 
+  // ------------------------------
+  // 🔍 ESCANEO DE DISPOSITIVOS
+  // ------------------------------
+  void _startScan() {
+    final ble = context.read<BleManager>();
+
+    setState(() {
+      _devices.clear();
+      _scanning = true;
+    });
+
+    _scanSub = ble.scan().listen((device) {
+      if (!_devices.any((d) => d.id == device.id)) {
+        setState(() => _devices.add(device));
+      }
+    }, onDone: () {
+      setState(() => _scanning = false);
+    });
+  }
+
+  void _connectTo(device) async {
+    final ble = context.read<BleManager>();
+    await ble.connect(device);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final ble = context.watch<BleManager>();
-    final connected = ble.connectedDevice != null;
-    final theme = Theme.of(context).brightness;
+    final bpm = _last?.heartRate ?? 0;
+    final mov = _last?.movementIndex ?? 0;
+    final hrv = _last?.hrv ?? 0;
 
     return Scaffold(
-      backgroundColor: theme == Brightness.dark
-          ? AppColors.darkBackground
-          : AppColors.lightBackground,
       appBar: AppBar(
-        title: const Text("Conexión Bluetooth"),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        title: const Text("Dispositivo BLE"),
+        actions: [
+          Icon(
+            _connected ? Icons.bluetooth_connected : Icons.bluetooth_disabled,
+            color: _connected ? Colors.green : Colors.red,
+          )
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Text(
-              "Estado: $_status",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: theme == Brightness.dark
-                    ? AppColors.darkText
-                    : AppColors.lightText,
-              ),
-            ),
-            const SizedBox(height: 14),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _connected ? null : _startScan,
+        child: Icon(_scanning ? Icons.search_off : Icons.search),
+      ),
 
-            // ✅ Botón de scan o stop reutilizando tu PrimaryButton
-            if (!_isScanning)
-              PrimaryButton(
-                text: "Buscar dispositivos",
-                onPressed: _scan,
-              )
-            else
-              PrimaryButton(
-                text: "Buscando...",
-                onPressed: _stopScan,
-              ),
+      body: _connected
+          ? _buildConnectedView(bpm, mov, hrv)
+          : _buildScanView(),
+    );
+  }
 
-            const SizedBox(height: 14),
-
-            Expanded(
-              child: ListView(
-                children: [
-                  // ✅ Mostrar SIEMPRE el conectado
-                  if (ble.connectedDevice != null)
-                    Card(
-                      color: theme == Brightness.dark
-                          ? AppColors.darkSurface
-                          : AppColors.lightSecondary,
-                      child: ListTile(
-                        title: Text(
-                          ble.connectedDevice!.name.isNotEmpty
-                              ? ble.connectedDevice!.name
-                              : "Dispositivo conectado",
-                        ),
-                        subtitle: Text(ble.connectedDevice!.id),
-                        trailing: Icon(Icons.check_circle,
-                            color: Colors.green.shade600),
-                        onTap: _disconnect, // ✅ permite desconectar
-                      ),
-                    ),
-
-                  // ✅ Mostrar lista de dispositivos encontrados
-                  ..._devices.map((d) {
-                    final isConnected = ble.connectedDevice?.id == d.id;
-
-                    return Card(
-                      color: theme == Brightness.dark
-                          ? AppColors.darkSurface
-                          : AppColors.lightSurface,
-                      child: ListTile(
-                        title: Text(d.name),
-                        subtitle: Text(d.id),
-                        trailing: Icon(
-                          Icons.bluetooth,
-                          color: isConnected ? Colors.green : null,
-                        ),
-                        onTap: () => _connect(d),
-                      ),
-                    );
-                  }),
-                ],
-              ),
-            ),
-
-            if (connected) ...[
-              const Divider(),
-              Text(
-                "Último mensaje: $_lastMessage",
-                style: TextStyle(
-                  color: theme == Brightness.dark
-                      ? AppColors.darkText
-                      : AppColors.lightText,
-                ),
-              ),
-            ],
-          ],
+  // -------------------------------------------------------
+  // 📡 Vista cuando NO hay dispositivo conectado
+  // -------------------------------------------------------
+  Widget _buildScanView() {
+    return ListView(
+      padding: const EdgeInsets.all(16),
+      children: [
+        const Text(
+          "Dispositivos encontrados",
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-      ),
+        const SizedBox(height: 10),
+
+        if (_scanning)
+          const Center(child: CircularProgressIndicator()),
+
+        ..._devices.map((d) {
+          return Card(
+            child: ListTile(
+              title: Text(d.name.isNotEmpty ? d.name : "Sin nombre"),
+              subtitle: Text(d.id),
+              trailing: ElevatedButton(
+                onPressed: () => _connectTo(d),
+                child: const Text("Conectar"),
+              ),
+            ),
+          );
+        }).toList()
+      ],
+    );
+  }
+
+  // -------------------------------------------------------
+  // 🔥 Vista cuando SÍ hay dispositivo conectado
+  // -------------------------------------------------------
+  Widget _buildConnectedView(int bpm, double mov, double hrv) {
+    return ListView(
+      padding: const EdgeInsets.all(16),
+      children: [
+        Card(
+          child: ListTile(
+            title: const Text("Estado"),
+            subtitle: Text(_connected ? "Conectado" : "Desconectado"),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: const Text("Heart Rate"),
+            subtitle: Text("$bpm BPM"),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: const Text("Movimiento"),
+            subtitle: Text(mov.toStringAsFixed(2)),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: const Text("HRV"),
+            subtitle: Text(hrv.toStringAsFixed(2)),
+          ),
+        ),
+      ],
     );
   }
 }

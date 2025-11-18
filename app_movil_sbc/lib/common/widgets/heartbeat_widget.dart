@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../data/bluetooth/ble_manager.dart';
 
 class HeartBeatWidget extends StatefulWidget {
@@ -16,7 +17,7 @@ class _HeartBeatWidgetState extends State<HeartBeatWidget>
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
 
-  int _lastStableBpm = 60;
+  int _currentBpm = 0;
   Timer? _debounce;
 
   @override
@@ -28,42 +29,35 @@ class _HeartBeatWidgetState extends State<HeartBeatWidget>
       duration: const Duration(milliseconds: 900),
     )..repeat(reverse: true);
 
-    _scaleAnimation = Tween(begin: 1.0, end: 1.25)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    _scaleAnimation = Tween(begin: 1.0, end: 1.25).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
   }
 
-  bool _isValidBpm(int v) => v >= 40 && v <= 180;
-
   void _updateBeatAnimation(int bpm) {
-    final period = (60000 / bpm).round();
-    _controller.duration = Duration(milliseconds: period);
+    if (bpm <= 0) {
+      _controller.duration = const Duration(milliseconds: 5000);
+    } else {
+      final period = (60000 / bpm).round();
+      _controller.duration = Duration(milliseconds: period);
+    }
+
     _controller.forward(from: 0);
   }
 
   @override
   Widget build(BuildContext context) {
+    return Selector<BleManager, int>(
+      selector: (_, ble) => ble.latestHeartRate,
+      builder: (_, bpm, __) {
+        final incoming = bpm;
 
-    return Selector<BleManager, int?>(
-      selector: (_, ble) {
-        final pulses = ble.lastPacket?.pulses;
-        if (pulses == null || pulses.isEmpty) return null;
-        return pulses.last;
-      },
-
-      builder: (_, pulse, __) {
-        int newBpm = pulse ?? _lastStableBpm;
-
-        if (!_isValidBpm(newBpm)) {
-          newBpm = _lastStableBpm;
-        }
-
-        // Debounce para suavizar variaciones
         _debounce?.cancel();
-        _debounce = Timer(const Duration(milliseconds: 500), () {
-          if (newBpm != _lastStableBpm) {
+        _debounce = Timer(const Duration(milliseconds: 300), () {
+          if (incoming != _currentBpm) {
             setState(() {
-              _lastStableBpm = newBpm;
-              _updateBeatAnimation(_lastStableBpm);
+              _currentBpm = incoming;
+              _updateBeatAnimation(_currentBpm);
             });
           }
         });
@@ -87,7 +81,7 @@ class _HeartBeatWidgetState extends State<HeartBeatWidget>
               const SizedBox(width: 16),
               Expanded(
                 child: Text(
-                  "$_lastStableBpm BPM",
+                  "$_currentBpm BPM",
                   textAlign: TextAlign.right,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontSize: 38,

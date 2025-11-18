@@ -1,14 +1,8 @@
-// lib/data/bluetooth/ble_packet.dart
+import 'dart:typed_data';
 
-/// Representa una muestra IMU compacta.
-/// Los valores llegan multiplicados x100 desde el ESP32.
 class ImuSample {
-  final int ax; // accel X * 100
-  final int ay; // accel Y * 100
-  final int az; // accel Z * 100
-  final int gx; // gyro X * 100
-  final int gy; // gyro Y * 100
-  final int gz; // gyro Z * 100
+  final int ax, ay, az;
+  final int gx, gy, gz;
 
   ImuSample({
     required this.ax,
@@ -18,62 +12,90 @@ class ImuSample {
     required this.gy,
     required this.gz,
   });
-
-  /// Devuelve aceleraciones reales (m/s²)
-  double get axReal => ax / 100.0;
-  double get ayReal => ay / 100.0;
-  double get azReal => az / 100.0;
-
-  /// Devuelve giros reales (°/s)
-  double get gxReal => gx / 100.0;
-  double get gyReal => gy / 100.0;
-  double get gzReal => gz / 100.0;
-
-  @override
-  String toString() =>
-      'IMU(ax:$ax ay:$ay az:$az  gx:$gx gy:$gy gz:$gz)';
 }
 
-/// Representa un paquete BLE compacto enviado por el ESP32.
 class BlePacket {
-  final int flags;      // Bits que indican IMU/Pulse
-  final int timestamp;  // ms (uint64 truncado a int en Flutter)
-  final int imuCount;
-  final int pulseCount;
-
-  final List<ImuSample> imu;
-  final List<int> pulses; // Pulsos (uint16)
+  final int flags;
+  final int timestamp;
+  final List<ImuSample> imuSamples;
+  final List<int> pulses;
 
   BlePacket({
     required this.flags,
     required this.timestamp,
-    required this.imuCount,
-    required this.pulseCount,
-    required this.imu,
+    required this.imuSamples,
     required this.pulses,
   });
 
-  /// Hay datos IMU en este paquete
-  bool get hasImu => imuCount > 0 && imu.isNotEmpty;
+  factory BlePacket.fromBytes(Uint8List bytes) {
+    int offset = 0;
 
-  /// Hay datos de pulso
-  bool get hasPulse => pulseCount > 0 && pulses.isNotEmpty;
+    final flags = bytes[offset];
+    offset += 1;
 
-  /// Primer valor de pulso (útil para widgets)
-  int? get firstPulse => hasPulse ? pulses.first : null;
+    // timestamp uint64 LE
+    final ts = _readUint64(bytes, offset);
+    offset += 8;
 
-  /// Primera muestra IMU
-  ImuSample? get firstImu => hasImu ? imu.first : null;
+    final imuCount = bytes[offset];
+    offset += 1;
 
-  @override
-  String toString() {
-    return 'BlePacket('
-        'flags:0x${flags.toRadixString(16)}, '
-        'ts:$timestamp, '
-        'imuCount:$imuCount, '
-        'pulseCount:$pulseCount, '
-        'imu:$imu, '
-        'pulses:$pulses'
-        ')';
+    final pulseCount = bytes[offset];
+    offset += 1;
+
+    // Parse IMU samples
+    final imuSamples = <ImuSample>[];
+    for (int i = 0; i < imuCount; i++) {
+      final ax = _readInt16(bytes, offset);
+      final ay = _readInt16(bytes, offset + 2);
+      final az = _readInt16(bytes, offset + 4);
+      final gx = _readInt16(bytes, offset + 6);
+      final gy = _readInt16(bytes, offset + 8);
+      final gz = _readInt16(bytes, offset + 10);
+      offset += 12;
+
+      imuSamples.add(ImuSample(
+        ax: ax,
+        ay: ay,
+        az: az,
+        gx: gx,
+        gy: gy,
+        gz: gz,
+      ));
+    }
+
+    // Pulses uint16
+    final pulses = <int>[];
+    for (int i = 0; i < pulseCount; i++) {
+      final p = _readUint16(bytes, offset);
+      pulses.add(p);
+      offset += 2;
+    }
+
+    return BlePacket(
+      flags: flags,
+      timestamp: ts,
+      imuSamples: imuSamples,
+      pulses: pulses,
+    );
+  }
+
+  // =======================
+  // LE READ HELPERS
+  // =======================
+
+  static int _readInt16(Uint8List data, int offset) {
+    return ByteData.sublistView(data, offset, offset + 2)
+        .getInt16(0, Endian.little);
+  }
+
+  static int _readUint16(Uint8List data, int offset) {
+    return ByteData.sublistView(data, offset, offset + 2)
+        .getUint16(0, Endian.little);
+  }
+
+  static int _readUint64(Uint8List data, int offset) {
+    final bd = ByteData.sublistView(data, offset, offset + 8);
+    return bd.getUint64(0, Endian.little);
   }
 }

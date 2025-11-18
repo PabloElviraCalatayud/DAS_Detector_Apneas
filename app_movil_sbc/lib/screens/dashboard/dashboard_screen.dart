@@ -14,7 +14,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   final List<Widget> _pages = const [
     DashboardContent(),
-    BlePage(), // bluetooth page in navigation
+    BlePage(),
   ];
 
   @override

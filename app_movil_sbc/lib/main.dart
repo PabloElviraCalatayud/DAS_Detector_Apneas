@@ -9,7 +9,9 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => BleManager()), // ✅ instancia global
+        ChangeNotifierProvider(
+          create: (_) => BleManager.instance,   // ← usar singleton
+        ),
       ],
       child: const InsoleApp(),
     ),
