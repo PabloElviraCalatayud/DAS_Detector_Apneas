@@ -1,0 +1,706 @@
+Command: /home/pelvira/.espressif/python_env/idf5.5_py3.13_env/bin/python /home/pelvira/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/esp32_proyecto_final.elf /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/bootloader/bootloader.elf -m '/home/pelvira/.espressif/python_env/idf5.5_py3.13_env/bin/python' '/home/pelvira/esp/esp-idf/tools/idf.py'
+ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6380
+ho 0 tail 12 room 4
+load:0x40078000,len:15916
+load:0x40080400,len:3860
+entry 0x40080638
+[0;32mI (29) boot: ESP-IDF v5.5.1-dirty 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Nov 18 2025 13:07:32[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v1.0[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+[0;32mI (64) boot:  1 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (71) boot:  2 phy_init         RF data          01 01 00010000 00001000[0m
+[0;32mI (77) boot:  3 factory          factory app      00 00 00020000 00140000[0m
+[0;32mI (84) boot:  4 ota_0            OTA app          00 10 00160000 00140000[0m
+[0;32mI (90) boot:  5 ota_1            OTA app          00 11 002a0000 00140000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (100) boot: Defaulting to factory image[0m
+[0;32mI (104) esp_image: segment 0: paddr=00020020 vaddr=3f400020 size=15598h ( 87448) map[0m
+[0;32mI (142) esp_image: segment 1: paddr=000355c0 vaddr=3ffbdb60 size=04ae8h ( 19176) load[0m
+[0;32mI (149) esp_image: segment 2: paddr=0003a0b0 vaddr=40080000 size=05f68h ( 24424) load[0m
+[0;32mI (159) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=58564h (361828) map[0m
+[0;32mI (282) esp_image: segment 4: paddr=0009858c vaddr=40085f68 size=13324h ( 78628) load[0m
+[0;32mI (313) esp_image: segment 5: paddr=000ab8b8 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (326) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (326) boot: Disabling RNG early entropy source...[0m
+[0;32mI (337) cpu_start: Multicore app[0m
+[0;32mI (345) cpu_start: Pro cpu start user code[0m
+[0;32mI (345) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (345) app_init: Application information:[0m
+[0;32mI (345) app_init: Project name:     esp32_proyecto_final[0m
+[0;32mI (350) app_init: App version:      6783d64-dirty[0m
+[0;32mI (355) app_init: Compile time:     Nov 18 2025 13:07:17[0m
+[0;32mI (360) app_init: ELF file SHA256:  d215a32a2...[0m
+[0;32mI (364) app_init: ESP-IDF:          v5.5.1-dirty[0m
+[0;32mI (368) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (372) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (376) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (380) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (386) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (391) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (396) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (402) heap_init: At 3FFC52C0 len 0001AD40 (107 KiB): DRAM[0m
+[0;32mI (407) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (412) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (418) heap_init: At 4009928C len 00006D74 (27 KiB): IRAM[0m
+[0;33mW (424) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (436) spi_flash: detected chip: generic[0m
+[0;32mI (440) spi_flash: flash io: dio[0m
+[0;33mW (443) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (453) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (457) main_task: Started on CPU0[0m
+[0;32mI (467) main_task: Calling app_main()[0m
+[0;32mI (467) MAIN: ==============================[0m
+[0;32mI (467) MAIN:     🚀 MODO SENSORES REALES[0m
+[0;32mI (467) MAIN: ==============================[0m
+[0;32mI (467) MAIN: ➡ Inicializando Bluetooth...[0m
+[0;32mI (487) BTDM_INIT: BT controller compile version [722c907][0m
+[0;32mI (487) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (487) BTDM_INIT: Bluetooth MAC: 24:62:ab:f2:1c:72[0m
+[0;32mI (497) phy_init: phy_version 4861,b71b5ad,Aug  5 2025,11:16:06[0m
+[0;32mI (807) MAIN: ➡ Inicializando Packet Manager...[0m
+[0;32mI (807) PACKET_MGR: pm_task (synced) started[0m
+[0;33mW (807) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (807) PACKET_MGR: pm_init done[0m
+[0;32mI (817) MAIN: ➡ Inicializando IMU real MPU6050...[0m
+[1;31mE (817) MPU6050: No se pudo iniciar MPU6050[0m
+[0;33mW (827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[1;31mE (827) MAIN: ❌ ERROR: No se pudo iniciar la IMU[0m
+[0;32mI (837) MAIN: ➡ Inicializando sensor de pulso real...[0m
+[0;32mI (837) PULSE_SENSOR: Configurando ADC continuo...[0m
+[0;33mW (847) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (847) BLE_BIDIRECTIONAL: Dirección BLE: 24:62:AB:F2:1C:72[0m
+[0;32mI (857) PULSE_SENSOR: 💓 Iniciando lectura continua del ADC (modo real)...[0m
+[0;32mI (857) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (867) BLE_BIDIRECTIONAL: 📢 Advertising iniciado...[0m
+[0;33mW (867) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (887) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (907) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (927) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (927) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (947) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (967) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (987) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1007) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1027) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1047) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1067) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1087) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1107) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1127) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1147) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1167) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1187) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1207) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1227) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1247) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1267) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1287) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1307) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1347) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1367) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1387) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1407) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1427) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1437) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (1447) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1467) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1487) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1507) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1527) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1547) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1567) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1587) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1607) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1627) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1647) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1667) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1687) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1707) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1727) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1747) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1767) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1787) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1807) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1847) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1867) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1887) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1907) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1927) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1947) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1947) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (1967) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1987) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2007) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2027) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2047) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2067) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2087) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2107) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2127) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2147) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2167) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2187) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2207) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2227) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2247) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2267) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2287) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2307) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2347) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2367) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2387) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2407) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2427) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2447) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2457) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (2467) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2487) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2507) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2527) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2547) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2567) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2587) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2607) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2627) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2647) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2667) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2687) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2707) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2727) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2747) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2767) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2787) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2807) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2847) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2867) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2887) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2907) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2927) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2947) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2967) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2967) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (2987) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3007) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3027) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3047) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3067) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3087) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3107) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3127) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3147) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3167) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3187) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3207) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3227) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3247) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3267) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3287) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3307) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3347) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3367) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3387) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3407) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3427) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3447) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3467) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3467) BLE_BIDIRECTIONAL: ✅ Cliente conectado (handle=0).[0m
+[0;32mI (3477) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (3867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (3987) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (4497) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (5007) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (5517) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (6027) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (6537) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (6867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (7047) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (7557) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (8067) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (8577) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (8777) BLE_BIDIRECTIONAL: 🔌 Cliente desconectado. Reiniciando advertising...[0m
+[0;33mW (8787) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (8807) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (8827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (8847) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (8867) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (8887) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (8907) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (8927) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (8947) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (8967) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (8987) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9007) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9027) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9047) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9067) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9087) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (9087) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (9107) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9127) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9147) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9167) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9187) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9207) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9227) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9247) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9267) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9287) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9307) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9347) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9367) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9387) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9407) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9427) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9447) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9467) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9487) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9507) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9527) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9547) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9567) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9587) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (9597) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (9607) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9627) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9647) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9667) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9687) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9707) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9727) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9747) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9767) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9787) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9807) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9847) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (9867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;33mW (9867) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9887) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9907) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9927) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9947) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9967) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9987) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10007) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10027) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10047) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10067) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10087) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10107) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (10107) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (10127) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10147) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10167) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10187) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10207) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10227) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10247) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10267) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10287) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10307) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10347) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10367) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10387) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10407) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10427) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10447) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10467) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10487) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10507) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10527) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10547) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10567) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10587) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10607) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (10617) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (10627) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10647) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10667) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10687) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10707) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10727) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10747) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10767) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10787) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10807) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10847) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10867) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10887) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10907) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10927) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10947) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10967) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10987) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11007) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11027) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11047) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11067) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11087) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11107) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11127) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (11127) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (11147) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11167) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11187) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11207) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11227) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11247) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11267) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11287) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11307) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11347) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11367) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11387) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11407) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11427) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11447) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11467) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11487) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11507) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11527) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11547) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11567) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11587) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11607) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11627) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (11627) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (11647) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11667) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11687) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11707) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11727) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11747) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11767) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11787) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11807) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11847) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11867) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11887) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11907) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11927) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11947) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11967) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11987) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12007) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12027) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12047) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12067) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12087) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12107) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12127) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (12137) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (12147) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12167) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12187) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12207) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12227) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12247) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12267) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12287) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12307) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12347) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12367) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12387) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12407) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12427) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12447) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12467) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12487) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12507) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12527) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12547) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12567) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12587) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12607) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12627) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12647) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (12647) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (12667) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12687) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12707) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12727) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12747) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12767) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12787) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12807) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12847) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (12867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;33mW (12867) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12887) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12907) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12927) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12947) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12967) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12987) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13007) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13027) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13047) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13067) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13087) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13107) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13127) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13147) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (13157) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (13167) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13187) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13207) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13227) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13247) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13267) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13287) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13307) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13347) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13367) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13387) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13407) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13427) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13447) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13467) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13487) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13507) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13527) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13547) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13567) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13587) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13607) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13627) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13647) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13667) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (13667) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (13687) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13707) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13727) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13747) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13767) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13787) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13807) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13847) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13867) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13887) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13907) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13927) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13947) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13967) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13987) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14007) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14027) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14047) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14067) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14087) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14107) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14127) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14147) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14167) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (14177) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (14187) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14207) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14227) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14247) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14267) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14287) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14307) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14347) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14367) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14387) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14407) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14427) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14447) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14467) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14487) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14507) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14527) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14547) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14567) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14587) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14607) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14627) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14647) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14667) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14687) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (14687) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (14707) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14727) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14747) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14767) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14787) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14807) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14847) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14867) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14887) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14907) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14927) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14947) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14967) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14987) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15007) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15027) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15047) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15067) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15087) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15107) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15127) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15147) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15167) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15187) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (15197) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (15207) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15227) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15247) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15267) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15287) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15307) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15347) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15367) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15387) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15407) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15427) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15447) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15467) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15487) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15507) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15527) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15547) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15567) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15587) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15607) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15627) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15647) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15667) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15687) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15707) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (15707) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (15727) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15747) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15767) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15787) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15807) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15847) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (15867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;33mW (15867) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15887) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15907) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15927) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15947) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15967) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (15987) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (16007) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (16027) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (16047) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (16067) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (16087) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (16097) BLE_BIDIRECTIONAL: ✅ Cliente conectado (handle=0).[0m
+[0;32mI (16217) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (16727) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (17237) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (17747) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (18257) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (18767) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (18867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (19277) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (19787) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (20297) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (20807) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (21307) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (21817) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (21867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (22327) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (22837) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (23347) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (23847) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (24357) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 5[0m
+[0;32mI (24867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (24867) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 5[0m
+[0;32mI (25377) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 5[0m
+[0;32mI (25887) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 14[0m
+[0;32mI (26387) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 14[0m
+[0;32mI (26897) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 23[0m
+[0;32mI (27407) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 23[0m
+[0;32mI (27867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (27917) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 31[0m
+[0;32mI (28427) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 38[0m
+[0;32mI (28937) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 38[0m
+[0;32mI (29447) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 44[0m
+[0;32mI (29957) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 44[0m
+[0;32mI (30467) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 49[0m
+[0;32mI (30867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (30977) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 49[0m
+[0;32mI (31487) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 52[0m
+[0;32mI (31997) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 52[0m
+[0;32mI (32507) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 55[0m
+[0;32mI (33017) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 57[0m
+[0;32mI (33527) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 57[0m
+[0;32mI (33867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (34037) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 58[0m
+[0;32mI (34547) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 58[0m
+[0;32mI (35057) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 58[0m
+[0;32mI (35567) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 58[0m
+[0;32mI (36077) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 60[0m
+[0;32mI (36587) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 60[0m
+[0;32mI (36867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (37097) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 60[0m
+[0;32mI (37607) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 60[0m
+[0;32mI (38117) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 61[0m
+[0;32mI (38627) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 61[0m
+[0;32mI (39137) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 61[0m
+[0;32mI (39647) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 61[0m
+[0;32mI (39867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (40157) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 62[0m
+[0;32mI (40667) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 62[0m
+[0;32mI (41177) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 62[0m
+[0;32mI (41687) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 63[0m
+[0;32mI (42197) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 63[0m
+[0;32mI (42707) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 64[0m
+[0;32mI (42867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (43217) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 64[0m
+[0;32mI (43727) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 65[0m
+[0;32mI (44237) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 65[0m
+[0;32mI (44747) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 65[0m
+[0;32mI (45257) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 65[0m
+[0;32mI (45767) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 65[0m
+[0;32mI (45867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (46277) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 64[0m
+[0;32mI (46787) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 64[0m
+[0;32mI (47297) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 65[0m
+[0;32mI (47797) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 65[0m
+[0;32mI (48307) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 65[0m
+[0;32mI (48817) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 65[0m
+[0;32mI (48867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (49327) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 64[0m
+[0;32mI (49837) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 69[0m
+[0;32mI (50347) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 69[0m
+[0;32mI (50857) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 69[0m
+[0;32mI (51367) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 69[0m
+[0;32mI (51867) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (51867) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 69[0m

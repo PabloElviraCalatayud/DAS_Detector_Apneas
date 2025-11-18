@@ -236,8 +236,5 @@ void send_notification_binary(const uint8_t *data, uint16_t len) {
             return;
         }
     }
-
-    ESP_LOGI(TAG, "📤 Enviado paquete en %u notificaciones BLE", 
-             (len + chunk - 1) / chunk);
 }
 

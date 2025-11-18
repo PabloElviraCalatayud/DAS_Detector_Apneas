@@ -1,6 +1,6 @@
 #include "pulse_sensor.h"
 #include "../drivers/adc_driver.h"
-#include "../network/bluetooth.h"
+#include "../utils/packet_manager.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -26,7 +26,7 @@ void pulse_sensor_task(void *pvParameters) {
   int64_t last_pulse_time = 0;
   int64_t last_report_time = 0;
 
-  ESP_LOGI(TAG, "💓 Iniciando lectura continua del ADC...");
+  ESP_LOGI(TAG, "💓 Iniciando lectura continua del ADC (modo real)...");
 
   while (1) {
     int samples = adc_driver_read_multi(adc_handle, results, 1);
@@ -48,8 +48,6 @@ void pulse_sensor_task(void *pvParameters) {
       if (last_pulse_time > 0) {
         float interval_s = (now - last_pulse_time) / 1000000.0f;
         float new_bpm = 60.0f / interval_s;
-
-        // Filtro suave para estabilizar BPM
         bpm = 0.8f * last_bpm + 0.2f * new_bpm;
         last_bpm = bpm;
       }
@@ -57,21 +55,26 @@ void pulse_sensor_task(void *pvParameters) {
       last_pulse_time = now;
     }
 
-    // Reinicia el flag cuando la señal baja
+    // Reinicia cuando la señal baja
     if (pulse_detected && raw < threshold) {
       pulse_detected = false;
     }
 
-    // Enviar datos cada 0.5 segundos
+    // Enviar valores solo por packet_manager
     if ((now - last_report_time) > (REPORT_PERIOD_MS * 1000)) {
       last_report_time = now;
-      char msg[64];
-      snprintf(msg, sizeof(msg), "BPM:%.1f", bpm);
-      send_notification_to_connected(msg);
-      ESP_LOGI(TAG, "💓 BPM:%.1f", raw, bpm);
+
+      uint16_t bpm_u16 = (uint16_t)roundf(bpm);
+
+      // Encolar la pulsación para el paquete compacto
+      if (pm_feed_pulse(bpm_u16) != 0) {
+        ESP_LOGW(TAG, "pm_feed_pulse: cola llena, descartado (%u)", bpm_u16);
+      } else {
+        ESP_LOGI(TAG, "💓 BPM enviado al packet_manager: %u", bpm_u16);
+      }
     }
 
-    vTaskDelay(pdMS_TO_TICKS(10)); // pequeño retardo (10 ms)
+    vTaskDelay(pdMS_TO_TICKS(10));
   }
 }
 
@@ -79,6 +82,7 @@ void pulse_sensor_start() {
   ESP_LOGI(TAG, "Configurando ADC continuo...");
   adc_driver_init(&adc_handle);
 
-  xTaskCreate(pulse_sensor_task, "pulse_sensor_task", 4096, NULL, 5, NULL);
+  xTaskCreate(pulse_sensor_task, "pulse_sensor_task",
+              4096, NULL, 5, NULL);
 }
 

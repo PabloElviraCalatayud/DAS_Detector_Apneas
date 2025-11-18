@@ -1,0 +1,1269 @@
+Command: /home/pelvira/.espressif/python_env/idf5.5_py3.13_env/bin/python /home/pelvira/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/esp32_proyecto_final.elf /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/bootloader/bootloader.elf -m '/home/pelvira/.espressif/python_env/idf5.5_py3.13_env/bin/python' '/home/pelvira/esp/esp-idf/tools/idf.py'
+ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6380
+ho 0 tail 12 room 4
+load:0x40078000,len:15916
+load:0x40080400,len:3860
+entry 0x40080638
+[0;32mI (29) boot: ESP-IDF v5.5.1-dirty 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Nov 18 2025 13:07:32[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v1.0[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (44) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+[0;32mI (64) boot:  1 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (71) boot:  2 phy_init         RF data          01 01 00010000 00001000[0m
+[0;32mI (77) boot:  3 factory          factory app      00 00 00020000 00140000[0m
+[0;32mI (84) boot:  4 ota_0            OTA app          00 10 00160000 00140000[0m
+[0;32mI (90) boot:  5 ota_1            OTA app          00 11 002a0000 00140000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (100) boot: Defaulting to factory image[0m
+[0;32mI (104) esp_image: segment 0: paddr=00020020 vaddr=3f400020 size=15620h ( 87584) map[0m
+[0;32mI (141) esp_image: segment 1: paddr=00035648 vaddr=3ffbdb60 size=04ae8h ( 19176) load[0m
+[0;32mI (149) esp_image: segment 2: paddr=0003a138 vaddr=40080000 size=05ee0h ( 24288) load[0m
+[0;32mI (159) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=58798h (362392) map[0m
+[0;32mI (283) esp_image: segment 4: paddr=000987c0 vaddr=40085ee0 size=133ach ( 78764) load[0m
+[0;32mI (313) esp_image: segment 5: paddr=000abb74 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (326) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (326) boot: Disabling RNG early entropy source...[0m
+[0;32mI (337) cpu_start: Multicore app[0m
+[0;32mI (345) cpu_start: Pro cpu start user code[0m
+[0;32mI (345) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (345) app_init: Application information:[0m
+[0;32mI (345) app_init: Project name:     esp32_proyecto_final[0m
+[0;32mI (350) app_init: App version:      6783d64-dirty[0m
+[0;32mI (355) app_init: Compile time:     Nov 18 2025 13:07:17[0m
+[0;32mI (360) app_init: ELF file SHA256:  38f2fd130...[0m
+[0;32mI (364) app_init: ESP-IDF:          v5.5.1-dirty[0m
+[0;32mI (368) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (372) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (376) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (380) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (386) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (391) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (396) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (402) heap_init: At 3FFC52C0 len 0001AD40 (107 KiB): DRAM[0m
+[0;32mI (407) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (412) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (418) heap_init: At 4009928C len 00006D74 (27 KiB): IRAM[0m
+[0;33mW (424) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (436) spi_flash: detected chip: generic[0m
+[0;32mI (440) spi_flash: flash io: dio[0m
+[0;33mW (443) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (453) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (457) main_task: Started on CPU0[0m
+[0;32mI (467) main_task: Calling app_main()[0m
+[0;32mI (467) MAIN: ==============================[0m
+[0;32mI (467) MAIN:     🚀 MODO SENSORES REALES[0m
+[0;32mI (467) MAIN: ==============================[0m
+[0;32mI (467) MAIN: ➡ Inicializando Bluetooth...[0m
+[0;32mI (477) BTDM_INIT: BT controller compile version [722c907][0m
+[0;32mI (487) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (487) BTDM_INIT: Bluetooth MAC: 24:62:ab:f2:1c:72[0m
+[0;32mI (487) phy_init: phy_version 4861,b71b5ad,Aug  5 2025,11:16:06[0m
+[0;32mI (567) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (877) MAIN: ➡ Inicializando Packet Manager...[0m
+[0;32mI (877) PACKET_MGR: pm_task (synced) started[0m
+[0;33mW (877) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (887) PACKET_MGR: pm_init done[0m
+[0;32mI (887) MAIN: ➡ Inicializando IMU real MPU6050...[0m
+[0;33mW (897) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (897) MPU6050: Advertencia: no se pudo wakear MPU6050 (i2c write): ESP_FAIL[0m
+[0;33mW (907) MAIN: IMU no disponible (error ESP_FAIL). Seguimos solo con pulso.[0m
+[0;32mI (907) MAIN: ➡ Inicializando sensor de pulso real...[0m
+[0;33mW (917) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (917) BLE_BIDIRECTIONAL: Dirección BLE: 24:62:AB:F2:1C:72[0m
+[0;32mI (927) PULSE_SENSOR: Configurando ADC continuo...[0m
+[0;33mW (937) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (937) BLE_BIDIRECTIONAL: 📢 Advertising iniciado...[0m
+[0;32mI (937) PULSE_SENSOR: 💓 Iniciando lectura continua del ADC (modo real)...[0m
+[0;32mI (937) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (947) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (957) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (977) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (997) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1017) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1037) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1057) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1077) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1097) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1117) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1137) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1157) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1177) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1197) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1217) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1237) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1257) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1277) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1297) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1317) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1337) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1357) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1377) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1397) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1417) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1437) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1457) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1457) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (1477) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1497) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1517) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1537) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1557) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1577) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1597) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1617) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1637) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1657) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1677) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1697) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1717) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1737) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1757) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1777) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1797) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1817) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1837) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1857) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1877) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1897) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1917) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1937) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1957) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1967) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (1977) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1997) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2017) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2037) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2057) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2077) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2097) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2117) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2137) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2157) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2177) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2197) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2217) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2237) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2257) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2277) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2297) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2317) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2337) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2357) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2377) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2397) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2417) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2437) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2457) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2467) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (2477) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2497) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2517) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2537) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2557) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2577) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2597) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2617) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2637) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2657) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2677) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2697) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2717) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2737) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2757) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2777) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2797) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2817) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2837) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2857) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2877) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2897) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2917) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2937) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2957) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2977) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2977) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (2997) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3017) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3037) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3057) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3077) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3097) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3117) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3137) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3157) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3177) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3197) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3217) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3237) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3257) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3277) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3297) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3317) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3337) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3357) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3377) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3397) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3417) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3437) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3457) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3477) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3487) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (3497) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3517) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3537) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3557) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3577) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3597) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3617) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3637) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3657) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3677) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3697) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3717) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3737) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3757) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3777) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3797) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3817) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3837) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3857) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3877) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3897) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3917) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3937) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;33mW (3957) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3977) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3997) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3997) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (4017) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4037) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4057) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4077) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4097) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4117) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4137) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4157) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4177) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4197) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4217) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4237) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4257) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4277) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4297) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (4297) BLE_BIDIRECTIONAL: ✅ Cliente conectado (handle=0).[0m
+[0;32mI (4507) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (5017) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (5517) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (6017) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (6527) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (6957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (7027) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (7537) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (8047) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (8557) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (9067) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (9417) BLE_BIDIRECTIONAL: 🔌 Cliente desconectado. Reiniciando advertising...[0m
+[1;31mE (9417) BLE_BIDIRECTIONAL: Error enviando chunk rc=7[0m
+[0;33mW (9437) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9457) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9477) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9497) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9517) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9537) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9557) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9577) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (9577) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (9597) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9617) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9637) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9657) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9677) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9697) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9717) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9737) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9757) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9777) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9797) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9817) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9837) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9857) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9877) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9897) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9917) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9937) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (9957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;33mW (9957) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9977) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (9997) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10017) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10037) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10057) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10077) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (10087) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (10097) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10117) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10137) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10157) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10177) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10197) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10217) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10237) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10257) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10277) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10297) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10317) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10337) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10357) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10377) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10397) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10417) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10437) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10457) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10477) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10497) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10517) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10537) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10557) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10577) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10597) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (10597) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (10617) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10637) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10657) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10677) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10697) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10717) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10737) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10757) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10777) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10797) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10817) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10837) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10857) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10877) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10897) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10917) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10937) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10957) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10977) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (10997) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11017) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11037) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11057) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11077) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11097) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (11097) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (11117) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11137) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11157) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11177) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11197) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11217) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11237) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11257) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11277) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11297) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11317) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11337) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11357) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11377) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11397) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11417) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11437) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11457) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11477) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11497) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11517) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11537) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11557) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11577) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11597) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (11607) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (11617) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11637) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11657) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11677) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11697) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11717) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11737) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11757) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11777) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11797) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11817) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11837) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11857) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11877) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11897) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11917) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11937) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11957) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11977) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (11997) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12017) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12037) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12057) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12077) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12097) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12117) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (12117) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (12137) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12157) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12177) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12197) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12217) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12237) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12257) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12277) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12297) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12317) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12337) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12357) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12377) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12397) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12417) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12437) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12457) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12477) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12497) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12517) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12537) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12557) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12577) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12597) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12617) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (12627) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (12637) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12657) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12677) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12697) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12717) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12737) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12757) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12777) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12797) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12817) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12837) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12857) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12877) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12897) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12917) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12937) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (12957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;33mW (12957) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12977) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (12997) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13017) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13037) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13057) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13077) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13097) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13117) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13137) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (13137) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (13157) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13177) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13197) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13217) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13237) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13257) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13277) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13297) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13317) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13337) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13357) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13377) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13397) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13417) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13437) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13457) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13477) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13497) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13517) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13537) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13557) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13577) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13597) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13617) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13637) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (13637) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (13657) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13677) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13697) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13717) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13737) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13757) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13777) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13797) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13817) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13837) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13857) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13877) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13897) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13917) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13937) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13957) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13977) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (13997) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14017) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14037) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14057) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14077) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14097) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14117) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14137) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (14147) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;33mW (14157) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14177) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14197) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14217) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14237) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14257) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14277) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14297) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14317) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (14337) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (14337) BLE_BIDIRECTIONAL: ✅ Cliente conectado (handle=0).[0m
+[0;32mI (14657) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (15167) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (15677) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (15957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (16187) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (16697) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (17207) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (17717) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (18227) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (18737) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (18957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (19247) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (19757) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (20267) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (20777) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (21287) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 0[0m
+[0;32mI (21797) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 9[0m
+[0;32mI (21957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (22307) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 9[0m
+[0;32mI (22817) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 20[0m
+[0;32mI (23327) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 36[0m
+[0;32mI (23837) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 36[0m
+[0;32mI (24337) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 41[0m
+[0;32mI (24847) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 41[0m
+[0;32mI (24957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (25347) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 45[0m
+[0;32mI (25857) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 45[0m
+[0;32mI (26367) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 49[0m
+[0;32mI (26877) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 49[0m
+[0;32mI (27387) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 51[0m
+[0;32mI (27897) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 51[0m
+[0;32mI (27957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (28407) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 52[0m
+[0;32mI (28917) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 52[0m
+[0;32mI (29427) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 54[0m
+[0;32mI (29937) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 54[0m
+[0;32mI (30447) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 56[0m
+[0;32mI (30957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (30957) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 56[0m
+[0;32mI (31457) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 57[0m
+[0;32mI (31967) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 57[0m
+[0;32mI (32477) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 58[0m
+[0;32mI (32987) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 60[0m
+[0;32mI (33497) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 60[0m
+[0;32mI (33957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (33997) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 63[0m
+[0;32mI (34507) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 66[0m
+[0;32mI (35017) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 66[0m
+[0;32mI (35527) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 66[0m
+[0;32mI (36037) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 66[0m
+[0;32mI (36547) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 64[0m
+[0;32mI (36957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (37057) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 64[0m
+[0;32mI (37557) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 63[0m
+[0;32mI (38067) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 63[0m
+[0;32mI (38577) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 61[0m
+[0;32mI (39087) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 61[0m
+[0;32mI (39597) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 61[0m
+[0;32mI (39957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (40107) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 61[0m
+[0;32mI (40617) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 61[0m
+[0;32mI (41117) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 61[0m
+[0;32mI (41617) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 62[0m
+[0;32mI (42127) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 62[0m
+[0;32mI (42637) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 64[0m
+[0;32mI (42957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (43137) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 67[0m
+[0;32mI (43637) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 67[0m
+[0;32mI (44147) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 70[0m
+[0;32mI (44657) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 70[0m
+[0;32mI (45157) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 70[0m
+[0;32mI (45667) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 63[0m
+[0;32mI (45957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (46177) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 102[0m
+[0;32mI (46677) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 97[0m
+[0;32mI (47187) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 107[0m
+[0;32mI (47687) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (48197) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (48707) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (48957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (49207) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (49717) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (50217) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (50717) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (51227) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (51737) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (51957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (52247) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (52757) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (53257) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (53757) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (54267) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (54777) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (54957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (55277) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (55777) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (56277) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (56787) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (57297) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (57807) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (57957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (58317) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (58827) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (59327) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (59837) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (60347) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (60857) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (60957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (61367) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (61877) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (62387) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (62897) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (63407) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (63917) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (63957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (64427) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (64937) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (65437) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (65947) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (66447) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (66957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (66957) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (67467) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (67967) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (68477) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (68987) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (69497) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (69957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (70007) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (70507) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (71017) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (71527) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (72037) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (72547) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (72957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (73057) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (73567) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (74077) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (74587) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (75097) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (75597) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (75957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (76107) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (76617) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (77127) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (77637) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (78147) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (78657) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (78957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (79167) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (79667) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (80177) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (80687) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (81197) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (81707) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (81957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (82217) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (82727) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (83227) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (83737) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (84247) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (84757) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (84957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (85267) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (85777) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (86287) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (86797) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (87307) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (87817) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (87957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (88327) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (88827) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (89337) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (89847) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (90357) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (90867) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (90957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (91377) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (91887) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (92397) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (92907) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (93417) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (93927) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (93957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (94437) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (94947) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (95457) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (95967) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (96477) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (96957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (96977) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (97487) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (97997) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (98507) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (99017) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (99517) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (99957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (100027) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (100537) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (101047) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (101557) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (102067) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (102577) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (102957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (103077) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (103587) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (104087) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (104597) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (105107) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (105617) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (105957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (106127) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (106627) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (107137) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (107637) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (108137) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (108637) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (108957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (109147) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (109657) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (110167) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (110677) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (111187) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (111697) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (111957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (112197) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (112707) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (113217) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (113727) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (114227) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (114737) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (114957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (115247) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (115757) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (116267) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (116767) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (117277) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (117787) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (117957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (118297) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (118807) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (119307) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (119817) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (120327) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (120827) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (120957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (121337) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (121837) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (122337) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (122847) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (123357) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (123867) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (123957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (124377) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (124877) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (125387) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (125897) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (126407) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (126907) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (126957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (127417) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (127927) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (128437) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (128947) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (129457) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (129957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (129967) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (130467) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (130977) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (131487) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (131997) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (132507) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (132957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (133017) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (133527) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (134037) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (134547) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (135057) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (135567) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (135957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (136077) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (136587) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (137097) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (137597) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (138107) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (138617) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (138957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (139127) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (139637) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (140147) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (140657) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (141167) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (141677) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (141957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (142177) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (142687) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (143197) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (143707) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (144217) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (144727) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (144957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (145237) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (145747) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (146247) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (146757) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (147267) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (147767) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (147957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (148277) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (148787) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (149297) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (149807) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (150307) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (150817) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (150957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (151327) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (151837) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (152347) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (152857) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (153367) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (153867) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (153957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (154377) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (154887) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (155397) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (155907) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (156407) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (156917) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (156957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (157427) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (157937) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (158447) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (158957) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (159467) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (159957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (159977) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (160487) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (160997) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (161507) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (162017) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (162527) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (162957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (163027) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (163537) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (164037) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (164547) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (165057) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (165567) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (165957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (166077) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (166577) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (167077) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (167577) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (168087) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (168597) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (168957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (169107) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (169617) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (170127) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (170637) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (171137) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (171647) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (171957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (172157) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (172667) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (173167) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (173677) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (174187) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (174697) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (174957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (175207) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (175717) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (176227) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (176737) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (177247) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (177757) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (177957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (178267) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (178777) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (179277) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (179787) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (180297) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (180807) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (180957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (181317) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (181827) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (182337) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (182837) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (183347) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (183857) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (183957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (184357) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (184867) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (185377) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (185877) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (186387) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (186897) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (186957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (187407) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (187917) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (188417) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (188917) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (189427) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (189937) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (189957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (190437) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (190947) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (191457) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (191957) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (192467) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (192957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (192977) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (193487) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (193997) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (194507) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (195017) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (195527) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (195957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (196037) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (196547) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (197047) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (197557) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (198067) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (198567) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (198957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (199077) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (199587) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (200097) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (200607) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (201107) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (201617) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (201957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (202127) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (202637) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (203147) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (203647) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (204157) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (204667) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (204957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (205177) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (205687) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (206197) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (206707) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (207217) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (207727) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (207957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (208237) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (208747) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (209257) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (209767) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (210277) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (210787) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (210957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (211297) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (211797) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (212307) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (212807) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (213317) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (213827) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (213957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (214337) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (214847) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (215357) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (215857) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (216367) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (216877) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (216957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (217387) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (217897) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (218407) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (218917) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (219427) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (219937) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (219957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (220447) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (220957) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (221467) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (221977) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (222487) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (222957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (222997) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (223497) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (224007) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (224517) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (225027) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (225537) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (225957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (226047) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (226557) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (227057) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 109[0m
+[0;32mI (227567) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (228077) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (228587) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (228957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (229087) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (229597) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (230107) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (230607) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (231117) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (231627) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (231957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (232137) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (232647) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (233157) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (233667) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (234177) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (234687) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (234957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (235197) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (235707) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (236207) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (236717) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (237227) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (237737) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (237957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (238247) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (238757) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (239267) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (239767) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (240277) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (240787) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 87[0m
+[0;32mI (240957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (241297) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (241807) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (242307) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (242817) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (243327) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (243837) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (243957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (244347) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (244847) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (245357) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (245857) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (246367) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (246877) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (246957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (247377) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (247887) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (248397) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (248907) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (249407) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (249907) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (249957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (250417) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (250927) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (251427) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (251937) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (252447) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (252957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (252957) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (253467) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (253967) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (254477) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (254977) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (255477) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (255957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (255987) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (256497) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (257007) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (257507) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (258017) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (258527) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (258957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (259037) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (259547) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (260047) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (260557) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (261067) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (261577) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (261957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (262087) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (262587) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (263097) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (263607) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (264117) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (264627) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (264957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (265137) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (265647) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (266157) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (266667) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (267177) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (267687) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (267957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (268197) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (268707) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (269207) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (269717) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (270227) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (270737) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (270957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (271247) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (271747) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (272257) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (272767) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (273277) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (273787) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (273957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (274297) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (274807) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (275317) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (275827) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (276337) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (276847) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (276957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (277357) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (277867) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (278367) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (278877) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (279387) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (279897) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (279957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (280407) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (280907) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (281417) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (281927) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (282437) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (282947) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (282957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (283457) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (283967) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (284467) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (284977) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (285487) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (285957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (285997) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (286507) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (287007) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (287517) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (288017) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (288517) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (288957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (289027) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (289537) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (290037) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (290537) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (291047) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (291557) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (291957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (292067) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (292577) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (293087) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (293597) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (294107) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (294607) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (294957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (295117) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (295627) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (296137) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (296647) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (297147) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (297657) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (297957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (298167) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (298677) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (299187) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (299687) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (300197) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (300707) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (300957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (301217) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (301727) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (302237) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (302747) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (303247) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (303757) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (303957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (304267) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (304777) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (305287) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (305797) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (306307) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (306817) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (306957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (307327) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (307837) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (308347) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (308847) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (309357) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (309857) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (309957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (310357) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (310857) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (311367) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (311877) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (312387) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (312897) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (312957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (313407) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (313917) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (314417) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (314927) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (315437) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (315947) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (315957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (316457) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (316967) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (317477) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (317977) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (318487) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (318957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (318997) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (319507) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (320017) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (320527) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (321027) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (321537) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (321957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (322047) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (322557) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (323067) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (323577) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (324087) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (324597) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (324957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (325107) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (325617) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (326127) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (326637) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (327147) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (327647) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (327957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (328157) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (328667) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (329177) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (329687) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (330187) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (330697) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
+[0;32mI (330957) MAIN: Sistema funcionando (sensores reales)...[0m
+[0;32mI (331207) PULSE_SENSOR: 💓 BPM enviado al packet_manager: 71[0m
