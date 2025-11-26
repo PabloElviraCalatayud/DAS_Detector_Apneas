@@ -6,8 +6,6 @@ import '../../data/bluetooth/ble_manager.dart';
 import '../../data/models/sensor_data.dart';
 import '../../data/models/sensor_data_model.dart';
 
-import 'package:permission_handler/permission_handler.dart';
-
 class BlePage extends StatefulWidget {
   const BlePage({super.key});
 
@@ -33,7 +31,7 @@ class _BlePageState extends State<BlePage> {
     final ble = context.read<BleManager>();
     final sensor = SensorDataModel.instance;
 
-    // 🔗 Conexión BLE
+    // ---- CONEXIÓN BLE
     _connSub = ble.connectionStatusStream.listen((isConnected) {
       if (!mounted) return;
       setState(() => _connected = isConnected);
@@ -48,15 +46,12 @@ class _BlePageState extends State<BlePage> {
       }
     });
 
-
-
-    // 📡 Datos sensores
+    // ---- DATOS DE SENSORES
     _sensorSub = sensor.sensorStream.listen((data) {
       if (!mounted) return;
       setState(() => _last = data);
     });
 
-    // 🔄 Si se estaba escaneando antes de salir, restaurar estado
     if (_scanSub != null) {
       setState(() => _scanning = true);
     }
@@ -69,9 +64,9 @@ class _BlePageState extends State<BlePage> {
     super.dispose();
   }
 
-  // ------------------------------------------------
-  // 🔍 INICIAR ESCANEO (reiniciable infinitamente)
-  // ------------------------------------------------
+  // ----------------------------------------
+  // INICIAR ESCANEO
+  // ----------------------------------------
   void _startScan() {
     final ble = context.read<BleManager>();
 
@@ -91,9 +86,9 @@ class _BlePageState extends State<BlePage> {
     });
   }
 
-  // ------------------------------------------------
-  // ❌ DETENER ESCANEO manual
-  // ------------------------------------------------
+  // ----------------------------------------
+  // DETENER ESCANEO
+  // ----------------------------------------
   void _stopScan() {
     _scanSub?.cancel();
     _scanSub = null;
@@ -103,6 +98,9 @@ class _BlePageState extends State<BlePage> {
     });
   }
 
+  // ----------------------------------------
+  // CONECTAR DISPOSITIVO
+  // ----------------------------------------
   void _connectTo(device) async {
     final ble = context.read<BleManager>();
     await ble.connect(device);
@@ -149,7 +147,7 @@ class _BlePageState extends State<BlePage> {
   }
 
   // -------------------------------------------------------
-  // 📡 Vista cuando NO hay dispositivo conectado
+  // 📡 VISTA DE SCANEO (NO CONECTADO)
   // -------------------------------------------------------
   Widget _buildScanView() {
     return ListView(
@@ -181,7 +179,7 @@ class _BlePageState extends State<BlePage> {
   }
 
   // -------------------------------------------------------
-  // 🔥 Vista cuando SÍ hay dispositivo conectado
+  // 🔥 VISTA CUANDO SÍ HAY DISPOSITIVO CONECTADO
   // -------------------------------------------------------
   Widget _buildConnectedView(int bpm, double mov, double hrv) {
     return ListView(
@@ -209,6 +207,24 @@ class _BlePageState extends State<BlePage> {
           child: ListTile(
             title: const Text("HRV"),
             subtitle: Text(hrv.toStringAsFixed(2)),
+          ),
+        ),
+
+        const SizedBox(height: 20),
+
+        // ---------------------------------------------------
+        // 🔘 BOTÓN DE DESCONECTAR (SIEMPRE VISIBLE)
+        // ---------------------------------------------------
+        ElevatedButton.icon(
+          onPressed: () async {
+            await context.read<BleManager>().disconnect();
+          },
+          icon: const Icon(Icons.link_off),
+          label: const Text("Desconectar"),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.red,
+            foregroundColor: Colors.white,
+            padding: const EdgeInsets.symmetric(vertical: 16),
           ),
         ),
       ],
