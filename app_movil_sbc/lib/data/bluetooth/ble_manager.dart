@@ -19,7 +19,7 @@ class BleManager extends ChangeNotifier {
   DiscoveredDevice? connectedDevice;
   StreamSubscription<ConnectionStateUpdate>? _connSub;
   StreamSubscription<List<int>>? _notifySub;
-
+  StreamSubscription<DiscoveredDevice>? _scanSub;
   // Scan controller
   StreamController<DiscoveredDevice>? _scanController;
 
@@ -48,6 +48,8 @@ class BleManager extends ChangeNotifier {
       _ble.deinitialize();
     } catch (_) {}
 
+    _scanSub?.cancel();
+
     _scanController?.close();
     _scanController = StreamController<DiscoveredDevice>.broadcast();
 
@@ -58,11 +60,14 @@ class BleManager extends ChangeNotifier {
     )
         .listen(
           (device) {
-        if (device.name.isNotEmpty && device.name.startsWith("ESP")) {
+        if (device.name.isNotEmpty /*&& device.name.startsWith("ESP")*/) {
           _scanController?.add(device);
         }
       },
       onError: (e) => _scanController?.addError(e),
+      onDone: () {
+        _scanController?.close();
+      },
     );
 
     return _scanController!.stream;
@@ -185,15 +190,23 @@ class BleManager extends ChangeNotifier {
     );
   }
 
+  void stopScan() {
+    _scanSub?.cancel();
+    _scanSub = null;
+  }
+
+
   // ---------------------------------------------------------
   // CLEANUP
   // ---------------------------------------------------------
   @override
   void dispose() {
+    stopScan();  // ⬅ necesario si se usa StreamController
     _scanController?.close();
     _rawPacketController.close();
     _connectionStatusController.close();
     disconnect();
     super.dispose();
   }
+
 }

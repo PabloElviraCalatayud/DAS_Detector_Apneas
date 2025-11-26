@@ -2,48 +2,74 @@ import 'package:flutter/material.dart';
 
 class MovementHeatmap extends StatelessWidget {
   final List<double> activity; // valores 0..1
+  final double height;
+  final double spacing;
 
   const MovementHeatmap({
     super.key,
     required this.activity,
+    this.height = 60,
+    this.spacing = 4,
   });
 
-  Color _colorFor(BuildContext context, double value) {
-    final v = value.clamp(0.0, 1.0);
+  /// Escala deseada:
+  /// 0.0 → azul
+  /// 0.5 → amarillo
+  /// 1.0 → rojo
+  Color _mapColor(double v, bool dark) {
+    v = v.clamp(0.0, 1.0);
 
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    // AZULES (0 → 0.50)
+    const deepBlue = Color(0xFF0D47A1);   // azul muy oscuro
+    const midBlue  = Color(0xFF1976D2);   // azul medio
+    const lightBlue = Color(0xFF64B5F6);  // azul claro (NO verde)
 
-    // Colores base del theme
-    final surface = Theme.of(context).colorScheme.surface;
-    final mid = Theme.of(context).colorScheme.secondary;
-    final high = Theme.of(context).colorScheme.primary;
+    // ALTOS (0.50 → 1.0)
+    const yellow = Color(0xFFFFEB3B);
+    const orange = Color(0xFFFF9800);
+    const red = Color(0xFFE53935);
 
-    if (v < 0.5) {
-      final t = v / 0.5;
-      return Color.lerp(surface, mid, t)!;
-    } else {
-      final t = (v - 0.5) / 0.5;
-      return Color.lerp(mid, high, t)!;
+    final opacity = dark ? 0.85 : 1.0;
+
+    if (v < 0.25) {
+      // 0.00 → 0.25
+      return Color.lerp(deepBlue, midBlue, v / 0.25)!.withOpacity(opacity);
+    }
+    else if (v < 0.50) {
+      // 0.25 → 0.50
+      return Color.lerp(midBlue, lightBlue, (v - 0.25) / 0.25)!.withOpacity(opacity);
+    }
+    else if (v < 0.75) {
+      // 0.50 → 0.75: amarillo → naranja
+      return Color.lerp(yellow, orange, (v - 0.50) / 0.25)!.withOpacity(opacity);
+    }
+    else {
+      // 0.75 → 1.00: naranja → rojo
+      return Color.lerp(orange, red, (v - 0.75) / 0.25)!.withOpacity(opacity);
     }
   }
 
+
+
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
-      height: 60,
-      padding: const EdgeInsets.all(8),
+      height: height,
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
         children: List.generate(activity.length, (i) {
           return Expanded(
             child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 2),
+              margin: EdgeInsets.symmetric(horizontal: spacing / 2),
               decoration: BoxDecoration(
-                color: _colorFor(context, activity[i]),
-                borderRadius: BorderRadius.circular(6),
+                color: _mapColor(activity[i], isDark),
+                borderRadius: BorderRadius.circular(10),
               ),
             ),
           );

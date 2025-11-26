@@ -4,6 +4,7 @@ class SensorData {
   final int heartRate;
   final int oxygen;
   final double movementIndex;
+  final List<double> movementActivity;
   final double hrv;
   final double apneaEventsPerHour;
 
@@ -11,6 +12,7 @@ class SensorData {
     required this.heartRate,
     required this.oxygen,
     required this.movementIndex,
+    this.movementActivity = const [],
     required this.hrv,
     required this.apneaEventsPerHour,
   });
@@ -19,6 +21,7 @@ class SensorData {
     int? heartRate,
     int? oxygen,
     double? movementIndex,
+    List<double>? movementActivity,
     double? hrv,
     double? apneaEventsPerHour,
   }) {
@@ -26,6 +29,7 @@ class SensorData {
       heartRate: heartRate ?? this.heartRate,
       oxygen: oxygen ?? this.oxygen,
       movementIndex: movementIndex ?? this.movementIndex,
+      movementActivity: movementActivity ?? this.movementActivity,
       hrv: hrv ?? this.hrv,
       apneaEventsPerHour: apneaEventsPerHour ?? this.apneaEventsPerHour,
     );

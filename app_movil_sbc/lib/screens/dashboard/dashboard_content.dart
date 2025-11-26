@@ -11,6 +11,9 @@ import '../../common/charts/heart_rate_chart.dart';
 import '../../common/charts/oxygen_chart.dart';
 import '../../data/bluetooth/ble_manager.dart';
 
+import '../../data/models/sensor_data.dart';
+import '../../data/models/sensor_data_model.dart';
+
 class DashboardContent extends StatelessWidget {
   const DashboardContent({super.key});
 
@@ -22,7 +25,6 @@ class DashboardContent extends StatelessWidget {
     // ================================
     // DATOS SIMULADOS (TEMPORAL)
     // ================================
-    final movementActivity = List<double>.generate(24, (i) => (i % 6) / 6);
     final heartRateData = [70, 72, 90, 80, 78, 76, 74];
     final spo2Data = [98, 97, 99, 95, 97, 98, 97];
 
@@ -42,7 +44,14 @@ class DashboardContent extends StatelessWidget {
             ),
 
             const SizedBox(height: 24),
-            MovementHeatmap(activity: movementActivity),
+            StreamBuilder<SensorData>(
+              stream: SensorDataModel.instance.sensorStream,
+              builder: (context, snapshot) {
+                final movementActivity = snapshot.data?.movementActivity ?? List.filled(24, 0.0);
+                return MovementHeatmap(activity: movementActivity);
+              },
+            ),
+
             const SizedBox(height: 24),
 
             const SpO2Widget(),
