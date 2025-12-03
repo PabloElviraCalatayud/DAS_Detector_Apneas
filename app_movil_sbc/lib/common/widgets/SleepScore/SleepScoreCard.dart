@@ -46,95 +46,43 @@ class SleepScoreCard extends StatelessWidget {
 
     final color = _categoryColor(context, score);
 
-    return GestureDetector(
-      onTap: () {
-        showModalBottomSheet(
-          context: context,
-          backgroundColor: Theme.of(context).colorScheme.surface,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          builder: (_) {
-            return Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Detalles del sueño",
-                      style: Theme.of(context).textTheme.titleLarge),
-                  const SizedBox(height: 20),
-
-                  Text("Movimiento: ${(movementIndex * 100).round()}%"),
-                  Text("Eventos de apnea/hora: ${apneaEventsPerHr.toStringAsFixed(1)}"),
-                  Text("Variabilidad cardíaca: ${(hrVariability * 100).round()}%"),
-                  Text("Frecuencia cardíaca: $heartRate BPM"),
-
-                  const SizedBox(height: 20),
-                ],
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.hotel, size: 26, color: color),
+              const SizedBox(width: 8),
+              const Text(
+                "Calidad del Sueño",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
               ),
-            );
-          },
-        );
-      },
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Column(
-          children: [
-            TweenAnimationBuilder(
-              tween: Tween<double>(begin: 0, end: score.toDouble()),
-              duration: const Duration(milliseconds: 900),
-              builder: (context, value, _) {
-                return SizedBox(
-                  height: 140,
-                  width: 140,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      CircularProgressIndicator(
-                        value: value / 100,
-                        strokeWidth: 10,
-                        strokeCap: StrokeCap.round,
-                        color: color,
-                        backgroundColor:
-                        Theme.of(context).colorScheme.onSurface.withOpacity(0.08),
-                      ),
-                      Text(
-                        value.toInt().toString(),
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontSize: 42,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
+            ],
+          ),
+          const SizedBox(height: 16),
+          Text(
+            "$score / 100",
+            style: TextStyle(
+              fontSize: 34,
+              fontWeight: FontWeight.bold,
+              color: color,
             ),
-            const SizedBox(height: 10),
-
-            Text(
-              _category(score),
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: color,
-              ),
+          ),
+          Text(
+            _category(score),
+            style: TextStyle(
+              fontSize: 18,
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
             ),
-
-            const SizedBox(height: 4),
-
-            Text(
-              "Pulsa para más detalles",
-              style: TextStyle(
-                fontSize: 14,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

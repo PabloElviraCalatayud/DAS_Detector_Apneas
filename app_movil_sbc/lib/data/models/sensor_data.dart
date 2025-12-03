@@ -1,6 +1,5 @@
-import 'package:flutter/foundation.dart';
-
 class SensorData {
+  final int timestamp;
   final int heartRate;
   final int oxygen;
   final double movementIndex;
@@ -9,6 +8,7 @@ class SensorData {
   final double apneaEventsPerHour;
 
   const SensorData({
+    required this.timestamp,
     required this.heartRate,
     required this.oxygen,
     required this.movementIndex,
@@ -18,6 +18,7 @@ class SensorData {
   });
 
   SensorData copyWith({
+    int? timestamp,
     int? heartRate,
     int? oxygen,
     double? movementIndex,
@@ -26,6 +27,7 @@ class SensorData {
     double? apneaEventsPerHour,
   }) {
     return SensorData(
+      timestamp: timestamp ?? this.timestamp,
       heartRate: heartRate ?? this.heartRate,
       oxygen: oxygen ?? this.oxygen,
       movementIndex: movementIndex ?? this.movementIndex,

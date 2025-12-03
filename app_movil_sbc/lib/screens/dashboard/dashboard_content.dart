@@ -1,74 +1,106 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../common/widgets/SleepScore/SleepScoreCalculator.dart';
-import '../../common/widgets/SleepScore/SleepScoreCard.dart';
-import '../../common/widgets/heartbeat_widget.dart';
-import '../../common/widgets/heatmap_widget.dart';
-import '../../common/widgets/spo2_radial_widget.dart';
+import '../../common/widgets/Apnea/ApneaCard.dart';
+import '../../common/widgets/Apnea/ApneaDetector.dart';
 
+import '../../common/widgets/SleepScore/SleepScoreCard.dart';
+import '../../common/widgets/SleepScore/SleepScoreCalculator.dart';
+
+import '../../common/widgets/heatmap_widget.dart';
+import '../../common/widgets/heartbeat_widget.dart';
 import '../../common/charts/heart_rate_chart.dart';
-import '../../common/charts/oxygen_chart.dart';
-import '../../data/bluetooth/ble_manager.dart';
 
 import '../../data/models/sensor_data.dart';
 import '../../data/models/sensor_data_model.dart';
 
-class DashboardContent extends StatelessWidget {
+class DashboardContent extends StatefulWidget {
   const DashboardContent({super.key});
 
   @override
+  State<DashboardContent> createState() => _DashboardContentState();
+}
+
+class _DashboardContentState extends State<DashboardContent> {
+  late final ApneaDetector _apneaDetector;
+  int apneaEvents = 0;
+  final List<int> heartHistory = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    _apneaDetector = ApneaDetector(
+      sensorStream: SensorDataModel.instance.sensorStream,
+    );
+
+    _apneaDetector.apneaEventsStream.listen((value) {
+      setState(() {
+        apneaEvents = value;
+      });
+    });
+
+    SensorDataModel.instance.sensorStream.listen((data) {
+      if (data.heartRate > 0) {
+        setState(() {
+          heartHistory.add(data.heartRate);
+          if (heartHistory.length > 100) {
+            heartHistory.removeAt(0);
+          }
+        });
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final ble = context.watch<BleManager>();
-
-    //
-    // ================================
-    // DATOS SIMULADOS (TEMPORAL)
-    // ================================
-    final heartRateData = [70, 72, 90, 80, 78, 76, 74];
-    final spo2Data = [98, 97, 99, 95, 97, 98, 97];
-
     return SafeArea(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            const HeartBeatWidget(),
-            const SizedBox(height: 24),
+      child: StreamBuilder<SensorData>(
+        stream: SensorDataModel.instance.sensorStream,
+        builder: (context, snapshot) {
+          final data = snapshot.data;
 
-            SleepScoreCard(
-              movementIndex: 0.4,
-              apneaEventsPerHr: 3,
-              hrVariability: 0.6,
-              heartRate: 72, // 💓 simulado por ahora
+          final movementActivity = data?.movementActivity ?? List.filled(24, 0.0);
+          final movementIndex = data?.movementIndex ?? 0.0;
+          final hrv = data?.hrv ?? 0.0;
+          final heartRate = data?.heartRate ?? 0;
+
+          final sleepScore = SleepScoreCalculator.compute(
+            movementIndex: movementIndex,
+            apneaEventsPerHr: apneaEvents.toDouble(),
+            hrVariability: hrv,
+            heartRate: heartRate,
+          );
+
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                ApneaCard(apneaEvents: apneaEvents),
+                const SizedBox(height: 24),
+
+                SleepScoreCard(
+                  movementIndex: movementIndex,
+                  apneaEventsPerHr: apneaEvents.toDouble(),
+                  hrVariability: hrv,
+                  heartRate: heartRate,
+                ),
+                const SizedBox(height: 24),
+
+                MovementHeatmap(activity: movementActivity),
+                const SizedBox(height: 24),
+
+                const HeartBeatWidget(),
+                const SizedBox(height: 24),
+
+                HeartRateChartWidget(
+                  data: heartHistory,
+                  hours: List.generate(heartHistory.length, (i) => i),
+                ),
+              ],
             ),
-
-            const SizedBox(height: 24),
-            StreamBuilder<SensorData>(
-              stream: SensorDataModel.instance.sensorStream,
-              builder: (context, snapshot) {
-                final movementActivity = snapshot.data?.movementActivity ?? List.filled(24, 0.0);
-                return MovementHeatmap(activity: movementActivity);
-              },
-            ),
-
-            const SizedBox(height: 24),
-
-            const SpO2Widget(),
-            const SizedBox(height: 24),
-
-            HeartRateChartWidget(
-              data: heartRateData,
-              hours: List.generate(heartRateData.length, (i) => i),
-            ),
-            const SizedBox(height: 24),
-
-            OxygenChartWidget(
-              data: spo2Data,
-              hours: List.generate(spo2Data.length, (i) => i),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
