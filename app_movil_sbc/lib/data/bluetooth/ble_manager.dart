@@ -17,9 +17,12 @@ class BleManager extends ChangeNotifier {
 
   // Device info
   DiscoveredDevice? connectedDevice;
+  String? connectedDeviceName;   // 🔵 <-- NOMBRE DEL DISPOSITIVO ACTUAL
+
   StreamSubscription<ConnectionStateUpdate>? _connSub;
   StreamSubscription<List<int>>? _notifySub;
   StreamSubscription<DiscoveredDevice>? _scanSub;
+
   // Scan controller
   StreamController<DiscoveredDevice>? _scanController;
 
@@ -53,21 +56,17 @@ class BleManager extends ChangeNotifier {
     _scanController?.close();
     _scanController = StreamController<DiscoveredDevice>.broadcast();
 
-    _ble
-        .scanForDevices(
+    _ble.scanForDevices(
       withServices: [],
       scanMode: ScanMode.lowLatency,
-    )
-        .listen(
+    ).listen(
           (device) {
         if (device.name.isNotEmpty && device.name.startsWith("ESP")) {
           _scanController?.add(device);
         }
       },
       onError: (e) => _scanController?.addError(e),
-      onDone: () {
-        _scanController?.close();
-      },
+      onDone: () => _scanController?.close(),
     );
 
     return _scanController!.stream;
@@ -80,13 +79,12 @@ class BleManager extends ChangeNotifier {
     await disconnect();
 
     connectedDevice = device;
+    connectedDeviceName = device.name;   // 🔵 GUARDAMOS EL NOMBRE
 
-    _connSub = _ble
-        .connectToDevice(
+    _connSub = _ble.connectToDevice(
       id: device.id,
       connectionTimeout: const Duration(seconds: 6),
-    )
-        .listen((update) {
+    ).listen((update) {
       if (update.connectionState == DeviceConnectionState.connected) {
         _connectionStatusController.add(true);
         _subscribeNotifications();
@@ -95,6 +93,7 @@ class BleManager extends ChangeNotifier {
 
       if (update.connectionState == DeviceConnectionState.disconnected) {
         connectedDevice = null;
+        connectedDeviceName = null;     // ❌ BORRAR NOMBRE
         _connectionStatusController.add(false);
         notifyListeners();
       }
@@ -110,7 +109,9 @@ class BleManager extends ChangeNotifier {
 
     _notifySub = null;
     _connSub = null;
+
     connectedDevice = null;
+    connectedDeviceName = null;   // ❌ BORRAR NOMBRE AL DESCONECTAR
 
     _connectionStatusController.add(false);
 
@@ -184,7 +185,7 @@ class BleManager extends ChangeNotifier {
       throw Exception("Device not connected");
     }
 
-    return await _ble.requestMtu(
+    return _ble.requestMtu(
       deviceId: connectedDevice!.id,
       mtu: size,
     );
@@ -195,18 +196,16 @@ class BleManager extends ChangeNotifier {
     _scanSub = null;
   }
 
-
   // ---------------------------------------------------------
   // CLEANUP
   // ---------------------------------------------------------
   @override
   void dispose() {
-    stopScan();  // ⬅ necesario si se usa StreamController
+    stopScan();
     _scanController?.close();
     _rawPacketController.close();
     _connectionStatusController.close();
     disconnect();
     super.dispose();
   }
-
 }
