@@ -61,7 +61,7 @@ class BleManager extends ChangeNotifier {
       scanMode: ScanMode.lowLatency,
     ).listen(
           (device) {
-        if (device.name.isNotEmpty && device.name.startsWith("DAS")) {
+        if (device.name.isNotEmpty) {
           _scanController?.add(device);
         }
       },

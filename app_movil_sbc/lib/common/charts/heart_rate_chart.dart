@@ -20,10 +20,11 @@ class HeartRateChartWidget extends StatelessWidget {
         color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: LineChart(
-        LineChartData(
-          minY: 40,
+      child: BarChart(
+        BarChartData(
+          alignment: BarChartAlignment.spaceAround,
           maxY: 180,
+          minY: 40,
           gridData: FlGridData(show: false),
           borderData: FlBorderData(show: false),
           titlesData: FlTitlesData(
@@ -44,11 +45,11 @@ class HeartRateChartWidget extends StatelessWidget {
             bottomTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
-                interval: 1,
                 getTitlesWidget: (v, _) {
-                  if (v < 0 || v >= hours.length) return const SizedBox.shrink();
+                  int index = v.toInt();
+                  if (index < 0 || index >= hours.length) return const SizedBox.shrink();
                   return Text(
-                    hours[v.toInt()].toString().padLeft(2, '0'),
+                    hours[index].toString().padLeft(2, '0'),
                     style: TextStyle(
                       fontSize: 10,
                       color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
@@ -58,16 +59,19 @@ class HeartRateChartWidget extends StatelessWidget {
               ),
             ),
           ),
-          lineBarsData: [
-            LineChartBarData(
-              spots: List.generate(data.length, (i) =>
-                  FlSpot(i.toDouble(), data[i].toDouble())),
-              isCurved: true,
-              barWidth: 3,
-              dotData: const FlDotData(show: false),
-              color: Theme.of(context).colorScheme.primary,
-            ),
-          ],
+          barGroups: List.generate(data.length, (i) {
+            return BarChartGroupData(
+              x: i,
+              barRods: [
+                BarChartRodData(
+                  toY: data[i].toDouble(),
+                  width: 18,
+                  borderRadius: BorderRadius.circular(4),
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ],
+            );
+          }),
         ),
       ),
     );
