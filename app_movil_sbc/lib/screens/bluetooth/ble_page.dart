@@ -32,13 +32,34 @@ class _BlePageState extends State<BlePage> {
     final ble = context.read<BleManager>();
     final sensor = SensorDataModel.instance;
 
-    // 🔗 Estado de conexión BLE
+    // 💥 Restaurar estado si vuelves conectado desde Dashboard
+    _connected = ble.isConnected;
+    if (_connected) {
+      _showConnectedBanner = true;
+    }
+
+    // 🔗 Conexión BLE
     _connSub = ble.connectionStatusStream.listen((isConnected) {
       if (!mounted) return;
+
       setState(() {
         _connected = isConnected;
-        if (isConnected) _showConnectedBanner = true;
+
+        if (isConnected) {
+          _showConnectedBanner = true;
+        } else {
+          _showConnectedBanner = false;
+        }
       });
+
+      if (!isConnected) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("🔌 El dispositivo se ha desconectado"),
+            duration: Duration(seconds: 2),
+          ),
+        );
+      }
     });
 
     // 📡 Datos sensores
@@ -56,9 +77,9 @@ class _BlePageState extends State<BlePage> {
     super.dispose();
   }
 
-  // ------------------------------------------------
-  // 🔍 INICIO ESCANEO
-  // ------------------------------------------------
+  // ------------------------------------------------------------
+  // 🔍 ESCANEO
+  // ------------------------------------------------------------
   void _startScan() {
     final ble = context.read<BleManager>();
 
@@ -81,106 +102,82 @@ class _BlePageState extends State<BlePage> {
   void _stopScan() {
     _scanSub?.cancel();
     _scanSub = null;
+
     setState(() => _scanning = false);
   }
 
   void _connectTo(device) async {
-    await context.read<BleManager>().connect(device);
+    final ble = context.read<BleManager>();
+    await ble.connect(device);
+    setState(() => _showConnectedBanner = true);
   }
 
+  // ------------------------------------------------------------
+  // UI
+  // ------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
-    final ble = context.watch<BleManager>();
     final bpm = _last?.heartRate ?? 0;
     final mov = _last?.movementIndex ?? 0;
     final hrv = _last?.hrv ?? 0;
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            if (Navigator.canPop(context)) {
+              Navigator.pop(context);
+            } else {
+              Navigator.pushReplacementNamed(context, "/home");
+            }
+          },
+        ),
         title: const Text("Dispositivo BLE"),
+        actions: [
+          Icon(
+            _connected ? Icons.bluetooth_connected : Icons.bluetooth_disabled,
+            color: _connected ? Colors.green : Colors.red,
+          )
+        ],
       ),
-      floatingActionButton: !_connected
+
+      floatingActionButton: (!_connected)
           ? FloatingActionButton(
-        onPressed: () => _scanning ? _stopScan() : _startScan(),
+        onPressed: () {
+          _scanning ? _stopScan() : _startScan();
+        },
         child: Icon(_scanning ? Icons.search_off : Icons.search),
       )
           : null,
+
       body: _connected
-          ? Column(
-        children: [
-          // 🔵 BANNER DE CONEXIÓN
-          if (_showConnectedBanner)
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(14),
-              color: Colors.blue.shade700,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Conectado a ${ble.connectedDevice?.name ?? 'desconocido'}",
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () async {
-                      await ble.disconnect();
-                      setState(() {
-                        _showConnectedBanner = false;
-                      });
-                    },
-                    child: const Text(
-                      "Desconectar",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-          Expanded(child: _buildSensorView(bpm, mov, hrv)),
-
-          const SizedBox(height: 10),
-
-          // 🔘 BOTÓN A OTA
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: ElevatedButton.icon(
-              onPressed: () {
-                Navigator.pushNamed(context, '/ota');
-              },
-              icon: const Icon(Icons.update),
-              label: const Text("Actualizar Firmware (OTA)"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-              ),
-            ),
-          ),
-
-          const SizedBox(height: 20),
-        ],
-      )
+          ? _buildConnectedView(bpm, mov, hrv)
           : _buildScanView(),
     );
   }
 
-  // -------------------------------------------------------
-  // 🔍 VISTA DE ESCANEO
-  // -------------------------------------------------------
+  // ------------------------------------------------------------
+  // 📡 Vista SCANEO
+  // ------------------------------------------------------------
   Widget _buildScanView() {
+    final ble = context.read<BleManager>();
+
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
+        if (_showConnectedBanner && ble.connectedDeviceName != null)
+          _connectedBanner(),
+
         const Text(
           "Dispositivos encontrados",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
-        if (_scanning) const Center(child: CircularProgressIndicator()),
+
+        if (_scanning)
+          const Center(child: CircularProgressIndicator()),
+
         ..._devices.map((d) {
           return Card(
             child: ListTile(
@@ -192,18 +189,27 @@ class _BlePageState extends State<BlePage> {
               ),
             ),
           );
-        }).toList(),
+        }),
       ],
     );
   }
 
-  // -------------------------------------------------------
-  // 🔥 VISTA DE SENSORES
-  // -------------------------------------------------------
-  Widget _buildSensorView(int bpm, double mov, double hrv) {
+  // ------------------------------------------------------------
+  // 🔥 Vista SENSORES
+  // ------------------------------------------------------------
+  Widget _buildConnectedView(int bpm, double mov, double hrv) {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
+        _connectedBanner(),
+        const SizedBox(height: 12),
+
+        Card(
+          child: ListTile(
+            title: const Text("Estado"),
+            subtitle: Text(_connected ? "Conectado" : "Desconectado"),
+          ),
+        ),
         Card(
           child: ListTile(
             title: const Text("Heart Rate"),
@@ -223,6 +229,50 @@ class _BlePageState extends State<BlePage> {
           ),
         ),
       ],
+    );
+  }
+
+  // ------------------------------------------------------------
+  // 🔵 BANNER: “Conectado a X”
+  // ------------------------------------------------------------
+  Widget _connectedBanner() {
+    final ble = context.read<BleManager>();
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.blue.shade100,                // ✔ más legible
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.blue.shade300),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Text(
+              "Conectado a:\n${ble.connectedDeviceName ?? "Dispositivo"}",
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,              // ✔ mayor contraste
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              await ble.disconnect();
+              setState(() {
+                _showConnectedBanner = false;
+              });
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red.shade600,
+              foregroundColor: Colors.white,
+            ),
+            child: const Text("Desconectar"),
+          ),
+        ],
+      ),
     );
   }
 }
