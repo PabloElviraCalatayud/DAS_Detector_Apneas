@@ -60,7 +60,7 @@ class BleManager extends ChangeNotifier {
     )
         .listen(
           (device) {
-        if (device.name.isNotEmpty && device.name.startsWith("ESP")) {
+        if (device.name.isNotEmpty && device.name.startsWith("DAS")) {
           _scanController?.add(device);
         }
       },

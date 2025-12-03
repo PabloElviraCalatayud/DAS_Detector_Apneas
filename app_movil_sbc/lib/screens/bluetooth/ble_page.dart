@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/bluetooth/ble_manager.dart';
+import '../../data/bluetooth/ble_permissions.dart';
 import '../../data/models/sensor_data.dart';
 import '../../data/models/sensor_data_model.dart';
 
@@ -67,8 +68,17 @@ class _BlePageState extends State<BlePage> {
   // ----------------------------------------
   // INICIAR ESCANEO
   // ----------------------------------------
-  void _startScan() {
+  void _startScan() async {
     final ble = context.read<BleManager>();
+
+    // 🔥 pedir permisos antes de cualquier scan
+    final ok = await BlePermissions.ensureBlePermissions();
+    if (!ok) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Permisos BLE denegados")),
+      );
+      return;
+    }
 
     _scanSub?.cancel();
 
