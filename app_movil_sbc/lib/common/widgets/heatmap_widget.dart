@@ -34,6 +34,11 @@ class MovementHeatmap extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
+    List<double> data = List.filled(24, 0);
+    for (int i = 0; i < 24 && i < activity.length; i++) {
+      data[i] = activity[i].clamp(0.0, 1.0);
+    }
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
@@ -47,32 +52,53 @@ class MovementHeatmap extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.monitor_heart,
-                  size: 26,
-                  color: Theme.of(context).colorScheme.primary),
+              Icon(
+                Icons.monitor_heart,
+                size: 26,
+                color: Theme.of(context).colorScheme.primary,
+              ),
               const SizedBox(width: 8),
               const Text(
-                "Mapa de Movimiento",
+                "Mapa de Movimiento (24h)",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
               ),
             ],
           ),
+
           const SizedBox(height: 16),
+
           SizedBox(
             height: height,
             child: Row(
-              children: List.generate(activity.length, (i) {
+              children: List.generate(24, (i) {
                 return Expanded(
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: spacing / 2),
                     decoration: BoxDecoration(
-                      color: _mapColor(activity[i], isDark),
+                      color: _mapColor(data[i], isDark),
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                 );
               }),
             ),
+          ),
+
+          const SizedBox(height: 10),
+
+          Row(
+            children: List.generate(24, (i) {
+              return Expanded(
+                child: Text(
+                  "$i",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                  ),
+                ),
+              );
+            }),
           ),
         ],
       ),

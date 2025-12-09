@@ -13,65 +13,77 @@ class HeartRateChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    final bars = List.generate(data.length, (i) {
+      return BarChartGroupData(
+        x: hours[i],
+        barRods: [
+          BarChartRodData(
+            toY: data[i].toDouble(),
+            width: 18,
+            borderRadius: BorderRadius.circular(6),
+            color: theme.colorScheme.primary,
+          ),
+        ],
+      );
+    });
+
     return Container(
-      height: 220,
-      padding: const EdgeInsets.all(12),
+      height: 240,
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
+        color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
       ),
       child: BarChart(
         BarChartData(
-          alignment: BarChartAlignment.spaceAround,
-          maxY: 180,
-          minY: 40,
-          gridData: FlGridData(show: false),
+          gridData: FlGridData(
+            show: true,
+            horizontalInterval: 20,
+            getDrawingHorizontalLine: (_) => FlLine(
+              color: theme.colorScheme.onSurface.withOpacity(0.06),
+              strokeWidth: 1,
+            ),
+          ),
           borderData: FlBorderData(show: false),
+          minY: 40,
+          maxY: 180,
           titlesData: FlTitlesData(
             leftTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
                 interval: 40,
-                reservedSize: 36,
                 getTitlesWidget: (v, _) => Text(
                   "${v.toInt()}",
                   style: TextStyle(
-                    fontSize: 10,
-                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                    fontSize: 11,
+                    color: theme.colorScheme.onSurface.withOpacity(0.5),
                   ),
                 ),
+                reservedSize: 32,
               ),
             ),
             bottomTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
                 getTitlesWidget: (v, _) {
-                  int index = v.toInt();
-                  if (index < 0 || index >= hours.length) return const SizedBox.shrink();
+                  final hour = v.toInt();
                   return Text(
-                    hours[index].toString().padLeft(2, '0'),
+                    hour.toString().padLeft(2, '0'),
                     style: TextStyle(
-                      fontSize: 10,
-                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                      fontSize: 11,
+                      color: theme.colorScheme.onSurface.withOpacity(0.6),
                     ),
                   );
                 },
+                reservedSize: 32,
               ),
             ),
+            rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
           ),
-          barGroups: List.generate(data.length, (i) {
-            return BarChartGroupData(
-              x: i,
-              barRods: [
-                BarChartRodData(
-                  toY: data[i].toDouble(),
-                  width: 18,
-                  borderRadius: BorderRadius.circular(4),
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-              ],
-            );
-          }),
+          barGroups: bars,
         ),
       ),
     );

@@ -22,16 +22,17 @@ class _DashboardContentState extends State<DashboardContent> {
   void initState() {
     super.initState();
 
-    SensorDataModel.instance.sensorStream.listen((data) {
+    // AHORA ESCUCHAMOS dataStream (no sensorStream del modelo)
+    SensorDataModel.instance.dataStream.listen((_) {
+      if (!mounted) return;
       setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final sensorModel = SensorDataModel.instance;
-
-    final data = sensorModel.lastData;
+    final model = SensorDataModel.instance;
+    final data = model.lastData;
 
     final movementActivity = data?.movementActivity ?? List.filled(24, 0.0);
     final movementIndex = data?.movementIndex ?? 0.0;
@@ -43,22 +44,16 @@ class _DashboardContentState extends State<DashboardContent> {
       heartRate: heartRate,
     );
 
-    // -------------------------------
-    //   CORRECCIÓN DEL TIMESTAMP
-    // -------------------------------
-    final hourlyData =
-    sensorModel.hourlyHistory.map((h) => h.average.toInt()).toList();
+    final hourlyData = model.hourlyHistory.map((h) => h.average.toInt()).toList();
 
-    final hourlyLabels = sensorModel.hourlyHistory.map((h) {
+    final hourlyLabels = model.hourlyHistory.map((h) {
       int ts = h.hourTimestamp;
 
-      // Si los timestamps vienen en segundos → convertir a ms
       if (ts < 10000000000) {
         ts *= 1000;
       }
 
-      final dt = DateTime.fromMillisecondsSinceEpoch(ts);
-      return dt.hour; // solo la hora
+      return DateTime.fromMillisecondsSinceEpoch(ts).hour;
     }).toList();
 
     return SafeArea(

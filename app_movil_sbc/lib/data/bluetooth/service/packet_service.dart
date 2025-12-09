@@ -20,6 +20,6 @@ class PacketService {
   }
 
   void _onPacket(BlePacket pkt) {
-    SensorDataModel.instance.process(pkt);
+    SensorDataModel.instance.updateFromPacket(pkt);
   }
 }

@@ -1,123 +1,105 @@
 import 'dart:async';
-import 'sensor_data.dart';
-import '../bluetooth/codec/ble_packet.dart';
 import 'dart:math';
+import '../../data/bluetooth/codec/ble_packet.dart';
 
-class HourlyHeartRate {
+class HourlyHistoryEntry {
   final int hourTimestamp;
-  double sum = 0;
-  int count = 0;
+  final double average;
 
-  HourlyHeartRate(this.hourTimestamp);
+  HourlyHistoryEntry({
+    required this.hourTimestamp,
+    required this.average,
+  });
+}
 
-  void add(int heartRate) {
-    sum += heartRate;
-    count++;
-  }
+class SensorSnapshot {
+  final int timestamp;
+  final double movementIndex;
+  final List<double> movementActivity;
+  final int heartRate;
 
-  double get average => count > 0 ? sum / count : 0;
+  SensorSnapshot({
+    required this.timestamp,
+    required this.movementIndex,
+    required this.movementActivity,
+    required this.heartRate,
+  });
 }
 
 class SensorDataModel {
   SensorDataModel._internal();
   static final SensorDataModel instance = SensorDataModel._internal();
 
-  final StreamController<SensorData> _controller =
-  StreamController<SensorData>.broadcast();
-  Stream<SensorData> get sensorStream => _controller.stream;
+  final _controller = StreamController<SensorSnapshot>.broadcast();
+  Stream<SensorSnapshot> get dataStream => _controller.stream;
 
-  SensorData? lastData;
+  SensorSnapshot? lastData;
 
-  final List<HourlyHeartRate> hourlyHistory = [];
+  final List<HourlyHistoryEntry> hourlyHistory = [];
 
-  void addHeartRate(int heartRate, int timestamp) {
-    final hourStart = timestamp - (timestamp % 3600);
+  final List<double> _dayActivity = List<double>.filled(24, 0);
 
-    if (hourlyHistory.isEmpty || hourlyHistory.last.hourTimestamp != hourStart) {
-      hourlyHistory.add(HourlyHeartRate(hourStart));
-      if (hourlyHistory.length > 12) {
-        hourlyHistory.removeAt(0);
-      }
+  double _prevDyn = 0.0;
+  static const double _gravity = 9.81;
+
+  void updateFromPacket(BlePacket pkt) {
+    final now = DateTime.now().millisecondsSinceEpoch;
+
+    double movementIndex = 0;
+
+    if (pkt.imuSamples.isNotEmpty) {
+      final imu = pkt.imuSamples.first;
+
+      final a = sqrt(
+          imu.ax * imu.ax +
+              imu.ay * imu.ay +
+              imu.az * imu.az
+      );
+
+      final dyn = (a - _gravity).abs();
+      final diff = (dyn - _prevDyn).abs();
+      _prevDyn = dyn;
+
+      movementIndex = min(diff / 2.0, 1.0);
     }
 
-    hourlyHistory.last.add(heartRate);
-  }
-
-  void process(BlePacket packet) {
-    final int bpm = packet.pulses.isNotEmpty ? packet.pulses.last : 0;
-    final int ts = packet.timestamp;
-
-    addHeartRate(bpm, ts);
-
-    final imu = packet.imuSamples;
-    final movementActivity = List<double>.filled(24, 0.0);
-
-    if (imu.isNotEmpty) {
-      final blockSize = (imu.length / 24).ceil();
-      for (int i = 0; i < 24; i++) {
-        final start = i * blockSize;
-        final end = (start + blockSize).clamp(0, imu.length);
-        if (start >= imu.length) break;
-
-        double total = 0;
-        for (int j = start; j < end; j++) {
-          final s = imu[j];
-
-          final ax = s.ax;
-          final ay = s.ay;
-          final az = s.az - 1.0;
-
-          final mag = sqrt(ax * ax + ay * ay + az * az);
-          total += mag;
-        }
-
-        movementActivity[i] = (end - start) > 0 ? total / (end - start) : 0;
-      }
-
-      final maxValue =
-      movementActivity.reduce((a, b) => a > b ? a : b);
-      if (maxValue > 0) {
-        for (int i = 0; i < 24; i++) {
-          movementActivity[i] = movementActivity[i] / maxValue;
-        }
-      }
+    int bpm = 0;
+    if (pkt.pulses.isNotEmpty) {
+      bpm = pkt.pulses.last;
     }
 
-    final data = SensorData(
-      timestamp: ts,
+    final hour = DateTime.now().hour;
+    _dayActivity[hour] = movementIndex;
+
+    final snapshot = SensorSnapshot(
+      timestamp: now,
+      movementIndex: movementIndex,
+      movementActivity: List<double>.from(_dayActivity),
       heartRate: bpm,
-      oxygen: 0,
-      movementIndex: _calculateMovement(packet).clamp(0.0, 1.0),
-      movementActivity: movementActivity,
-      apneaEventsPerHour: 0,
     );
 
-    lastData = data;
-    _controller.add(data);
+    lastData = snapshot;
+    _controller.add(snapshot);
+
+    _updateHourlyHistory(now, movementIndex);
   }
 
-  double _calculateMovement(BlePacket packet) {
-    final imu = packet.imuSamples;
-    if (imu.isEmpty) return 0;
+  void _updateHourlyHistory(int ts, double movement) {
+    final dt = DateTime.fromMillisecondsSinceEpoch(ts);
+    final hourStart = DateTime(dt.year, dt.month, dt.day, dt.hour).millisecondsSinceEpoch;
 
-    double total = 0;
+    final index = hourlyHistory.indexWhere((h) => h.hourTimestamp == hourStart);
 
-    for (final s in imu) {
-      final ax = s.ax;
-      final ay = s.ay;
-      final az = s.az - 1.0;
-
-      final mag = sqrt(ax * ax + ay * ay + az * az);
-      total += mag;
+    if (index == -1) {
+      hourlyHistory.add(
+        HourlyHistoryEntry(hourTimestamp: hourStart, average: movement),
+      );
+    } else {
+      final old = hourlyHistory[index];
+      final avg = (old.average + movement) / 2;
+      hourlyHistory[index] = HourlyHistoryEntry(
+        hourTimestamp: hourStart, average: avg,
+      );
     }
-
-    return total / imu.length;
-  }
-
-  double _estimateHrv(BlePacket packet) {
-    final samples = packet.pulses;
-    if (samples.length < 2) return 0;
-    final rr = samples[samples.length - 1] - samples[samples.length - 2];
-    return rr.abs() * 0.1;
   }
 }
