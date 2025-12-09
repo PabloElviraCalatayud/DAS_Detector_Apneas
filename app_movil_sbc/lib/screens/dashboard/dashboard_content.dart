@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../common/widgets/Apnea/ApneaCard.dart';
+import '../../common/widgets/Apnea/ApneaDetector.dart';
 import '../../common/widgets/SleepScore/SleepScoreCard.dart';
 import '../../common/widgets/SleepScore/SleepScoreCalculator.dart';
 import '../../common/widgets/heartbeat_widget.dart';
 import '../../common/widgets/heatmap_widget.dart';
 import '../../common/charts/heart_rate_chart.dart';
-
 import '../../data/models/sensor_data_model.dart';
 
 class DashboardContent extends StatefulWidget {
@@ -17,16 +18,46 @@ class DashboardContent extends StatefulWidget {
 
 class _DashboardContentState extends State<DashboardContent> {
   int apneaEvents = 0;
+  ApneaRisk _currentRisk = ApneaRisk.low;
+
+  late ApneaDetector _detector;
 
   @override
   void initState() {
     super.initState();
 
-    // AHORA ESCUCHAMOS dataStream (no sensorStream del modelo)
+    _detector = ApneaDetector(
+      dataStream: SensorDataModel.instance.dataStream,
+      window: const Duration(seconds: 30),
+      dropThresholdBpm: 8,
+      recoveryThresholdBpm: 5,
+      movementThresh: 0.12,
+    );
+
+    _detector.apneaEventsStream.listen((e) {
+      if (!mounted) return;
+      setState(() {
+        apneaEvents = e;
+      });
+    });
+
+    _detector.apneaRiskStream.listen((r) {
+      if (!mounted) return;
+      setState(() {
+        _currentRisk = r;
+      });
+    });
+
     SensorDataModel.instance.dataStream.listen((_) {
       if (!mounted) return;
       setState(() {});
     });
+  }
+
+  @override
+  void dispose() {
+    _detector.dispose();
+    super.dispose();
   }
 
   @override
@@ -40,7 +71,7 @@ class _DashboardContentState extends State<DashboardContent> {
 
     final sleepScore = SleepScoreCalculator.compute(
       movementIndex: movementIndex,
-      apneaEventsPerHr: apneaEvents.toDouble(),
+      apneaEventsPerHr: _detector.eventsPerHour(),
       heartRate: heartRate,
     );
 
@@ -48,11 +79,7 @@ class _DashboardContentState extends State<DashboardContent> {
 
     final hourlyLabels = model.hourlyHistory.map((h) {
       int ts = h.hourTimestamp;
-
-      if (ts < 10000000000) {
-        ts *= 1000;
-      }
-
+      if (ts < 10000000000) ts *= 1000;
       return DateTime.fromMillisecondsSinceEpoch(ts).hour;
     }).toList();
 
@@ -61,9 +88,18 @@ class _DashboardContentState extends State<DashboardContent> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
+            ApneaRiskCard(
+              totalEvents: apneaEvents,
+              eventsPerHour: _detector.eventsPerHour(),
+              movementIndex: movementIndex,
+              heartRate: heartRate,
+            ),
+
+            const SizedBox(height: 24),
+
             SleepScoreCard(
               movementIndex: movementIndex,
-              apneaEventsPerHr: apneaEvents.toDouble(),
+              apneaEventsPerHr: _detector.eventsPerHour(),
               heartRate: heartRate,
             ),
 
