@@ -1,0 +1,952 @@
+Command: /home/pelvira/.espressif/python_env/idf5.5_py3.13_env/bin/python /home/pelvira/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/esp32_proyecto_final.elf /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/bootloader/bootloader.elf -m '/home/pelvira/.espressif/python_env/idf5.5_py3.13_env/bin/python' '/home/pelvira/esp/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6380
+ho 0 tail 12 room 4
+load:0x40078000,len:15916
+load:0x40080400,len:3860
+entry 0x40080638
+[0;32mI (29) boot: ESP-IDF v5.5.1-dirty 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Nov 26 2025 12:32:20[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (38) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+[0;32mI (65) boot:  1 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (71) boot:  2 phy_init         RF data          01 01 00010000 00001000[0m
+[0;32mI (78) boot:  3 factory          factory app      00 00 00020000 00140000[0m
+[0;32mI (84) boot:  4 ota_0            OTA app          00 10 00160000 00140000[0m
+[0;32mI (91) boot:  5 ota_1            OTA app          00 11 002a0000 00140000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (101) boot: Defaulting to factory image[0m
+[0;32mI (104) esp_image: segment 0: paddr=00020020 vaddr=3f400020 size=1382ch ( 79916) map[0m
+[0;32mI (139) esp_image: segment 1: paddr=00033854 vaddr=3ffbdb60 size=04a68h ( 19048) load[0m
+[0;32mI (146) esp_image: segment 2: paddr=000382c4 vaddr=40080000 size=07d54h ( 32084) load[0m
+[0;32mI (159) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=547dch (346076) map[0m
+[0;32mI (278) esp_image: segment 4: paddr=00094804 vaddr=40087d54 size=0fed0h ( 65232) load[0m
+[0;32mI (303) esp_image: segment 5: paddr=000a46dc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (315) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (315) boot: Disabling RNG early entropy source...[0m
+[0;32mI (326) cpu_start: Multicore app[0m
+[0;32mI (334) cpu_start: Pro cpu start user code[0m
+[0;32mI (334) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (334) app_init: Application information:[0m
+[0;32mI (334) app_init: Project name:     esp32_proyecto_final[0m
+[0;32mI (339) app_init: App version:      22a525c-dirty[0m
+[0;32mI (344) app_init: Compile time:     Dec  8 2025 10:03:25[0m
+[0;32mI (349) app_init: ELF file SHA256:  73dc9b1a1...[0m
+[0;32mI (353) app_init: ESP-IDF:          v5.5.1-dirty[0m
+[0;32mI (358) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (361) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (365) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (370) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (376) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (381) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (386) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (391) heap_init: At 3FFC5208 len 0001ADF8 (107 KiB): DRAM[0m
+[0;32mI (396) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (402) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (407) heap_init: At 40097C24 len 000083DC (32 KiB): IRAM[0m
+[0;33mW (414) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (425) spi_flash: detected chip: generic[0m
+[0;32mI (429) spi_flash: flash io: dio[0m
+[0;32mI (433) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (437) main_task: Started on CPU0[0m
+[0;32mI (447) main_task: Calling app_main()[0m
+[0;32mI (447) MAIN: ==============================[0m
+[0;32mI (447) MAIN:     🧪 MODO SENSORES SIMULADOS[0m
+[0;32mI (447) MAIN: ==============================[0m
+[0;32mI (447) MAIN: ➡ Inicializando Bluetooth...[0m
+[0;32mI (457) BTDM_INIT: BT controller compile version [722c907][0m
+[0;32mI (467) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (467) BTDM_INIT: Bluetooth MAC: ec:e3:34:b3:be:72[0m
+[0;32mI (467) phy_init: phy_version 4861,b71b5ad,Aug  5 2025,11:16:06[0m
+[0;32mI (557) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (817) MAIN: ➡ Inicializando Packet Manager...[0m
+[0;32mI (817) PACKET_MGR: pm_task (synced) started[0m
+[0;33mW (817) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (817) PACKET_MGR: pm_init done[0m
+[0;32mI (827) MAIN: ➡ Inicializando IMU simulada...[0m
+[0;33mW (827) IMU_SIM: Starting IMU simulator...[0m
+[0;33mW (827) IMU_SIM: IMU simulator task started[0m
+[0;33mW (837) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (837) IMU_SIM: IMU ax=0 ay=0 az=981 gx=4 gy=3 gz=0 ts=425[0m
+[0;32mI (837) MAIN: IMU simulada OK[0m
+[0;33mW (847) IMU_SIM: Simulated IMU calibration: 200 samples[0m
+[0;33mW (857) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (857) BLE_BIDIRECTIONAL: Dirección BLE: EC:E3:34:B3:BE:72[0m
+[0;32mI (867) IMU_SIM: IMU ax=-1 ay=1 az=981 gx=-9 gy=6 gz=1 ts=457[0m
+[0;32mI (867) MAIN: ➡ Inicializando sensor de pulso simulado...[0m
+[0;32mI (877) BLE_BIDIRECTIONAL: 📢 Advertising iniciado...[0m
+[0;33mW (877) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (877) PULSE_SIM: Pulse simulator started[0m
+[0;32mI (887) IMU_SIM: IMU ax=0 ay=0 az=981 gx=2 gy=1 gz=1 ts=474[0m
+[0;32mI (887) PULSE_SIM: Sim BPM = 82[0m
+[0;33mW (897) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (877) MAIN: Sistema funcionando (simulado)...[0m
+[0;32mI (917) IMU_SIM: IMU ax=-1 ay=1 az=982 gx=-5 gy=9 gz=2 ts=504[0m
+[0;33mW (917) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (937) IMU_SIM: IMU ax=-1 ay=1 az=982 gx=-6 gy=8 gz=3 ts=524[0m
+[0;33mW (937) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (957) IMU_SIM: IMU ax=0 ay=-1 az=982 gx=2 gy=-7 gz=3 ts=544[0m
+[0;33mW (957) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (977) IMU_SIM: IMU ax=0 ay=0 az=982 gx=-3 gy=2 gz=4 ts=564[0m
+[0;33mW (977) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (997) IMU_SIM: IMU ax=-1 ay=0 az=982 gx=-8 gy=-1 gz=5 ts=584[0m
+[0;33mW (997) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1017) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1017) IMU_SIM: IMU ax=0 ay=1 az=982 gx=-4 gy=9 gz=6 ts=605[0m
+[0;32mI (1037) IMU_SIM: IMU ax=0 ay=0 az=983 gx=4 gy=-1 gz=6 ts=624[0m
+[0;33mW (1037) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1057) IMU_SIM: IMU ax=0 ay=1 az=983 gx=-3 gy=8 gz=7 ts=644[0m
+[0;33mW (1057) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1077) IMU_SIM: IMU ax=1 ay=-1 az=983 gx=7 gy=-7 gz=8 ts=664[0m
+[0;33mW (1077) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1097) IMU_SIM: IMU ax=-1 ay=-1 az=983 gx=-9 gy=-6 gz=8 ts=684[0m
+[0;33mW (1097) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1117) IMU_SIM: IMU ax=0 ay=0 az=983 gx=-4 gy=2 gz=9 ts=704[0m
+[0;33mW (1117) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1137) IMU_SIM: IMU ax=1 ay=0 az=984 gx=9 gy=0 gz=9 ts=724[0m
+[0;33mW (1137) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1157) IMU_SIM: IMU ax=0 ay=-1 az=984 gx=1 gy=-9 gz=10 ts=744[0m
+[0;33mW (1157) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1177) IMU_SIM: IMU ax=1 ay=0 az=984 gx=9 gy=3 gz=11 ts=764[0m
+[0;33mW (1177) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1197) IMU_SIM: IMU ax=-1 ay=0 az=984 gx=-9 gy=3 gz=11 ts=784[0m
+[0;33mW (1197) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1217) IMU_SIM: IMU ax=1 ay=0 az=984 gx=6 gy=-3 gz=12 ts=804[0m
+[0;33mW (1217) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1237) IMU_SIM: IMU ax=-1 ay=0 az=985 gx=-7 gy=-2 gz=12 ts=824[0m
+[0;33mW (1237) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1257) IMU_SIM: IMU ax=-1 ay=0 az=985 gx=-9 gy=3 gz=13 ts=844[0m
+[0;33mW (1257) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1277) IMU_SIM: IMU ax=-1 ay=0 az=985 gx=-9 gy=-2 gz=13 ts=864[0m
+[0;33mW (1277) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1297) IMU_SIM: IMU ax=0 ay=1 az=985 gx=2 gy=8 gz=14 ts=884[0m
+[0;33mW (1297) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1317) IMU_SIM: IMU ax=0 ay=-1 az=985 gx=4 gy=-8 gz=14 ts=904[0m
+[0;33mW (1317) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1337) IMU_SIM: IMU ax=0 ay=0 az=985 gx=-4 gy=-3 gz=15 ts=924[0m
+[0;33mW (1337) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1357) IMU_SIM: IMU ax=0 ay=1 az=986 gx=1 gy=5 gz=15 ts=944[0m
+[0;33mW (1357) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1377) IMU_SIM: IMU ax=-1 ay=0 az=986 gx=-6 gy=1 gz=16 ts=964[0m
+[0;33mW (1377) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1397) IMU_SIM: IMU ax=1 ay=0 az=986 gx=9 gy=-4 gz=16 ts=984[0m
+[0;33mW (1397) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1417) IMU_SIM: IMU ax=0 ay=0 az=986 gx=2 gy=1 gz=17 ts=1004[0m
+[0;33mW (1417) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1437) IMU_SIM: IMU ax=-1 ay=-1 az=986 gx=-6 gy=-10 gz=17 ts=1024[0m
+[0;33mW (1437) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1457) IMU_SIM: IMU ax=0 ay=0 az=986 gx=-1 gy=-5 gz=17 ts=1044[0m
+[0;33mW (1457) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1477) IMU_SIM: IMU ax=0 ay=1 az=987 gx=3 gy=3 gz=18 ts=1064[0m
+[0;33mW (1477) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1497) IMU_SIM: IMU ax=0 ay=2 az=987 gx=0 gy=6 gz=18 ts=1084[0m
+[0;33mW (1497) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1517) IMU_SIM: IMU ax=0 ay=2 az=987 gx=0 gy=9 gz=18 ts=1104[0m
+[0;33mW (1517) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1537) IMU_SIM: IMU ax=0 ay=2 az=987 gx=-6 gy=10 gz=19 ts=1124[0m
+[0;33mW (1537) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1557) IMU_SIM: IMU ax=0 ay=1 az=987 gx=-3 gy=1 gz=19 ts=1144[0m
+[0;33mW (1557) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1577) IMU_SIM: IMU ax=1 ay=0 az=988 gx=-2 gy=-6 gz=19 ts=1164[0m
+[0;33mW (1577) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1597) IMU_SIM: IMU ax=0 ay=0 az=988 gx=-4 gy=-1 gz=19 ts=1184[0m
+[0;33mW (1597) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1617) IMU_SIM: IMU ax=2 ay=0 az=988 gx=13 gy=-8 gz=19 ts=1204[0m
+[0;33mW (1617) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1637) IMU_SIM: IMU ax=1 ay=0 az=988 gx=-3 gy=-6 gz=20 ts=1224[0m
+[0;33mW (1637) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1657) IMU_SIM: IMU ax=1 ay=0 az=988 gx=-4 gy=-1 gz=20 ts=1244[0m
+[0;33mW (1657) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1677) IMU_SIM: IMU ax=1 ay=0 az=988 gx=2 gy=5 gz=20 ts=1264[0m
+[0;33mW (1677) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1697) IMU_SIM: IMU ax=1 ay=-1 az=989 gx=5 gy=-8 gz=20 ts=1284[0m
+[0;33mW (1697) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1717) IMU_SIM: IMU ax=1 ay=-1 az=989 gx=2 gy=-3 gz=20 ts=1304[0m
+[0;33mW (1717) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1737) IMU_SIM: IMU ax=2 ay=0 az=989 gx=11 gy=5 gz=20 ts=1324[0m
+[0;33mW (1737) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1757) IMU_SIM: IMU ax=0 ay=-1 az=989 gx=-6 gy=0 gz=20 ts=1344[0m
+[0;33mW (1757) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1777) IMU_SIM: IMU ax=0 ay=-1 az=989 gx=-4 gy=-3 gz=20 ts=1364[0m
+[0;33mW (1777) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1797) IMU_SIM: IMU ax=2 ay=-1 az=989 gx=10 gy=3 gz=20 ts=1384[0m
+[0;33mW (1797) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1817) IMU_SIM: IMU ax=1 ay=-1 az=989 gx=7 gy=1 gz=20 ts=1404[0m
+[0;33mW (1817) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1837) IMU_SIM: IMU ax=0 ay=0 az=990 gx=-5 gy=5 gz=20 ts=1424[0m
+[0;33mW (1837) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1857) IMU_SIM: IMU ax=1 ay=-2 az=990 gx=4 gy=-8 gz=20 ts=1444[0m
+[0;33mW (1857) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1877) IMU_SIM: IMU ax=1 ay=-2 az=990 gx=6 gy=-12 gz=20 ts=1464[0m
+[0;33mW (1877) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1897) IMU_SIM: IMU ax=0 ay=-1 az=990 gx=-3 gy=-2 gz=19 ts=1484[0m
+[0;33mW (1897) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1897) PULSE_SIM: Sim BPM = 81[0m
+[0;32mI (1917) IMU_SIM: IMU ax=0 ay=-1 az=990 gx=0 gy=-1 gz=19 ts=1504[0m
+[0;33mW (1917) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1937) IMU_SIM: IMU ax=-2 ay=-1 az=990 gx=-11 gy=2 gz=19 ts=1524[0m
+[0;33mW (1937) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1957) IMU_SIM: IMU ax=-2 ay=-1 az=991 gx=-12 gy=-3 gz=19 ts=1544[0m
+[0;33mW (1957) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1977) IMU_SIM: IMU ax=0 ay=-1 az=991 gx=5 gy=-4 gz=19 ts=1564[0m
+[0;33mW (1977) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (1997) IMU_SIM: IMU ax=-1 ay=0 az=991 gx=-6 gy=2 gz=18 ts=1584[0m
+[0;33mW (1997) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2017) IMU_SIM: IMU ax=0 ay=-1 az=991 gx=5 gy=-3 gz=18 ts=1604[0m
+[0;33mW (2017) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2037) IMU_SIM: IMU ax=0 ay=-1 az=991 gx=4 gy=-4 gz=18 ts=1624[0m
+[0;33mW (2037) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2057) IMU_SIM: IMU ax=-1 ay=0 az=991 gx=-1 gy=1 gz=17 ts=1644[0m
+[0;33mW (2057) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2077) IMU_SIM: IMU ax=-2 ay=0 az=991 gx=-11 gy=-1 gz=17 ts=1664[0m
+[0;33mW (2077) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2097) IMU_SIM: IMU ax=-2 ay=0 az=991 gx=-6 gy=3 gz=17 ts=1684[0m
+[0;33mW (2097) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2117) IMU_SIM: IMU ax=-1 ay=1 az=992 gx=-1 gy=9 gz=16 ts=1704[0m
+[0;33mW (2117) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2137) IMU_SIM: IMU ax=-2 ay=1 az=992 gx=-13 gy=5 gz=16 ts=1724[0m
+[0;33mW (2137) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2157) IMU_SIM: IMU ax=-2 ay=0 az=992 gx=-12 gy=-7 gz=15 ts=1744[0m
+[0;33mW (2157) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2177) IMU_SIM: IMU ax=-2 ay=2 az=992 gx=-12 gy=12 gz=15 ts=1764[0m
+[0;33mW (2177) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2197) IMU_SIM: IMU ax=-1 ay=2 az=992 gx=-3 gy=11 gz=14 ts=1784[0m
+[0;33mW (2197) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2217) IMU_SIM: IMU ax=0 ay=2 az=992 gx=5 gy=8 gz=14 ts=1804[0m
+[0;33mW (2217) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2237) IMU_SIM: IMU ax=-1 ay=1 az=992 gx=-4 gy=0 gz=13 ts=1824[0m
+[0;33mW (2237) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2257) IMU_SIM: IMU ax=-1 ay=0 az=993 gx=-9 gy=-5 gz=13 ts=1844[0m
+[0;33mW (2257) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2277) IMU_SIM: IMU ax=-1 ay=1 az=993 gx=-6 gy=-1 gz=12 ts=1864[0m
+[0;33mW (2277) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2297) IMU_SIM: IMU ax=0 ay=1 az=993 gx=0 gy=-5 gz=12 ts=1884[0m
+[0;33mW (2297) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2317) IMU_SIM: IMU ax=1 ay=2 az=993 gx=6 gy=8 gz=11 ts=1904[0m
+[0;33mW (2317) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2337) IMU_SIM: IMU ax=0 ay=0 az=993 gx=-6 gy=-5 gz=10 ts=1924[0m
+[0;33mW (2337) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2357) IMU_SIM: IMU ax=0 ay=1 az=993 gx=-4 gy=5 gz=10 ts=1944[0m
+[0;33mW (2357) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2377) IMU_SIM: IMU ax=1 ay=2 az=993 gx=2 gy=13 gz=9 ts=1964[0m
+[0;33mW (2377) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2397) IMU_SIM: IMU ax=1 ay=2 az=993 gx=1 gy=11 gz=9 ts=1984[0m
+[0;33mW (2397) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2417) IMU_SIM: IMU ax=2 ay=1 az=993 gx=13 gy=4 gz=8 ts=2004[0m
+[0;33mW (2417) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2437) IMU_SIM: IMU ax=2 ay=2 az=994 gx=10 gy=11 gz=7 ts=2024[0m
+[0;33mW (2437) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2457) IMU_SIM: IMU ax=1 ay=1 az=994 gx=-1 gy=9 gz=7 ts=2044[0m
+[0;33mW (2457) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2477) IMU_SIM: IMU ax=0 ay=0 az=994 gx=-5 gy=-3 gz=6 ts=2064[0m
+[0;33mW (2477) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2497) IMU_SIM: IMU ax=2 ay=1 az=994 gx=7 gy=5 gz=5 ts=2084[0m
+[0;33mW (2497) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2517) IMU_SIM: IMU ax=1 ay=0 az=994 gx=4 gy=3 gz=5 ts=2104[0m
+[0;33mW (2517) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2537) IMU_SIM: IMU ax=1 ay=0 az=994 gx=3 gy=7 gz=4 ts=2124[0m
+[0;33mW (2537) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2557) IMU_SIM: IMU ax=2 ay=0 az=994 gx=10 gy=3 gz=3 ts=2144[0m
+[0;33mW (2557) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2577) IMU_SIM: IMU ax=0 ay=-1 az=994 gx=-6 gy=-9 gz=3 ts=2164[0m
+[0;33mW (2577) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2597) IMU_SIM: IMU ax=1 ay=-1 az=994 gx=7 gy=-8 gz=2 ts=2184[0m
+[0;33mW (2597) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2617) IMU_SIM: IMU ax=1 ay=-1 az=994 gx=2 gy=-5 gz=1 ts=2204[0m
+[0;33mW (2617) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2637) IMU_SIM: IMU ax=2 ay=-2 az=994 gx=12 gy=-13 gz=1 ts=2224[0m
+[0;33mW (2637) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2657) IMU_SIM: IMU ax=0 ay=-2 az=995 gx=-5 gy=-8 gz=0 ts=2244[0m
+[0;33mW (2657) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2677) IMU_SIM: IMU ax=0 ay=-1 az=995 gx=-6 gy=-2 gz=-1 ts=2264[0m
+[0;33mW (2677) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2697) IMU_SIM: IMU ax=1 ay=-2 az=995 gx=9 gy=-12 gz=-2 ts=2284[0m
+[0;33mW (2697) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2717) IMU_SIM: IMU ax=0 ay=-2 az=995 gx=1 gy=-12 gz=-2 ts=2304[0m
+[0;33mW (2717) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2737) IMU_SIM: IMU ax=-1 ay=0 az=995 gx=-4 gy=5 gz=-3 ts=2324[0m
+[0;33mW (2737) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2757) IMU_SIM: IMU ax=0 ay=-2 az=995 gx=8 gy=-11 gz=-4 ts=2344[0m
+[0;33mW (2757) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2777) IMU_SIM: IMU ax=0 ay=-1 az=995 gx=7 gy=-3 gz=-4 ts=2364[0m
+[0;33mW (2777) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2797) IMU_SIM: IMU ax=-1 ay=-2 az=995 gx=-1 gy=-9 gz=-5 ts=2384[0m
+[0;33mW (2797) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2817) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2817) IMU_SIM: IMU ax=-2 ay=-1 az=995 gx=-11 gy=-5 gz=-6 ts=2405[0m
+[0;32mI (2837) IMU_SIM: IMU ax=-2 ay=0 az=995 gx=-12 gy=1 gz=-6 ts=2424[0m
+[0;33mW (2837) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2857) IMU_SIM: IMU ax=-1 ay=-1 az=995 gx=-2 gy=-4 gz=-7 ts=2444[0m
+[0;33mW (2857) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2877) IMU_SIM: IMU ax=-2 ay=0 az=995 gx=-14 gy=6 gz=-8 ts=2464[0m
+[0;33mW (2877) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2897) IMU_SIM: IMU ax=-1 ay=-1 az=995 gx=0 gy=-8 gz=-8 ts=2484[0m
+[0;32mI (2897) PULSE_SIM: Sim BPM = 78[0m
+[0;33mW (2897) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2917) IMU_SIM: IMU ax=-1 ay=0 az=995 gx=-1 gy=-1 gz=-9 ts=2504[0m
+[0;33mW (2917) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2937) IMU_SIM: IMU ax=-2 ay=1 az=995 gx=-11 gy=9 gz=-10 ts=2524[0m
+[0;33mW (2937) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2957) IMU_SIM: IMU ax=-1 ay=1 az=996 gx=3 gy=10 gz=-10 ts=2544[0m
+[0;33mW (2957) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2977) IMU_SIM: IMU ax=-2 ay=0 az=996 gx=-12 gy=-7 gz=-11 ts=2564[0m
+[0;33mW (2977) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (2997) IMU_SIM: IMU ax=-1 ay=1 az=996 gx=0 gy=9 gz=-11 ts=2584[0m
+[0;33mW (2997) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3017) IMU_SIM: IMU ax=-1 ay=0 az=996 gx=-5 gy=-6 gz=-12 ts=2604[0m
+[0;33mW (3017) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3037) IMU_SIM: IMU ax=0 ay=0 az=996 gx=6 gy=-6 gz=-12 ts=2624[0m
+[0;33mW (3037) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3057) IMU_SIM: IMU ax=-1 ay=1 az=996 gx=-8 gy=2 gz=-13 ts=2644[0m
+[0;33mW (3057) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3077) IMU_SIM: IMU ax=0 ay=0 az=996 gx=2 gy=-6 gz=-14 ts=2664[0m
+[0;33mW (3077) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3097) IMU_SIM: IMU ax=-1 ay=2 az=996 gx=-5 gy=9 gz=-14 ts=2684[0m
+[0;33mW (3097) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3117) IMU_SIM: IMU ax=0 ay=2 az=996 gx=1 gy=6 gz=-15 ts=2704[0m
+[0;33mW (3117) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3137) IMU_SIM: IMU ax=0 ay=1 az=996 gx=-2 gy=-1 gz=-15 ts=2724[0m
+[0;33mW (3137) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3157) IMU_SIM: IMU ax=0 ay=0 az=996 gx=-6 gy=-6 gz=-15 ts=2744[0m
+[0;33mW (3157) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3177) IMU_SIM: IMU ax=0 ay=2 az=996 gx=-3 gy=13 gz=-16 ts=2764[0m
+[0;33mW (3177) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3197) IMU_SIM: IMU ax=1 ay=2 az=996 gx=9 gy=12 gz=-16 ts=2784[0m
+[0;33mW (3197) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3217) IMU_SIM: IMU ax=1 ay=1 az=996 gx=5 gy=1 gz=-17 ts=2804[0m
+[0;33mW (3217) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3237) IMU_SIM: IMU ax=1 ay=2 az=996 gx=2 gy=11 gz=-17 ts=2824[0m
+[0;33mW (3237) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3257) IMU_SIM: IMU ax=0 ay=0 az=996 gx=-3 gy=4 gz=-17 ts=2844[0m
+[0;33mW (3257) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3277) IMU_SIM: IMU ax=1 ay=0 az=996 gx=5 gy=0 gz=-18 ts=2864[0m
+[0;33mW (3277) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3297) IMU_SIM: IMU ax=0 ay=0 az=996 gx=3 gy=-2 gz=-18 ts=2884[0m
+[0;33mW (3297) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3317) IMU_SIM: IMU ax=-1 ay=1 az=996 gx=-6 gy=6 gz=-18 ts=2904[0m
+[0;33mW (3317) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3337) IMU_SIM: IMU ax=-1 ay=0 az=996 gx=-6 gy=4 gz=-19 ts=2924[0m
+[0;33mW (3337) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3357) IMU_SIM: IMU ax=1 ay=0 az=996 gx=6 gy=1 gz=-19 ts=2944[0m
+[0;33mW (3357) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3377) IMU_SIM: IMU ax=-1 ay=0 az=996 gx=-9 gy=5 gz=-19 ts=2964[0m
+[0;33mW (3377) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3397) IMU_SIM: IMU ax=0 ay=0 az=996 gx=4 gy=5 gz=-19 ts=2984[0m
+[0;33mW (3397) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3417) IMU_SIM: IMU ax=1 ay=0 az=996 gx=7 gy=-1 gz=-19 ts=3004[0m
+[0;33mW (3417) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3437) IMU_SIM: IMU ax=-1 ay=-1 az=996 gx=-6 gy=-7 gz=-20 ts=3024[0m
+[0;33mW (3437) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3457) IMU_SIM: IMU ax=0 ay=1 az=996 gx=-3 gy=7 gz=-20 ts=3044[0m
+[0;33mW (3457) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3477) IMU_SIM: IMU ax=0 ay=-1 az=996 gx=4 gy=-7 gz=-20 ts=3064[0m
+[0;33mW (3477) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3497) IMU_SIM: IMU ax=0 ay=1 az=996 gx=0 gy=7 gz=-20 ts=3084[0m
+[0;33mW (3497) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3517) IMU_SIM: IMU ax=0 ay=-1 az=996 gx=-1 gy=-6 gz=-20 ts=3104[0m
+[0;33mW (3517) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3537) IMU_SIM: IMU ax=0 ay=1 az=996 gx=-1 gy=9 gz=-20 ts=3124[0m
+[0;33mW (3537) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3557) IMU_SIM: IMU ax=1 ay=-1 az=996 gx=9 gy=-7 gz=-20 ts=3144[0m
+[0;33mW (3557) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3577) IMU_SIM: IMU ax=-1 ay=0 az=996 gx=-6 gy=-3 gz=-20 ts=3164[0m
+[0;33mW (3577) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3597) IMU_SIM: IMU ax=-1 ay=1 az=996 gx=-6 gy=9 gz=-20 ts=3184[0m
+[0;33mW (3597) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3617) IMU_SIM: IMU ax=0 ay=0 az=996 gx=2 gy=-3 gz=-20 ts=3204[0m
+[0;33mW (3617) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3637) IMU_SIM: IMU ax=-1 ay=-1 az=996 gx=-8 gy=-6 gz=-20 ts=3224[0m
+[0;33mW (3637) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3657) IMU_SIM: IMU ax=1 ay=0 az=996 gx=6 gy=-4 gz=-20 ts=3244[0m
+[0;33mW (3657) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3677) IMU_SIM: IMU ax=0 ay=0 az=996 gx=-3 gy=-1 gz=-20 ts=3264[0m
+[0;33mW (3677) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3697) IMU_SIM: IMU ax=0 ay=-1 az=996 gx=-4 gy=-5 gz=-19 ts=3284[0m
+[0;33mW (3697) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3717) IMU_SIM: IMU ax=1 ay=-1 az=996 gx=9 gy=-5 gz=-19 ts=3304[0m
+[0;33mW (3717) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3737) IMU_SIM: IMU ax=1 ay=1 az=996 gx=9 gy=8 gz=-19 ts=3324[0m
+[0;33mW (3737) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3757) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3757) IMU_SIM: IMU ax=-1 ay=-1 az=996 gx=-9 gy=-7 gz=-19 ts=3346[0m
+[0;32mI (3777) IMU_SIM: IMU ax=-1 ay=-1 az=996 gx=-6 gy=-6 gz=-18 ts=3364[0m
+[0;33mW (3777) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3797) IMU_SIM: IMU ax=0 ay=0 az=995 gx=5 gy=-5 gz=-18 ts=3384[0m
+[0;33mW (3797) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3807) BLE_BIDIRECTIONAL: ✅ Cliente conectado (handle=0).[0m
+[0;32mI (3817) IMU_SIM: IMU ax=0 ay=0 az=995 gx=-2 gy=-3 gz=-18 ts=3407[0m
+[0;32mI (3837) IMU_SIM: IMU ax=0 ay=1 az=995 gx=2 gy=6 gz=-18 ts=3424[0m
+[0;32mI (3857) IMU_SIM: IMU ax=0 ay=0 az=995 gx=2 gy=-1 gz=-17 ts=3444[0m
+[0;32mI (3877) IMU_SIM: IMU ax=0 ay=0 az=995 gx=2 gy=-3 gz=-17 ts=3464[0m
+[0;32mI (3897) IMU_SIM: IMU ax=1 ay=-1 az=995 gx=6 gy=-8 gz=-16 ts=3484[0m
+[0;32mI (3897) PULSE_SIM: Sim BPM = 74[0m
+[0;32mI (3907) MAIN: Sistema funcionando (simulado)...[0m
+[0;32mI (3917) IMU_SIM: IMU ax=0 ay=0 az=995 gx=1 gy=1 gz=-16 ts=3504[0m
+[0;32mI (3937) IMU_SIM: IMU ax=-1 ay=0 az=995 gx=-10 gy=2 gz=-16 ts=3524[0m
+[0;32mI (3957) IMU_SIM: IMU ax=0 ay=-5 az=995 gx=2 gy=-16 gz=-15 ts=3544[0m
+[0;32mI (3977) IMU_SIM: IMU ax=0 ay=-5 az=995 gx=8 gy=-14 gz=-15 ts=3564[0m
+[0;32mI (3997) IMU_SIM: IMU ax=-2 ay=-5 az=995 gx=-11 gy=-17 gz=-14 ts=3584[0m
+[0;32mI (4017) IMU_SIM: IMU ax=-1 ay=-4 az=995 gx=2 gy=-7 gz=-14 ts=3604[0m
+[0;32mI (4037) IMU_SIM: IMU ax=-3 ay=-5 az=995 gx=-11 gy=-19 gz=-13 ts=3624[0m
+[0;32mI (4057) IMU_SIM: IMU ax=-3 ay=-4 az=995 gx=-9 gy=-17 gz=-13 ts=3645[0m
+[0;32mI (4077) IMU_SIM: IMU ax=-4 ay=-4 az=995 gx=-16 gy=-17 gz=-12 ts=3664[0m
+[0;32mI (4097) IMU_SIM: IMU ax=-4 ay=-3 az=994 gx=-15 gy=-9 gz=-12 ts=3684[0m
+[0;32mI (4117) IMU_SIM: IMU ax=-5 ay=-1 az=994 gx=-17 gy=4 gz=-11 ts=3704[0m
+[0;32mI (4137) IMU_SIM: IMU ax=-4 ay=-1 az=994 gx=-8 gy=1 gz=-10 ts=3724[0m
+[0;32mI (4157) IMU_SIM: IMU ax=-6 ay=0 az=994 gx=-21 gy=-2 gz=-10 ts=3745[0m
+[0;32mI (4177) IMU_SIM: IMU ax=-5 ay=1 az=994 gx=-16 gy=10 gz=-9 ts=3764[0m
+[0;32mI (4197) IMU_SIM: IMU ax=-5 ay=1 az=994 gx=-20 gy=5 gz=-8 ts=3784[0m
+[0;32mI (4217) IMU_SIM: IMU ax=-5 ay=1 az=994 gx=-21 gy=2 gz=-8 ts=3806[0m
+[0;32mI (4237) IMU_SIM: IMU ax=-4 ay=2 az=994 gx=-12 gy=-2 gz=-7 ts=3824[0m
+[0;32mI (4257) IMU_SIM: IMU ax=-4 ay=3 az=994 gx=-11 gy=4 gz=-7 ts=3844[0m
+[0;32mI (4277) IMU_SIM: IMU ax=-3 ay=3 az=994 gx=-3 gy=6 gz=-6 ts=3865[0m
+[0;32mI (4297) IMU_SIM: IMU ax=-3 ay=3 az=994 gx=-6 gy=6 gz=-5 ts=3884[0m
+[0;32mI (4317) IMU_SIM: IMU ax=-2 ay=5 az=993 gx=-7 gy=15 gz=-5 ts=3904[0m
+[0;32mI (4337) IMU_SIM: IMU ax=-1 ay=5 az=993 gx=-3 gy=15 gz=-4 ts=3925[0m
+[0;32mI (4357) IMU_SIM: IMU ax=-1 ay=6 az=993 gx=-1 gy=21 gz=-3 ts=3944[0m
+[0;32mI (4377) IMU_SIM: IMU ax=0 ay=5 az=993 gx=-1 gy=20 gz=-2 ts=3964[0m
+[0;32mI (4397) IMU_SIM: IMU ax=2 ay=5 az=993 gx=11 gy=15 gz=-2 ts=3984[0m
+[0;32mI (4417) IMU_SIM: IMU ax=2 ay=5 az=993 gx=7 gy=13 gz=-1 ts=4004[0m
+[0;32mI (4437) IMU_SIM: IMU ax=3 ay=3 az=993 gx=16 gy=4 gz=0 ts=4024[0m
+[0;32mI (4457) IMU_SIM: IMU ax=4 ay=4 az=993 gx=17 gy=15 gz=0 ts=4044[0m
+[0;32mI (4477) IMU_SIM: IMU ax=3 ay=4 az=993 gx=2 gy=19 gz=1 ts=4064[0m
+[0;32mI (4497) IMU_SIM: IMU ax=4 ay=3 az=992 gx=11 gy=13 gz=2 ts=4084[0m
+[0;32mI (4517) IMU_SIM: IMU ax=4 ay=3 az=992 gx=9 gy=15 gz=2 ts=4104[0m
+[0;32mI (4537) IMU_SIM: IMU ax=4 ay=2 az=992 gx=10 gy=10 gz=3 ts=4124[0m
+[0;32mI (4557) IMU_SIM: IMU ax=6 ay=1 az=992 gx=23 gy=2 gz=4 ts=4144[0m
+[0;32mI (4577) IMU_SIM: IMU ax=5 ay=0 az=992 gx=14 gy=-6 gz=4 ts=4164[0m
+[0;32mI (4597) IMU_SIM: IMU ax=4 ay=0 az=992 gx=10 gy=7 gz=5 ts=4184[0m
+[0;32mI (4617) IMU_SIM: IMU ax=5 ay=-2 az=992 gx=21 gy=-8 gz=6 ts=4204[0m
+[0;32mI (4637) IMU_SIM: IMU ax=4 ay=-2 az=992 gx=10 gy=-8 gz=7 ts=4224[0m
+[0;32mI (4657) IMU_SIM: IMU ax=4 ay=-2 az=991 gx=11 gy=-1 gz=7 ts=4244[0m
+[0;32mI (4677) IMU_SIM: IMU ax=5 ay=-3 az=991 gx=19 gy=-6 gz=8 ts=4264[0m
+[0;32mI (4697) IMU_SIM: IMU ax=4 ay=-3 az=991 gx=18 gy=-3 gz=8 ts=4284[0m
+[0;32mI (4717) IMU_SIM: IMU ax=3 ay=-4 az=991 gx=15 gy=-7 gz=9 ts=4304[0m
+[0;32mI (4737) IMU_SIM: IMU ax=3 ay=-5 az=991 gx=11 gy=-22 gz=10 ts=4324[0m
+[0;32mI (4757) IMU_SIM: IMU ax=1 ay=-5 az=991 gx=0 gy=-15 gz=10 ts=4344[0m
+[0;32mI (4777) IMU_SIM: IMU ax=1 ay=-5 az=991 gx=10 gy=-16 gz=11 ts=4364[0m
+[0;32mI (4797) IMU_SIM: IMU ax=1 ay=-4 az=990 gx=8 gy=-8 gz=11 ts=4384[0m
+[0;32mI (4817) IMU_SIM: IMU ax=0 ay=-5 az=990 gx=7 gy=-18 gz=12 ts=4404[0m
+[0;32mI (4837) IMU_SIM: IMU ax=-2 ay=-4 az=990 gx=-14 gy=-7 gz=13 ts=4425[0m
+[0;32mI (4857) IMU_SIM: IMU ax=-3 ay=-5 az=990 gx=-11 gy=-15 gz=13 ts=4444[0m
+[0;32mI (4877) IMU_SIM: IMU ax=-4 ay=-3 az=990 gx=-18 gy=-4 gz=14 ts=4464[0m
+[0;32mI (4897) IMU_SIM: IMU ax=-3 ay=-3 az=990 gx=-9 gy=-10 gz=14 ts=4484[0m
+[0;32mI (4897) PULSE_SIM: Sim BPM = 81[0m
+[0;32mI (4917) IMU_SIM: IMU ax=-3 ay=-3 az=990 gx=-3 gy=-7 gz=15 ts=4505[0m
+[0;32mI (4937) IMU_SIM: IMU ax=-4 ay=-2 az=989 gx=-8 gy=1 gz=15 ts=4524[0m
+[0;32mI (4957) IMU_SIM: IMU ax=-5 ay=-1 az=989 gx=-14 gy=-1 gz=16 ts=4544[0m
+[0;32mI (4977) IMU_SIM: IMU ax=-6 ay=-1 az=989 gx=-23 gy=-6 gz=16 ts=4565[0m
+[0;32mI (4997) IMU_SIM: IMU ax=-4 ay=-1 az=989 gx=-9 gy=-3 gz=16 ts=4584[0m
+[0;32mI (5017) IMU_SIM: IMU ax=-5 ay=0 az=989 gx=-19 gy=-5 gz=17 ts=4604[0m
+[0;32mI (5037) IMU_SIM: IMU ax=-5 ay=2 az=989 gx=-16 gy=12 gz=17 ts=4624[0m
+[0;32mI (5057) IMU_SIM: IMU ax=-5 ay=1 az=988 gx=-13 gy=0 gz=18 ts=4644[0m
+[0;32mI (5077) IMU_SIM: IMU ax=-5 ay=3 az=988 gx=-18 gy=13 gz=18 ts=4664[0m
+[0;32mI (5097) IMU_SIM: IMU ax=-3 ay=3 az=988 gx=-4 gy=9 gz=18 ts=4684[0m
+[0;32mI (5117) IMU_SIM: IMU ax=-3 ay=4 az=988 gx=-12 gy=19 gz=18 ts=4704[0m
+[0;32mI (5137) IMU_SIM: IMU ax=-3 ay=4 az=988 gx=-15 gy=10 gz=19 ts=4724[0m
+[0;32mI (5157) IMU_SIM: IMU ax=-3 ay=4 az=988 gx=-15 gy=12 gz=19 ts=4744[0m
+[0;32mI (5177) IMU_SIM: IMU ax=0 ay=5 az=987 gx=5 gy=14 gz=19 ts=4765[0m
+[0;32mI (5197) IMU_SIM: IMU ax=0 ay=6 az=987 gx=4 gy=24 gz=19 ts=4784[0m
+[0;32mI (5217) IMU_SIM: IMU ax=-1 ay=6 az=987 gx=-8 gy=21 gz=20 ts=4804[0m
+[0;32mI (5237) IMU_SIM: IMU ax=1 ay=5 az=987 gx=1 gy=16 gz=20 ts=4824[0m
+[0;32mI (5257) IMU_SIM: IMU ax=1 ay=5 az=987 gx=-3 gy=13 gz=20 ts=4844[0m
+[0;32mI (5277) IMU_SIM: IMU ax=3 ay=5 az=987 gx=15 gy=21 gz=20 ts=4864[0m
+[0;32mI (5297) IMU_SIM: IMU ax=3 ay=4 az=986 gx=6 gy=11 gz=20 ts=4884[0m
+[0;32mI (5317) IMU_SIM: IMU ax=4 ay=3 az=986 gx=19 gy=10 gz=20 ts=4904[0m
+[0;32mI (5337) IMU_SIM: IMU ax=4 ay=3 az=986 gx=10 gy=6 gz=20 ts=4924[0m
+[0;32mI (5357) IMU_SIM: IMU ax=5 ay=2 az=986 gx=18 gy=7 gz=20 ts=4944[0m
+[0;32mI (5377) IMU_SIM: IMU ax=5 ay=1 az=986 gx=15 gy=0 gz=20 ts=4964[0m
+[0;32mI (5397) IMU_SIM: IMU ax=5 ay=1 az=985 gx=15 gy=-2 gz=20 ts=4984[0m
+[0;32mI (5417) IMU_SIM: IMU ax=6 ay=1 az=985 gx=24 gy=10 gz=20 ts=5004[0m
+[0;32mI (5437) IMU_SIM: IMU ax=5 ay=-1 az=985 gx=14 gy=-3 gz=20 ts=5024[0m
+[0;32mI (5457) IMU_SIM: IMU ax=5 ay=0 az=985 gx=16 gy=6 gz=20 ts=5044[0m
+[0;32mI (5477) IMU_SIM: IMU ax=5 ay=-2 az=985 gx=17 gy=-4 gz=19 ts=5064[0m
+[0;32mI (5497) IMU_SIM: IMU ax=4 ay=-2 az=985 gx=12 gy=-2 gz=19 ts=5084[0m
+[0;32mI (5517) IMU_SIM: IMU ax=4 ay=-4 az=984 gx=18 gy=-16 gz=19 ts=5104[0m
+[0;32mI (5537) IMU_SIM: IMU ax=3 ay=-3 az=984 gx=12 gy=-2 gz=19 ts=5124[0m
+[0;32mI (5557) IMU_SIM: IMU ax=2 ay=-4 az=984 gx=3 gy=-10 gz=19 ts=5144[0m
+[0;32mI (5577) IMU_SIM: IMU ax=2 ay=-4 az=984 gx=10 gy=-9 gz=18 ts=5164[0m
+[0;32mI (5597) IMU_SIM: IMU ax=1 ay=-5 az=984 gx=3 gy=-17 gz=18 ts=5184[0m
+[0;32mI (5617) IMU_SIM: IMU ax=0 ay=-6 az=983 gx=-7 gy=-21 gz=18 ts=5205[0m
+[0;32mI (5637) IMU_SIM: IMU ax=1 ay=-6 az=983 gx=8 gy=-23 gz=17 ts=5224[0m
+[0;32mI (5657) IMU_SIM: IMU ax=-1 ay=-6 az=983 gx=-6 gy=-21 gz=17 ts=5244[0m
+[0;32mI (5677) IMU_SIM: IMU ax=-1 ay=-5 az=983 gx=-2 gy=-18 gz=17 ts=5264[0m
+[0;32mI (5697) IMU_SIM: IMU ax=-1 ay=-5 az=983 gx=2 gy=-22 gz=16 ts=5284[0m
+[0;32mI (5717) IMU_SIM: IMU ax=-3 ay=-4 az=983 gx=-9 gy=-8 gz=16 ts=5304[0m
+[0;32mI (5737) IMU_SIM: IMU ax=-3 ay=-3 az=982 gx=-5 gy=-3 gz=15 ts=5324[0m
+[0;32mI (5757) IMU_SIM: IMU ax=-4 ay=-3 az=982 gx=-16 gy=-11 gz=15 ts=5345[0m
+[0;32mI (5777) IMU_SIM: IMU ax=-4 ay=-1 az=982 gx=-13 gy=2 gz=15 ts=5364[0m
+[0;32mI (5797) IMU_SIM: IMU ax=-5 ay=-2 az=982 gx=-19 gy=-8 gz=14 ts=5384[0m
+[0;32mI (5817) IMU_SIM: IMU ax=-5 ay=-1 az=982 gx=-20 gy=-7 gz=14 ts=5404[0m
+[0;32mI (5837) IMU_SIM: IMU ax=-4 ay=-1 az=981 gx=-5 gy=-8 gz=13 ts=5424[0m
+[0;32mI (5857) IMU_SIM: IMU ax=-5 ay=0 az=981 gx=-21 gy=-5 gz=12 ts=5444[0m
+[0;32mI (5877) IMU_SIM: IMU ax=-5 ay=2 az=981 gx=-13 gy=10 gz=12 ts=5464[0m
+[0;32mI (5897) IMU_SIM: IMU ax=-4 ay=1 az=981 gx=-13 gy=0 gz=11 ts=5484[0m
+[0;32mI (5897) PULSE_SIM: Sim BPM = 83[0m
+[0;32mI (5917) IMU_SIM: IMU ax=-4 ay=4 az=981 gx=-15 gy=17 gz=11 ts=5504[0m
+[0;32mI (5937) IMU_SIM: IMU ax=-3 ay=3 az=980 gx=-4 gy=5 gz=10 ts=5524[0m
+[0;32mI (5957) IMU_SIM: IMU ax=-4 ay=3 az=980 gx=-18 gy=7 gz=10 ts=5545[0m
+[0;32mI (5977) IMU_SIM: IMU ax=-3 ay=4 az=980 gx=-14 gy=15 gz=9 ts=5564[0m
+[0;32mI (5997) IMU_SIM: IMU ax=-2 ay=4 az=980 gx=-4 gy=5 gz=8 ts=5584[0m
+[0;32mI (6017) IMU_SIM: IMU ax=0 ay=5 az=980 gx=5 gy=18 gz=8 ts=5604[0m
+[0;32mI (6037) IMU_SIM: IMU ax=-1 ay=6 az=980 gx=-10 gy=21 gz=7 ts=5624[0m
+[0;32mI (6057) IMU_SIM: IMU ax=0 ay=6 az=979 gx=-4 gy=23 gz=6 ts=5644[0m
+[0;32mI (6077) IMU_SIM: IMU ax=0 ay=4 az=979 gx=-7 gy=6 gz=6 ts=5664[0m
+[0;32mI (6097) IMU_SIM: IMU ax=2 ay=4 az=979 gx=7 gy=11 gz=5 ts=5684[0m
+[0;32mI (6117) IMU_SIM: IMU ax=2 ay=5 az=979 gx=5 gy=21 gz=4 ts=5704[0m
+[0;32mI (6137) IMU_SIM: IMU ax=2 ay=4 az=979 gx=0 gy=15 gz=4 ts=5724[0m
+[0;32mI (6157) IMU_SIM: IMU ax=3 ay=3 az=978 gx=6 gy=9 gz=3 ts=5744[0m
+[0;32mI (6177) IMU_SIM: IMU ax=4 ay=3 az=978 gx=15 gy=11 gz=2 ts=5764[0m
+[0;32mI (6197) IMU_SIM: IMU ax=5 ay=3 az=978 gx=17 gy=12 gz=2 ts=5784[0m
+[0;32mI (6217) IMU_SIM: IMU ax=5 ay=1 az=978 gx=20 gy=-3 gz=1 ts=5804[0m
+[0;32mI (6237) IMU_SIM: IMU ax=5 ay=0 az=978 gx=21 gy=-5 gz=0 ts=5824[0m
+[0;32mI (6257) IMU_SIM: IMU ax=5 ay=-1 az=978 gx=17 gy=-8 gz=-1 ts=5844[0m
+[0;32mI (6277) IMU_SIM: IMU ax=5 ay=-1 az=977 gx=14 gy=-6 gz=-1 ts=5864[0m
+[0;32mI (6297) IMU_SIM: IMU ax=5 ay=-2 az=977 gx=14 gy=-8 gz=-2 ts=5884[0m
+[0;32mI (6317) IMU_SIM: IMU ax=4 ay=-3 az=977 gx=7 gy=-14 gz=-3 ts=5904[0m
+[0;32mI (6337) IMU_SIM: IMU ax=5 ay=-3 az=977 gx=18 gy=-10 gz=-3 ts=5924[0m
+[0;32mI (6357) IMU_SIM: IMU ax=4 ay=-3 az=977 gx=14 gy=-10 gz=-4 ts=5944[0m
+[0;32mI (6377) IMU_SIM: IMU ax=3 ay=-4 az=976 gx=8 gy=-14 gz=-5 ts=5964[0m
+[0;32mI (6397) IMU_SIM: IMU ax=3 ay=-5 az=976 gx=7 gy=-17 gz=-5 ts=5984[0m
+[0;32mI (6417) IMU_SIM: IMU ax=3 ay=-4 az=976 gx=15 gy=-6 gz=-6 ts=6004[0m
+[0;32mI (6437) IMU_SIM: IMU ax=0 ay=1 az=976 gx=2 gy=6 gz=-7 ts=6024[0m
+[0;32mI (6457) IMU_SIM: IMU ax=1 ay=-1 az=976 gx=6 gy=-7 gz=-7 ts=6044[0m
+[0;32mI (6477) IMU_SIM: IMU ax=-1 ay=1 az=976 gx=-7 gy=9 gz=-8 ts=6064[0m
+[0;32mI (6497) IMU_SIM: IMU ax=0 ay=1 az=975 gx=2 gy=7 gz=-9 ts=6084[0m
+[0;32mI (6517) IMU_SIM: IMU ax=0 ay=0 az=975 gx=-3 gy=-4 gz=-9 ts=6104[0m
+[0;32mI (6537) IMU_SIM: IMU ax=0 ay=0 az=975 gx=-2 gy=-4 gz=-10 ts=6124[0m
+[0;32mI (6557) IMU_SIM: IMU ax=0 ay=1 az=975 gx=2 gy=10 gz=-10 ts=6144[0m
+[0;32mI (6577) IMU_SIM: IMU ax=0 ay=0 az=975 gx=-5 gy=1 gz=-11 ts=6164[0m
+[0;32mI (6597) IMU_SIM: IMU ax=0 ay=1 az=975 gx=5 gy=9 gz=-12 ts=6184[0m
+[0;32mI (6617) IMU_SIM: IMU ax=-1 ay=-1 az=974 gx=-9 gy=-10 gz=-12 ts=6204[0m
+[0;32mI (6637) IMU_SIM: IMU ax=0 ay=0 az=974 gx=3 gy=0 gz=-13 ts=6224[0m
+[0;32mI (6657) IMU_SIM: IMU ax=-1 ay=0 az=974 gx=-9 gy=0 gz=-13 ts=6244[0m
+[0;32mI (6677) IMU_SIM: IMU ax=0 ay=1 az=974 gx=2 gy=10 gz=-14 ts=6264[0m
+[0;32mI (6697) IMU_SIM: IMU ax=0 ay=0 az=974 gx=4 gy=-4 gz=-14 ts=6284[0m
+[0;32mI (6717) IMU_SIM: IMU ax=0 ay=1 az=974 gx=1 gy=7 gz=-15 ts=6304[0m
+[0;32mI (6737) IMU_SIM: IMU ax=-1 ay=0 az=973 gx=-5 gy=0 gz=-15 ts=6325[0m
+[0;32mI (6757) IMU_SIM: IMU ax=0 ay=1 az=973 gx=-4 gy=8 gz=-16 ts=6344[0m
+[0;32mI (6777) IMU_SIM: IMU ax=0 ay=-1 az=973 gx=-3 gy=-7 gz=-16 ts=6364[0m
+[0;32mI (6797) IMU_SIM: IMU ax=1 ay=1 az=973 gx=8 gy=9 gz=-17 ts=6384[0m
+[0;32mI (6817) IMU_SIM: IMU ax=-1 ay=0 az=973 gx=-8 gy=-5 gz=-17 ts=6404[0m
+[0;32mI (6837) IMU_SIM: IMU ax=-1 ay=-1 az=973 gx=-6 gy=-6 gz=-17 ts=6424[0m
+[0;32mI (6857) IMU_SIM: IMU ax=0 ay=1 az=972 gx=2 gy=9 gz=-18 ts=6444[0m
+[0;32mI (6877) IMU_SIM: IMU ax=-1 ay=1 az=972 gx=-6 gy=8 gz=-18 ts=6464[0m
+[0;32mI (6897) IMU_SIM: IMU ax=-1 ay=0 az=972 gx=-10 gy=0 gz=-18 ts=6484[0m
+[0;32mI (6897) PULSE_SIM: Sim BPM = 90[0m
+[0;32mI (6907) MAIN: Sistema funcionando (simulado)...[0m
+[0;32mI (6917) IMU_SIM: IMU ax=-1 ay=1 az=972 gx=-7 gy=6 gz=-18 ts=6504[0m
+[0;32mI (6937) IMU_SIM: IMU ax=0 ay=0 az=972 gx=0 gy=-4 gz=-19 ts=6524[0m
+[0;32mI (6957) IMU_SIM: IMU ax=1 ay=0 az=972 gx=9 gy=0 gz=-19 ts=6544[0m
+[0;32mI (6977) IMU_SIM: IMU ax=-1 ay=0 az=972 gx=-7 gy=3 gz=-19 ts=6564[0m
+[0;32mI (6997) IMU_SIM: IMU ax=-1 ay=0 az=971 gx=-5 gy=-2 gz=-19 ts=6584[0m
+[0;32mI (7017) IMU_SIM: IMU ax=0 ay=-1 az=971 gx=5 gy=-9 gz=-20 ts=6604[0m
+[0;32mI (7037) IMU_SIM: IMU ax=0 ay=1 az=971 gx=-3 gy=9 gz=-20 ts=6624[0m
+[0;32mI (7057) IMU_SIM: IMU ax=0 ay=0 az=971 gx=3 gy=5 gz=-20 ts=6644[0m
+[0;32mI (7077) IMU_SIM: IMU ax=0 ay=0 az=971 gx=-1 gy=3 gz=-20 ts=6664[0m
+[0;32mI (7097) IMU_SIM: IMU ax=-1 ay=-1 az=971 gx=-8 gy=-6 gz=-20 ts=6684[0m
+[0;32mI (7117) IMU_SIM: IMU ax=0 ay=0 az=971 gx=1 gy=0 gz=-20 ts=6704[0m
+[0;32mI (7137) IMU_SIM: IMU ax=1 ay=0 az=970 gx=10 gy=2 gz=-20 ts=6724[0m
+[0;32mI (7157) IMU_SIM: IMU ax=1 ay=1 az=970 gx=10 gy=6 gz=-20 ts=6744[0m
+[0;32mI (7177) IMU_SIM: IMU ax=0 ay=-1 az=970 gx=-3 gy=-9 gz=-20 ts=6765[0m
+[0;32mI (7197) IMU_SIM: IMU ax=1 ay=0 az=970 gx=5 gy=-4 gz=-20 ts=6784[0m
+[0;32mI (7217) IMU_SIM: IMU ax=0 ay=-1 az=970 gx=1 gy=-6 gz=-20 ts=6804[0m
+[0;32mI (7237) IMU_SIM: IMU ax=0 ay=1 az=970 gx=0 gy=10 gz=-20 ts=6824[0m
+[0;32mI (7257) IMU_SIM: IMU ax=0 ay=0 az=970 gx=0 gy=-1 gz=-20 ts=6844[0m
+[0;32mI (7277) IMU_SIM: IMU ax=-1 ay=-1 az=970 gx=-7 gy=-6 gz=-19 ts=6864[0m
+[0;32mI (7297) IMU_SIM: IMU ax=-1 ay=1 az=969 gx=-10 gy=7 gz=-19 ts=6884[0m
+[0;32mI (7317) IMU_SIM: IMU ax=-1 ay=1 az=969 gx=-9 gy=6 gz=-19 ts=6905[0m
+[0;32mI (7337) IMU_SIM: IMU ax=0 ay=1 az=969 gx=0 gy=6 gz=-19 ts=6924[0m
+[0;32mI (7357) IMU_SIM: IMU ax=0 ay=0 az=969 gx=-1 gy=-3 gz=-19 ts=6944[0m
+[0;32mI (7377) IMU_SIM: IMU ax=0 ay=0 az=969 gx=0 gy=-3 gz=-18 ts=6964[0m
+[0;32mI (7397) IMU_SIM: IMU ax=-1 ay=0 az=969 gx=-7 gy=1 gz=-18 ts=6984[0m
+[0;32mI (7417) IMU_SIM: IMU ax=0 ay=-1 az=969 gx=3 gy=-8 gz=-18 ts=7004[0m
+[0;32mI (7437) IMU_SIM: IMU ax=0 ay=1 az=969 gx=-1 gy=6 gz=-17 ts=7024[0m
+[0;32mI (7457) IMU_SIM: IMU ax=0 ay=0 az=969 gx=-3 gy=2 gz=-17 ts=7044[0m
+[0;32mI (7477) IMU_SIM: IMU ax=-1 ay=0 az=968 gx=-9 gy=2 gz=-17 ts=7064[0m
+[0;32mI (7497) IMU_SIM: IMU ax=-1 ay=-1 az=968 gx=-9 gy=-6 gz=-16 ts=7084[0m
+[0;32mI (7517) IMU_SIM: IMU ax=1 ay=0 az=968 gx=7 gy=-4 gz=-16 ts=7105[0m
+[0;32mI (7537) IMU_SIM: IMU ax=1 ay=0 az=968 gx=5 gy=0 gz=-15 ts=7124[0m
+[0;32mI (7557) IMU_SIM: IMU ax=1 ay=1 az=968 gx=6 gy=10 gz=-15 ts=7144[0m
+[0;32mI (7577) IMU_SIM: IMU ax=-1 ay=0 az=968 gx=-9 gy=5 gz=-14 ts=7164[0m
+[0;32mI (7597) IMU_SIM: IMU ax=-1 ay=1 az=968 gx=-8 gy=10 gz=-14 ts=7184[0m
+[0;32mI (7617) IMU_SIM: IMU ax=0 ay=0 az=968 gx=-3 gy=0 gz=-13 ts=7204[0m
+[0;32mI (7637) IMU_SIM: IMU ax=0 ay=1 az=968 gx=2 gy=6 gz=-13 ts=7224[0m
+[0;32mI (7657) IMU_SIM: IMU ax=0 ay=1 az=968 gx=4 gy=9 gz=-12 ts=7244[0m
+[0;32mI (7677) IMU_SIM: IMU ax=1 ay=1 az=967 gx=5 gy=6 gz=-12 ts=7264[0m
+[0;32mI (7697) IMU_SIM: IMU ax=0 ay=1 az=967 gx=5 gy=9 gz=-11 ts=7284[0m
+[0;32mI (7717) IMU_SIM: IMU ax=1 ay=1 az=967 gx=7 gy=7 gz=-11 ts=7304[0m
+[0;32mI (7737) IMU_SIM: IMU ax=-1 ay=1 az=967 gx=-9 gy=8 gz=-10 ts=7324[0m
+[0;32mI (7757) IMU_SIM: IMU ax=0 ay=1 az=967 gx=-1 gy=6 gz=-9 ts=7344[0m
+[0;32mI (7777) IMU_SIM: IMU ax=-1 ay=0 az=967 gx=-7 gy=-4 gz=-9 ts=7364[0m
+[0;32mI (7797) IMU_SIM: IMU ax=0 ay=1 az=967 gx=-2 gy=6 gz=-8 ts=7384[0m
+[0;32mI (7817) IMU_SIM: IMU ax=0 ay=0 az=967 gx=-2 gy=-1 gz=-8 ts=7404[0m
+[0;32mI (7837) IMU_SIM: IMU ax=0 ay=-1 az=967 gx=2 gy=-10 gz=-7 ts=7424[0m
+[0;32mI (7857) IMU_SIM: IMU ax=-1 ay=-1 az=967 gx=-8 gy=-7 gz=-6 ts=7444[0m
+[0;32mI (7877) IMU_SIM: IMU ax=-1 ay=-1 az=967 gx=-8 gy=-7 gz=-6 ts=7464[0m
+[0;32mI (7897) IMU_SIM: IMU ax=0 ay=-1 az=967 gx=-1 gy=-6 gz=-5 ts=7484[0m
+[0;32mI (7897) PULSE_SIM: Sim BPM = 94[0m
+[0;32mI (7917) IMU_SIM: IMU ax=0 ay=0 az=967 gx=-4 gy=-3 gz=-4 ts=7504[0m
+[0;32mI (7937) IMU_SIM: IMU ax=1 ay=1 az=967 gx=9 gy=7 gz=-4 ts=7524[0m
+[0;32mI (7957) IMU_SIM: IMU ax=0 ay=-1 az=967 gx=0 gy=-6 gz=-3 ts=7545[0m
+[0;32mI (7977) IMU_SIM: IMU ax=1 ay=-1 az=967 gx=7 gy=-9 gz=-2 ts=7564[0m
+[0;32mI (7997) IMU_SIM: IMU ax=0 ay=0 az=966 gx=2 gy=0 gz=-1 ts=7584[0m
+[0;32mI (8017) IMU_SIM: IMU ax=1 ay=0 az=966 gx=7 gy=3 gz=-1 ts=7604[0m
+[0;32mI (8037) IMU_SIM: IMU ax=1 ay=0 az=966 gx=8 gy=3 gz=0 ts=7624[0m
+[0;32mI (8057) IMU_SIM: IMU ax=-1 ay=-1 az=966 gx=-7 gy=-8 gz=1 ts=7644[0m
+[0;32mI (8077) IMU_SIM: IMU ax=0 ay=0 az=966 gx=1 gy=-5 gz=1 ts=7664[0m
+[0;32mI (8097) IMU_SIM: IMU ax=0 ay=0 az=966 gx=0 gy=5 gz=2 ts=7685[0m
+[0;32mI (8117) IMU_SIM: IMU ax=1 ay=0 az=966 gx=9 gy=-5 gz=3 ts=7704[0m
+[0;32mI (8137) IMU_SIM: IMU ax=-1 ay=1 az=966 gx=-5 gy=8 gz=3 ts=7724[0m
+[0;32mI (8157) IMU_SIM: IMU ax=0 ay=-1 az=966 gx=-2 gy=-7 gz=4 ts=7744[0m
+[0;32mI (8177) IMU_SIM: IMU ax=0 ay=1 az=966 gx=-1 gy=9 gz=5 ts=7764[0m
+[0;32mI (8197) IMU_SIM: IMU ax=1 ay=0 az=966 gx=10 gy=4 gz=6 ts=7784[0m
+[0;32mI (8217) IMU_SIM: IMU ax=0 ay=0 az=966 gx=-4 gy=4 gz=6 ts=7804[0m
+[0;32mI (8237) IMU_SIM: IMU ax=0 ay=0 az=966 gx=-3 gy=-1 gz=7 ts=7824[0m
+[0;32mI (8257) IMU_SIM: IMU ax=0 ay=0 az=966 gx=-1 gy=-2 gz=7 ts=7844[0m
+[0;32mI (8277) IMU_SIM: IMU ax=1 ay=1 az=966 gx=7 gy=6 gz=8 ts=7864[0m
+[0;32mI (8297) IMU_SIM: IMU ax=0 ay=0 az=966 gx=4 gy=0 gz=9 ts=7885[0m
+[0;32mI (8317) IMU_SIM: IMU ax=1 ay=1 az=966 gx=8 gy=7 gz=9 ts=7904[0m
+[0;32mI (8337) IMU_SIM: IMU ax=0 ay=-1 az=966 gx=-1 gy=-7 gz=10 ts=7924[0m
+[0;32mI (8357) IMU_SIM: IMU ax=-1 ay=0 az=966 gx=-7 gy=-2 gz=11 ts=7944[0m
+[0;32mI (8377) IMU_SIM: IMU ax=0 ay=1 az=966 gx=-4 gy=10 gz=11 ts=7964[0m
+[0;32mI (8397) IMU_SIM: IMU ax=0 ay=1 az=966 gx=2 gy=7 gz=12 ts=7984[0m
+[0;32mI (8417) IMU_SIM: IMU ax=1 ay=-1 az=966 gx=9 gy=-7 gz=12 ts=8004[0m
+[0;32mI (8437) IMU_SIM: IMU ax=0 ay=0 az=966 gx=2 gy=4 gz=13 ts=8024[0m
+[0;32mI (8457) IMU_SIM: IMU ax=1 ay=0 az=966 gx=9 gy=0 gz=13 ts=8044[0m
+[0;32mI (8477) IMU_SIM: IMU ax=1 ay=0 az=966 gx=6 gy=-3 gz=14 ts=8064[0m
+[0;32mI (8497) IMU_SIM: IMU ax=0 ay=0 az=966 gx=-1 gy=3 gz=14 ts=8084[0m
+[0;32mI (8517) IMU_SIM: IMU ax=1 ay=0 az=966 gx=5 gy=4 gz=15 ts=8104[0m
+[0;32mI (8537) IMU_SIM: IMU ax=1 ay=1 az=966 gx=6 gy=9 gz=15 ts=8124[0m
+[0;32mI (8557) IMU_SIM: IMU ax=1 ay=0 az=966 gx=8 gy=-4 gz=16 ts=8144[0m
+[0;32mI (8577) IMU_SIM: IMU ax=0 ay=0 az=966 gx=0 gy=2 gz=16 ts=8164[0m
+[0;32mI (8597) IMU_SIM: IMU ax=1 ay=0 az=966 gx=6 gy=5 gz=17 ts=8184[0m
+[0;32mI (8617) IMU_SIM: IMU ax=0 ay=0 az=966 gx=-1 gy=3 gz=17 ts=8204[0m
+[0;32mI (8637) IMU_SIM: IMU ax=0 ay=0 az=966 gx=1 gy=3 gz=17 ts=8224[0m
+[0;32mI (8657) IMU_SIM: IMU ax=-1 ay=-1 az=966 gx=-5 gy=-9 gz=18 ts=8244[0m
+[0;32mI (8677) IMU_SIM: IMU ax=-1 ay=0 az=966 gx=-5 gy=2 gz=18 ts=8264[0m
+[0;32mI (8697) IMU_SIM: IMU ax=0 ay=1 az=966 gx=1 gy=10 gz=18 ts=8284[0m
+[0;32mI (8717) IMU_SIM: IMU ax=0 ay=0 az=966 gx=2 gy=-2 gz=19 ts=8304[0m
+[0;32mI (8737) IMU_SIM: IMU ax=0 ay=-1 az=966 gx=2 gy=-9 gz=19 ts=8324[0m
+[0;32mI (8757) IMU_SIM: IMU ax=0 ay=0 az=966 gx=-3 gy=-1 gz=19 ts=8344[0m
+[0;32mI (8777) IMU_SIM: IMU ax=1 ay=1 az=966 gx=9 gy=7 gz=19 ts=8364[0m
+[0;32mI (8797) IMU_SIM: IMU ax=0 ay=0 az=966 gx=2 gy=-5 gz=19 ts=8384[0m
+[0;32mI (8817) IMU_SIM: IMU ax=1 ay=1 az=967 gx=8 gy=6 gz=20 ts=8404[0m
+[0;32mI (8837) IMU_SIM: IMU ax=1 ay=1 az=967 gx=7 gy=8 gz=20 ts=8424[0m
+[0;32mI (8857) IMU_SIM: IMU ax=-1 ay=1 az=967 gx=-7 gy=6 gz=20 ts=8444[0m
+[0;32mI (8877) IMU_SIM: IMU ax=0 ay=0 az=967 gx=0 gy=-2 gz=20 ts=8465[0m
+[0;32mI (8897) IMU_SIM: IMU ax=0 ay=1 az=967 gx=2 gy=7 gz=20 ts=8484[0m
+[0;32mI (8897) PULSE_SIM: Sim BPM = 96[0m
+[0;32mI (8917) IMU_SIM: IMU ax=0 ay=-1 az=967 gx=2 gy=-5 gz=20 ts=8504[0m
+[0;32mI (8937) IMU_SIM: IMU ax=-1 ay=1 az=967 gx=-6 gy=6 gz=20 ts=8524[0m
+[0;32mI (8957) IMU_SIM: IMU ax=1 ay=-1 az=967 gx=10 gy=-9 gz=20 ts=8544[0m
+[0;32mI (8977) IMU_SIM: IMU ax=-1 ay=0 az=967 gx=-6 gy=2 gz=20 ts=8564[0m
+[0;32mI (8997) IMU_SIM: IMU ax=0 ay=-1 az=967 gx=1 gy=-8 gz=20 ts=8584[0m
+[0;32mI (9017) IMU_SIM: IMU ax=1 ay=0 az=967 gx=8 gy=-1 gz=20 ts=8604[0m
+[0;32mI (9037) IMU_SIM: IMU ax=-1 ay=0 az=967 gx=-8 gy=2 gz=20 ts=8624[0m
+[0;32mI (9057) IMU_SIM: IMU ax=1 ay=0 az=967 gx=8 gy=0 gz=20 ts=8644[0m
+[0;32mI (9077) IMU_SIM: IMU ax=1 ay=-1 az=967 gx=6 gy=-5 gz=19 ts=8665[0m
+[0;32mI (9097) IMU_SIM: IMU ax=-1 ay=1 az=967 gx=-6 gy=7 gz=19 ts=8684[0m
+[0;32mI (9117) IMU_SIM: IMU ax=0 ay=0 az=967 gx=4 gy=-3 gz=19 ts=8704[0m
+[0;32mI (9137) IMU_SIM: IMU ax=1 ay=-1 az=968 gx=5 gy=-10 gz=19 ts=8724[0m
+[0;32mI (9157) IMU_SIM: IMU ax=0 ay=-1 az=968 gx=4 gy=-6 gz=19 ts=8744[0m
+[0;32mI (9177) IMU_SIM: IMU ax=1 ay=1 az=968 gx=6 gy=10 gz=18 ts=8764[0m
+[0;32mI (9197) IMU_SIM: IMU ax=0 ay=0 az=968 gx=-3 gy=-5 gz=18 ts=8784[0m
+[0;32mI (9217) IMU_SIM: IMU ax=-1 ay=-1 az=968 gx=-9 gy=-8 gz=18 ts=8804[0m
+[0;32mI (9237) IMU_SIM: IMU ax=0 ay=-1 az=968 gx=-1 gy=-7 gz=17 ts=8824[0m
+[0;32mI (9257) IMU_SIM: IMU ax=0 ay=0 az=968 gx=-2 gy=2 gz=17 ts=8844[0m
+[0;32mI (9277) IMU_SIM: IMU ax=0 ay=0 az=968 gx=5 gy=4 gz=17 ts=8864[0m
+[0;32mI (9297) IMU_SIM: IMU ax=1 ay=-1 az=968 gx=5 gy=-5 gz=16 ts=8884[0m
+[0;32mI (9317) IMU_SIM: IMU ax=0 ay=0 az=968 gx=1 gy=2 gz=16 ts=8904[0m
+[0;32mI (9337) IMU_SIM: IMU ax=0 ay=-1 az=969 gx=4 gy=-8 gz=15 ts=8924[0m
+[0;32mI (9357) IMU_SIM: IMU ax=-1 ay=0 az=969 gx=-5 gy=5 gz=15 ts=8944[0m
+[0;32mI (9377) IMU_SIM: IMU ax=1 ay=0 az=969 gx=9 gy=-3 gz=14 ts=8964[0m
+[0;32mI (9397) IMU_SIM: IMU ax=-1 ay=-1 az=969 gx=-8 gy=-6 gz=14 ts=8984[0m
+[0;32mI (9417) IMU_SIM: IMU ax=-1 ay=0 az=969 gx=-10 gy=4 gz=13 ts=9004[0m
+[0;32mI (9437) IMU_SIM: IMU ax=0 ay=0 az=969 gx=5 gy=0 gz=13 ts=9024[0m
+[0;32mI (9457) IMU_SIM: IMU ax=0 ay=-1 az=969 gx=-1 gy=-6 gz=12 ts=9044[0m
+[0;32mI (9477) IMU_SIM: IMU ax=0 ay=-1 az=969 gx=3 gy=-8 gz=12 ts=9064[0m
+[0;32mI (9497) IMU_SIM: IMU ax=-1 ay=1 az=969 gx=-8 gy=9 gz=11 ts=9084[0m
+[0;32mI (9517) IMU_SIM: IMU ax=-1 ay=-1 az=970 gx=-5 gy=-8 gz=11 ts=9105[0m
+[0;32mI (9537) IMU_SIM: IMU ax=1 ay=1 az=970 gx=8 gy=9 gz=10 ts=9124[0m
+[0;32mI (9557) IMU_SIM: IMU ax=1 ay=1 az=970 gx=10 gy=6 gz=9 ts=9144[0m
+[0;32mI (9577) IMU_SIM: IMU ax=-1 ay=0 az=970 gx=-8 gy=-2 gz=9 ts=9164[0m
+[0;32mI (9597) IMU_SIM: IMU ax=-1 ay=1 az=970 gx=-6 gy=6 gz=8 ts=9184[0m
+[0;32mI (9617) IMU_SIM: IMU ax=1 ay=0 az=970 gx=8 gy=-4 gz=7 ts=9204[0m
+[0;32mI (9637) IMU_SIM: IMU ax=-1 ay=1 az=970 gx=-5 gy=7 gz=7 ts=9224[0m
+[0;32mI (9657) IMU_SIM: IMU ax=0 ay=0 az=970 gx=-3 gy=4 gz=6 ts=9245[0m
+[0;32mI (9677) IMU_SIM: IMU ax=0 ay=0 az=971 gx=1 gy=-1 gz=5 ts=9264[0m
+[0;32mI (9697) IMU_SIM: IMU ax=1 ay=0 az=971 gx=5 gy=-3 gz=5 ts=9284[0m
+[0;32mI (9717) IMU_SIM: IMU ax=0 ay=0 az=971 gx=3 gy=-5 gz=4 ts=9304[0m
+[0;32mI (9737) IMU_SIM: IMU ax=1 ay=-1 az=971 gx=6 gy=-7 gz=3 ts=9324[0m
+[0;32mI (9757) IMU_SIM: IMU ax=1 ay=0 az=971 gx=7 gy=-1 gz=3 ts=9344[0m
+[0;32mI (9777) IMU_SIM: IMU ax=0 ay=1 az=971 gx=-1 gy=6 gz=2 ts=9364[0m
+[0;32mI (9797) IMU_SIM: IMU ax=-1 ay=-1 az=971 gx=-9 gy=-10 gz=1 ts=9384[0m
+[0;32mI (9817) IMU_SIM: IMU ax=0 ay=1 az=972 gx=0 gy=9 gz=1 ts=9404[0m
+[0;32mI (9837) IMU_SIM: IMU ax=0 ay=0 az=972 gx=-1 gy=3 gz=0 ts=9424[0m
+[0;32mI (9857) IMU_SIM: IMU ax=0 ay=1 az=972 gx=-4 gy=5 gz=-1 ts=9445[0m
+[0;32mI (9877) IMU_SIM: IMU ax=0 ay=0 az=972 gx=-3 gy=2 gz=-2 ts=9464[0m
+[0;32mI (9897) IMU_SIM: IMU ax=-1 ay=-1 az=972 gx=-6 gy=-9 gz=-2 ts=9484[0m
+[0;32mI (9897) PULSE_SIM: Sim BPM = 101[0m
+[0;32mI (9907) MAIN: Sistema funcionando (simulado)...[0m
+[0;32mI (9917) IMU_SIM: IMU ax=0 ay=0 az=972 gx=2 gy=1 gz=-3 ts=9504[0m
+[0;32mI (9937) IMU_SIM: IMU ax=1 ay=0 az=972 gx=8 gy=-4 gz=-4 ts=9524[0m
+[0;32mI (9957) IMU_SIM: IMU ax=0 ay=0 az=973 gx=-1 gy=3 gz=-4 ts=9544[0m
+[0;32mI (9977) IMU_SIM: IMU ax=0 ay=1 az=973 gx=-4 gy=7 gz=-5 ts=9564[0m
+[0;32mI (9997) IMU_SIM: IMU ax=-1 ay=1 az=973 gx=-6 gy=8 gz=-6 ts=9584[0m
+[0;32mI (10017) IMU_SIM: IMU ax=0 ay=0 az=973 gx=3 gy=4 gz=-6 ts=9604[0m
+[0;32mI (10037) IMU_SIM: IMU ax=0 ay=0 az=973 gx=-4 gy=-4 gz=-7 ts=9624[0m
+[0;32mI (10057) IMU_SIM: IMU ax=-1 ay=0 az=973 gx=-9 gy=-5 gz=-8 ts=9644[0m
+[0;32mI (10077) IMU_SIM: IMU ax=-1 ay=1 az=974 gx=-9 gy=6 gz=-8 ts=9664[0m
+[0;32mI (10097) IMU_SIM: IMU ax=1 ay=1 az=974 gx=8 gy=5 gz=-9 ts=9684[0m
+[0;32mI (10117) IMU_SIM: IMU ax=0 ay=-1 az=974 gx=4 gy=-6 gz=-10 ts=9704[0m
+[0;32mI (10137) IMU_SIM: IMU ax=0 ay=0 az=974 gx=5 gy=-4 gz=-10 ts=9724[0m
+[0;32mI (10157) IMU_SIM: IMU ax=0 ay=0 az=974 gx=1 gy=-1 gz=-11 ts=9744[0m
+[0;32mI (10177) IMU_SIM: IMU ax=-1 ay=1 az=974 gx=-9 gy=7 gz=-11 ts=9764[0m
+[0;32mI (10197) IMU_SIM: IMU ax=0 ay=0 az=975 gx=2 gy=3 gz=-12 ts=9784[0m
+[0;32mI (10217) IMU_SIM: IMU ax=1 ay=1 az=975 gx=7 gy=8 gz=-12 ts=9804[0m
+[0;32mI (10237) IMU_SIM: IMU ax=1 ay=0 az=975 gx=6 gy=4 gz=-13 ts=9824[0m
+[0;32mI (10257) IMU_SIM: IMU ax=0 ay=1 az=975 gx=4 gy=6 gz=-14 ts=9844[0m
+[0;32mI (10277) IMU_SIM: IMU ax=1 ay=0 az=975 gx=9 gy=1 gz=-14 ts=9864[0m
+[0;32mI (10297) IMU_SIM: IMU ax=-1 ay=0 az=975 gx=-6 gy=-3 gz=-15 ts=9885[0m
+[0;32mI (10317) IMU_SIM: IMU ax=-1 ay=0 az=976 gx=-7 gy=5 gz=-15 ts=9904[0m
+[0;32mI (10337) IMU_SIM: IMU ax=-1 ay=1 az=976 gx=-7 gy=7 gz=-15 ts=9924[0m
+[0;32mI (10357) IMU_SIM: IMU ax=-1 ay=1 az=976 gx=-8 gy=6 gz=-16 ts=9944[0m
+[0;32mI (10377) IMU_SIM: IMU ax=1 ay=0 az=976 gx=7 gy=1 gz=-16 ts=9964[0m
+[0;32mI (10397) IMU_SIM: IMU ax=-1 ay=1 az=976 gx=-10 gy=8 gz=-17 ts=9984[0m
+[0;32mI (10417) IMU_SIM: IMU ax=-1 ay=0 az=976 gx=-7 gy=-4 gz=-17 ts=10004[0m
+[0;32mI (10437) IMU_SIM: IMU ax=1 ay=0 az=977 gx=5 gy=-4 gz=-17 ts=10025[0m
+[0;32mI (10457) IMU_SIM: IMU ax=0 ay=1 az=977 gx=-2 gy=8 gz=-18 ts=10044[0m
+[0;32mI (10477) IMU_SIM: IMU ax=-1 ay=1 az=977 gx=-9 gy=10 gz=-18 ts=10064[0m
+[0;32mI (10497) IMU_SIM: IMU ax=0 ay=1 az=977 gx=-4 gy=7 gz=-18 ts=10084[0m
+[0;32mI (10517) IMU_SIM: IMU ax=0 ay=0 az=977 gx=-4 gy=-1 gz=-19 ts=10104[0m
+[0;32mI (10537) IMU_SIM: IMU ax=0 ay=-1 az=978 gx=0 gy=-5 gz=-19 ts=10124[0m
+[0;32mI (10557) IMU_SIM: IMU ax=-1 ay=1 az=978 gx=-6 gy=6 gz=-19 ts=10144[0m
+[0;32mI (10577) IMU_SIM: IMU ax=0 ay=0 az=978 gx=4 gy=-4 gz=-19 ts=10164[0m
+[0;32mI (10597) IMU_SIM: IMU ax=-1 ay=0 az=978 gx=-7 gy=5 gz=-19 ts=10184[0m
+[0;32mI (10617) IMU_SIM: IMU ax=0 ay=0 az=978 gx=4 gy=0 gz=-20 ts=10204[0m
+[0;32mI (10637) IMU_SIM: IMU ax=0 ay=0 az=978 gx=-1 gy=-1 gz=-20 ts=10224[0m
+[0;32mI (10657) IMU_SIM: IMU ax=-1 ay=1 az=979 gx=-5 gy=8 gz=-20 ts=10244[0m
+[0;32mI (10677) IMU_SIM: IMU ax=1 ay=0 az=979 gx=8 gy=1 gz=-20 ts=10264[0m
+[0;32mI (10697) IMU_SIM: IMU ax=0 ay=0 az=979 gx=-1 gy=-5 gz=-20 ts=10284[0m
+[0;32mI (10717) IMU_SIM: IMU ax=0 ay=1 az=979 gx=2 gy=9 gz=-20 ts=10304[0m
+[0;32mI (10737) IMU_SIM: IMU ax=0 ay=1 az=979 gx=0 gy=9 gz=-20 ts=10324[0m
+[0;32mI (10757) IMU_SIM: IMU ax=0 ay=0 az=980 gx=-4 gy=-1 gz=-20 ts=10344[0m
+[0;32mI (10777) IMU_SIM: IMU ax=-1 ay=1 az=980 gx=-8 gy=9 gz=-20 ts=10364[0m
+[0;32mI (10797) IMU_SIM: IMU ax=-1 ay=1 az=980 gx=-6 gy=7 gz=-20 ts=10384[0m
+[0;32mI (10817) IMU_SIM: IMU ax=0 ay=0 az=980 gx=2 gy=-1 gz=-20 ts=10404[0m
+[0;32mI (10837) IMU_SIM: IMU ax=0 ay=0 az=980 gx=-3 gy=2 gz=-20 ts=10424[0m
+[0;32mI (10857) IMU_SIM: IMU ax=0 ay=0 az=981 gx=4 gy=-3 gz=-20 ts=10444[0m
+[0;32mI (10877) IMU_SIM: IMU ax=0 ay=0 az=981 gx=5 gy=-1 gz=-19 ts=10464[0m
+[0;32mI (10897) IMU_SIM: IMU ax=-1 ay=0 az=981 gx=-8 gy=0 gz=-19 ts=10484[0m
+[0;32mI (10897) PULSE_SIM: Sim BPM = 94[0m
+[0;32mI (10917) IMU_SIM: IMU ax=1 ay=-1 az=981 gx=9 gy=-5 gz=-19 ts=10504[0m
+[0;32mI (10937) IMU_SIM: IMU ax=-1 ay=1 az=981 gx=-7 gy=6 gz=-19 ts=10524[0m
+[0;32mI (10957) IMU_SIM: IMU ax=1 ay=0 az=981 gx=8 gy=-3 gz=-18 ts=10544[0m
+[0;32mI (10977) IMU_SIM: IMU ax=1 ay=0 az=982 gx=6 gy=-5 gz=-18 ts=10564[0m
+[0;32mI (10997) IMU_SIM: IMU ax=1 ay=0 az=982 gx=6 gy=-5 gz=-18 ts=10584[0m
+[0;32mI (11017) IMU_SIM: IMU ax=1 ay=0 az=982 gx=6 gy=3 gz=-18 ts=10604[0m
+[0;32mI (11037) IMU_SIM: IMU ax=0 ay=0 az=982 gx=1 gy=2 gz=-17 ts=10624[0m
+[0;32mI (11057) IMU_SIM: IMU ax=0 ay=0 az=982 gx=-5 gy=-3 gz=-17 ts=10644[0m
+[0;32mI (11077) IMU_SIM: IMU ax=0 ay=0 az=983 gx=-2 gy=-2 gz=-16 ts=10665[0m
+[0;32mI (11097) IMU_SIM: IMU ax=0 ay=1 az=983 gx=0 gy=8 gz=-16 ts=10684[0m
+[0;32mI (11117) IMU_SIM: IMU ax=0 ay=1 az=983 gx=1 gy=7 gz=-16 ts=10704[0m
+[0;32mI (11137) IMU_SIM: IMU ax=0 ay=1 az=983 gx=3 gy=6 gz=-15 ts=10724[0m
+[0;32mI (11157) IMU_SIM: IMU ax=1 ay=-1 az=983 gx=5 gy=-7 gz=-15 ts=10744[0m
+[0;32mI (11177) IMU_SIM: IMU ax=0 ay=-1 az=983 gx=0 gy=-5 gz=-14 ts=10764[0m
+[0;32mI (11197) IMU_SIM: IMU ax=-1 ay=0 az=984 gx=-8 gy=0 gz=-14 ts=10784[0m
+[0;32mI (11217) IMU_SIM: IMU ax=1 ay=1 az=984 gx=8 gy=6 gz=-13 ts=10805[0m
+[0;32mI (11237) IMU_SIM: IMU ax=-1 ay=-1 az=984 gx=-8 gy=-6 gz=-13 ts=10824[0m
+[0;32mI (11257) IMU_SIM: IMU ax=0 ay=0 az=984 gx=0 gy=2 gz=-12 ts=10844[0m
+[0;32mI (11277) IMU_SIM: IMU ax=-1 ay=0 az=984 gx=-8 gy=3 gz=-12 ts=10864[0m
+[0;32mI (11297) IMU_SIM: IMU ax=-1 ay=-1 az=985 gx=-9 gy=-8 gz=-11 ts=10884[0m
+[0;32mI (11317) IMU_SIM: IMU ax=1 ay=1 az=985 gx=7 gy=5 gz=-10 ts=10904[0m
+[0;32mI (11337) IMU_SIM: IMU ax=0 ay=1 az=985 gx=1 gy=7 gz=-10 ts=10924[0m
+[0;32mI (11357) IMU_SIM: IMU ax=1 ay=1 az=985 gx=7 gy=8 gz=-9 ts=10944[0m
+[0;32mI (11377) IMU_SIM: IMU ax=1 ay=1 az=985 gx=7 gy=8 gz=-9 ts=10964[0m
+[0;32mI (11397) IMU_SIM: IMU ax=0 ay=0 az=985 gx=1 gy=-1 gz=-8 ts=10984[0m
+[0;32mI (11417) IMU_SIM: IMU ax=1 ay=0 az=986 gx=7 gy=4 gz=-7 ts=11005[0m
+[0;32mI (11437) IMU_SIM: IMU ax=1 ay=-1 az=986 gx=10 gy=-7 gz=-7 ts=11024[0m
+[0;32mI (11457) IMU_SIM: IMU ax=-1 ay=0 az=986 gx=-9 gy=1 gz=-6 ts=11044[0m
+[0;32mI (11477) IMU_SIM: IMU ax=0 ay=0 az=986 gx=-1 gy=5 gz=-5 ts=11064[0m
+[0;32mI (11497) IMU_SIM: IMU ax=0 ay=0 az=986 gx=-4 gy=4 gz=-5 ts=11084[0m
+[0;32mI (11517) IMU_SIM: IMU ax=1 ay=1 az=987 gx=8 gy=8 gz=-4 ts=11104[0m
+[0;32mI (11537) IMU_SIM: IMU ax=-1 ay=0 az=987 gx=-9 gy=5 gz=-3 ts=11124[0m
+[0;32mI (11557) IMU_SIM: IMU ax=0 ay=-1 az=987 gx=0 gy=-7 gz=-2 ts=11144[0m
+[0;32mI (11577) IMU_SIM: IMU ax=0 ay=0 az=987 gx=3 gy=1 gz=-2 ts=11164[0m
+[0;32mI (11597) IMU_SIM: IMU ax=0 ay=0 az=987 gx=3 gy=0 gz=-1 ts=11184[0m
+[0;32mI (11617) IMU_SIM: IMU ax=0 ay=0 az=987 gx=4 gy=-3 gz=0 ts=11204[0m
+[0;32mI (11637) IMU_SIM: IMU ax=-1 ay=-1 az=988 gx=-8 gy=-7 gz=0 ts=11224[0m
+[0;32mI (11657) IMU_SIM: IMU ax=1 ay=0 az=988 gx=7 gy=-4 gz=1 ts=11244[0m
+[0;32mI (11677) IMU_SIM: IMU ax=0 ay=-1 az=988 gx=2 gy=-7 gz=2 ts=11264[0m
+[0;32mI (11697) IMU_SIM: IMU ax=0 ay=-1 az=988 gx=4 gy=-6 gz=2 ts=11284[0m
+[0;32mI (11717) IMU_SIM: IMU ax=-1 ay=-1 az=988 gx=-8 gy=-5 gz=3 ts=11304[0m
+[0;32mI (11737) IMU_SIM: IMU ax=0 ay=0 az=988 gx=-2 gy=0 gz=4 ts=11324[0m
+[0;32mI (11757) IMU_SIM: IMU ax=0 ay=0 az=989 gx=-1 gy=-1 gz=4 ts=11344[0m
+[0;32mI (11777) IMU_SIM: IMU ax=0 ay=1 az=989 gx=0 gy=9 gz=5 ts=11364[0m
+[0;32mI (11797) IMU_SIM: IMU ax=0 ay=1 az=989 gx=1 gy=9 gz=6 ts=11384[0m
+[0;32mI (11817) IMU_SIM: IMU ax=-1 ay=-1 az=989 gx=-8 gy=-8 gz=6 ts=11404[0m
+[0;32mI (11837) IMU_SIM: IMU ax=1 ay=0 az=989 gx=8 gy=-5 gz=7 ts=11424[0m
+[0;32mI (11857) IMU_SIM: IMU ax=0 ay=0 az=989 gx=2 gy=3 gz=8 ts=11445[0m
+[0;32mI (11877) IMU_SIM: IMU ax=0 ay=1 az=990 gx=1 gy=9 gz=8 ts=11464[0m
+[0;32mI (11897) IMU_SIM: IMU ax=0 ay=-1 az=990 gx=1 gy=-7 gz=9 ts=11484[0m
+[0;32mI (11897) PULSE_SIM: Sim BPM = 103[0m
+[0;32mI (11917) IMU_SIM: IMU ax=-1 ay=1 az=990 gx=-9 gy=9 gz=10 ts=11504[0m
+[0;32mI (11937) IMU_SIM: IMU ax=0 ay=1 az=990 gx=0 gy=8 gz=10 ts=11524[0m
+[0;32mI (11957) IMU_SIM: IMU ax=1 ay=0 az=990 gx=7 gy=1 gz=11 ts=11544[0m
+[0;32mI (11977) IMU_SIM: IMU ax=-1 ay=0 az=990 gx=-8 gy=1 gz=11 ts=11564[0m
+[0;32mI (11997) IMU_SIM: IMU ax=0 ay=-1 az=990 gx=0 gy=-7 gz=12 ts=11585[0m
+[0;32mI (12017) IMU_SIM: IMU ax=1 ay=-1 az=991 gx=10 gy=-8 gz=13 ts=11604[0m
+[0;32mI (12037) IMU_SIM: IMU ax=-1 ay=-1 az=991 gx=-10 gy=-9 gz=13 ts=11624[0m
+[0;32mI (12057) IMU_SIM: IMU ax=1 ay=0 az=991 gx=7 gy=-3 gz=14 ts=11644[0m
+[0;32mI (12077) IMU_SIM: IMU ax=0 ay=1 az=991 gx=-1 gy=6 gz=14 ts=11664[0m
+[0;32mI (12097) IMU_SIM: IMU ax=0 ay=0 az=991 gx=2 gy=-2 gz=15 ts=11684[0m
+[0;32mI (12117) IMU_SIM: IMU ax=0 ay=-1 az=991 gx=2 gy=-5 gz=15 ts=11704[0m
+[0;32mI (12137) IMU_SIM: IMU ax=0 ay=0 az=991 gx=4 gy=-2 gz=16 ts=11724[0m
+[0;32mI (12157) IMU_SIM: IMU ax=-1 ay=0 az=992 gx=-6 gy=-4 gz=16 ts=11744[0m
+[0;32mI (12177) IMU_SIM: IMU ax=-1 ay=1 az=992 gx=-9 gy=9 gz=16 ts=11764[0m
+[0;32mI (12197) IMU_SIM: IMU ax=-1 ay=1 az=992 gx=-6 gy=9 gz=17 ts=11785[0m
+[0;32mI (12217) IMU_SIM: IMU ax=-1 ay=1 az=992 gx=-9 gy=7 gz=17 ts=11804[0m
+[0;32mI (12237) IMU_SIM: IMU ax=0 ay=1 az=992 gx=2 gy=7 gz=17 ts=11824[0m
+[0;32mI (12257) IMU_SIM: IMU ax=1 ay=1 az=992 gx=6 gy=10 gz=18 ts=11844[0m
+[0;32mI (12277) IMU_SIM: IMU ax=1 ay=0 az=992 gx=7 gy=-3 gz=18 ts=11864[0m
+[0;32mI (12297) IMU_SIM: IMU ax=0 ay=0 az=992 gx=1 gy=2 gz=18 ts=11884[0m
+[0;32mI (12317) IMU_SIM: IMU ax=0 ay=-1 az=993 gx=4 gy=-9 gz=19 ts=11904[0m
+[0;32mI (12337) IMU_SIM: IMU ax=1 ay=-1 az=993 gx=7 gy=-5 gz=19 ts=11924[0m
+[0;32mI (12357) IMU_SIM: IMU ax=0 ay=1 az=993 gx=-4 gy=8 gz=19 ts=11944[0m
+[0;32mI (12377) IMU_SIM: IMU ax=0 ay=1 az=993 gx=1 gy=7 gz=19 ts=11964[0m
+[0;32mI (12397) IMU_SIM: IMU ax=0 ay=0 az=993 gx=3 gy=0 gz=19 ts=11984[0m
+[0;32mI (12417) IMU_SIM: IMU ax=0 ay=1 az=993 gx=3 gy=5 gz=20 ts=12004[0m
+[0;32mI (12437) IMU_SIM: IMU ax=1 ay=0 az=993 gx=9 gy=-1 gz=20 ts=12024[0m
+[0;32mI (12457) IMU_SIM: IMU ax=-1 ay=0 az=993 gx=-10 gy=-5 gz=20 ts=12044[0m
+[0;32mI (12477) IMU_SIM: IMU ax=1 ay=0 az=993 gx=6 gy=2 gz=20 ts=12064[0m
+[0;32mI (12497) IMU_SIM: IMU ax=1 ay=-1 az=994 gx=9 gy=-8 gz=20 ts=12084[0m
+[0;32mI (12517) IMU_SIM: IMU ax=0 ay=1 az=994 gx=-1 gy=9 gz=20 ts=12104[0m
+[0;32mI (12537) IMU_SIM: IMU ax=0 ay=0 az=994 gx=1 gy=-2 gz=20 ts=12124[0m
+[0;32mI (12557) IMU_SIM: IMU ax=-1 ay=-1 az=994 gx=-7 gy=-6 gz=20 ts=12144[0m
+[0;32mI (12577) IMU_SIM: IMU ax=1 ay=0 az=994 gx=10 gy=5 gz=20 ts=12164[0m
+[0;32mI (12597) IMU_SIM: IMU ax=0 ay=1 az=994 gx=-5 gy=9 gz=20 ts=12184[0m
+[0;32mI (12617) IMU_SIM: IMU ax=0 ay=0 az=994 gx=1 gy=-2 gz=20 ts=12204[0m
+[0;32mI (12637) IMU_SIM: IMU ax=1 ay=-1 az=994 gx=10 gy=-9 gz=20 ts=12225[0m
+[0;32mI (12657) IMU_SIM: IMU ax=0 ay=0 az=994 gx=0 gy=0 gz=19 ts=12244[0m
+[0;32mI (12677) IMU_SIM: IMU ax=0 ay=0 az=994 gx=-2 gy=4 gz=19 ts=12264[0m
+[0;32mI (12697) IMU_SIM: IMU ax=1 ay=-1 az=994 gx=9 gy=-9 gz=19 ts=12284[0m
+[0;32mI (12717) IMU_SIM: IMU ax=-1 ay=1 az=995 gx=-8 gy=7 gz=19 ts=12304[0m
+[0;32mI (12737) IMU_SIM: IMU ax=-1 ay=0 az=995 gx=-8 gy=-3 gz=19 ts=12324[0m
+[0;32mI (12757) IMU_SIM: IMU ax=1 ay=-1 az=995 gx=8 gy=-9 gz=18 ts=12344[0m
+[0;32mI (12777) IMU_SIM: IMU ax=-1 ay=0 az=995 gx=-6 gy=-4 gz=18 ts=12364[0m
+[0;32mI (12797) IMU_SIM: IMU ax=0 ay=0 az=995 gx=1 gy=0 gz=18 ts=12384[0m
+[0;32mI (12817) IMU_SIM: IMU ax=0 ay=0 az=995 gx=-2 gy=5 gz=17 ts=12404[0m
+[0;32mI (12837) IMU_SIM: IMU ax=1 ay=0 az=995 gx=7 gy=-4 gz=17 ts=12424[0m
+[0;32mI (12857) IMU_SIM: IMU ax=0 ay=0 az=995 gx=-1 gy=-5 gz=17 ts=12444[0m
+[0;32mI (12877) IMU_SIM: IMU ax=0 ay=0 az=995 gx=-1 gy=-2 gz=16 ts=12464[0m
+[0;32mI (12897) IMU_SIM: IMU ax=0 ay=1 az=995 gx=1 gy=7 gz=16 ts=12484[0m
+[0;32mI (12897) PULSE_SIM: Sim BPM = 113[0m
+[0;32mI (12907) MAIN: Sistema funcionando (simulado)...[0m
+[0;32mI (12917) IMU_SIM: IMU ax=-1 ay=1 az=995 gx=-9 gy=5 gz=15 ts=12504[0m
+[0;32mI (12937) IMU_SIM: IMU ax=0 ay=1 az=995 gx=1 gy=6 gz=15 ts=12524[0m
+[0;32mI (12957) IMU_SIM: IMU ax=1 ay=1 az=995 gx=6 gy=5 gz=15 ts=12544[0m
+[0;32mI (12977) IMU_SIM: IMU ax=0 ay=0 az=995 gx=4 gy=-1 gz=14 ts=12565[0m
+[0;32mI (12997) IMU_SIM: IMU ax=-1 ay=0 az=995 gx=-8 gy=-2 gz=14 ts=12584[0m
+[0;32mI (13017) IMU_SIM: IMU ax=1 ay=1 az=996 gx=6 gy=8 gz=13 ts=12604[0m
+[0;32mI (13037) IMU_SIM: IMU ax=0 ay=0 az=996 gx=-3 gy=0 gz=13 ts=12624[0m
+[0;32mI (13057) IMU_SIM: IMU ax=0 ay=0 az=996 gx=2 gy=1 gz=12 ts=12644[0m
+[0;32mI (13077) IMU_SIM: IMU ax=-1 ay=0 az=996 gx=-8 gy=4 gz=11 ts=12664[0m
+[0;32mI (13097) IMU_SIM: IMU ax=1 ay=0 az=996 gx=9 gy=0 gz=11 ts=12684[0m
+[0;32mI (13117) IMU_SIM: IMU ax=0 ay=0 az=996 gx=5 gy=3 gz=10 ts=12704[0m
+[0;32mI (13137) IMU_SIM: IMU ax=1 ay=-1 az=996 gx=7 gy=-8 gz=10 ts=12724[0m
+[0;32mI (13157) IMU_SIM: IMU ax=0 ay=1 az=996 gx=0 gy=9 gz=9 ts=12744[0m
+[0;32mI (13177) IMU_SIM: IMU ax=0 ay=1 az=996 gx=-4 gy=7 gz=8 ts=12764[0m
+[0;32mI (13197) IMU_SIM: IMU ax=-1 ay=0 az=996 gx=-10 gy=4 gz=8 ts=12784[0m
+[0;32mI (13217) IMU_SIM: IMU ax=0 ay=0 az=996 gx=-2 gy=-3 gz=7 ts=12804[0m
+[0;32mI (13237) IMU_SIM: IMU ax=0 ay=0 az=996 gx=-1 gy=2 gz=6 ts=12824[0m
+[0;32mI (13257) IMU_SIM: IMU ax=-1 ay=0 az=996 gx=-6 gy=4 gz=6 ts=12844[0m
+[0;32mI (13277) IMU_SIM: IMU ax=0 ay=1 az=996 gx=-3 gy=8 gz=5 ts=12864[0m
+[0;32mI (13297) IMU_SIM: IMU ax=1 ay=0 az=996 gx=9 gy=4 gz=4 ts=12884[0m
+[0;32mI (13317) IMU_SIM: IMU ax=-1 ay=0 az=996 gx=-9 gy=-4 gz=4 ts=12904[0m
+[0;32mI (13337) IMU_SIM: IMU ax=1 ay=1 az=996 gx=5 gy=8 gz=3 ts=12924[0m
+[0;32mI (13357) IMU_SIM: IMU ax=0 ay=-1 az=996 gx=1 gy=-9 gz=2 ts=12944[0m
+[0;32mI (13377) IMU_SIM: IMU ax=0 ay=0 az=996 gx=1 gy=3 gz=2 ts=12964[0m
+[0;32mI (13397) IMU_SIM: IMU ax=0 ay=0 az=996 gx=4 gy=1 gz=1 ts=12984[0m
+[0;32mI (13417) IMU_SIM: IMU ax=0 ay=-1 az=996 gx=-2 gy=-8 gz=0 ts=13005[0m
+[0;32mI (13437) IMU_SIM: IMU ax=0 ay=0 az=996 gx=-4 gy=-5 gz=0 ts=13024[0m
+[0;32mI (13457) IMU_SIM: IMU ax=1 ay=0 az=996 gx=8 gy=1 gz=-1 ts=13044[0m
+[0;32mI (13477) IMU_SIM: IMU ax=1 ay=1 az=996 gx=8 gy=8 gz=-2 ts=13064[0m
+[0;32mI (13497) IMU_SIM: IMU ax=0 ay=1 az=996 gx=-1 gy=7 gz=-3 ts=13084[0m
+[0;32mI (13517) IMU_SIM: IMU ax=0 ay=0 az=996 gx=0 gy=0 gz=-3 ts=13104[0m
+[0;32mI (13537) IMU_SIM: IMU ax=0 ay=0 az=996 gx=-4 gy=3 gz=-4 ts=13124[0m
+[0;32mI (13557) IMU_SIM: IMU ax=1 ay=0 az=996 gx=9 gy=1 gz=-5 ts=13144[0m
+[0;32mI (13577) IMU_SIM: IMU ax=0 ay=1 az=996 gx=-5 gy=8 gz=-5 ts=13164[0m
+[0;32mI (13597) IMU_SIM: IMU ax=0 ay=0 az=996 gx=-3 gy=-1 gz=-6 ts=13184[0m
+[0;32mI (13617) IMU_SIM: IMU ax=0 ay=0 az=996 gx=-3 gy=2 gz=-7 ts=13204[0m
+[0;32mI (13637) IMU_SIM: IMU ax=0 ay=1 az=996 gx=-2 gy=9 gz=-7 ts=13224[0m
+[0;32mI (13657) IMU_SIM: IMU ax=1 ay=-1 az=996 gx=10 gy=-8 gz=-8 ts=13244[0m
+[0;32mI (13677) IMU_SIM: IMU ax=1 ay=0 az=996 gx=6 gy=1 gz=-9 ts=13264[0m
+[0;32mI (13697) IMU_SIM: IMU ax=0 ay=0 az=996 gx=-5 gy=3 gz=-9 ts=13284[0m
+[0;32mI (13717) IMU_SIM: IMU ax=1 ay=-1 az=996 gx=8 gy=-6 gz=-10 ts=13304[0m
+[0;32mI (13737) IMU_SIM: IMU ax=0 ay=0 az=996 gx=-4 gy=-5 gz=-10 ts=13324[0m
+[0;32mI (13757) IMU_SIM: IMU ax=0 ay=-1 az=996 gx=-1 gy=-9 gz=-11 ts=13345[0m
+[0;32mI (13777) IMU_SIM: IMU ax=0 ay=1 az=996 gx=5 gy=6 gz=-12 ts=13364[0m
+[0;32mI (13797) IMU_SIM: IMU ax=1 ay=-1 az=996 gx=9 gy=-9 gz=-12 ts=13384[0m
+[0;32mI (13817) IMU_SIM: IMU ax=-1 ay=-1 az=996 gx=-7 gy=-9 gz=-13 ts=13404[0m
+[0;32mI (13837) IMU_SIM: IMU ax=1 ay=0 az=996 gx=6 gy=5 gz=-13 ts=13424[0m
+[0;32mI (13857) IMU_SIM: IMU ax=0 ay=0 az=995 gx=3 gy=3 gz=-14 ts=13444[0m
+[0;32mI (13877) IMU_SIM: IMU ax=0 ay=-1 az=995 gx=1 gy=-7 gz=-14 ts=13464[0m
+[0;32mI (13897) IMU_SIM: IMU ax=0 ay=0 az=995 gx=2 gy=4 gz=-15 ts=13484[0m
+[0;32mI (13897) PULSE_SIM: Sim BPM = 109[0m
+[0;32mI (13917) IMU_SIM: IMU ax=0 ay=-1 az=995 gx=0 gy=-7 gz=-15 ts=13504[0m
+[0;32mI (13937) IMU_SIM: IMU ax=1 ay=-18 az=995 gx=7 gy=-57 gz=-16 ts=13524[0m
+[0;32mI (13957) IMU_SIM: IMU ax=-3 ay=-16 az=995 gx=-16 gy=-45 gz=-16 ts=13544[0m
+[0;32mI (13977) IMU_SIM: IMU ax=-4 ay=-17 az=995 gx=-9 gy=-57 gz=-16 ts=13564[0m
+[0;32mI (13997) IMU_SIM: IMU ax=-8 ay=-15 az=995 gx=-31 gy=-47 gz=-17 ts=13584[0m
+[0;32mI (14017) IMU_SIM: IMU ax=-9 ay=-14 az=995 gx=-19 gy=-47 gz=-17 ts=13604[0m
+[0;32mI (14037) IMU_SIM: IMU ax=-11 ay=-13 az=995 gx=-34 gy=-47 gz=-18 ts=13624[0m
+[0;32mI (14057) IMU_SIM: IMU ax=-13 ay=-11 az=995 gx=-39 gy=-39 gz=-18 ts=13644[0m
+[0;32mI (14077) IMU_SIM: IMU ax=-15 ay=-9 az=995 gx=-44 gy=-33 gz=-18 ts=13664[0m
+[0;32mI (14097) IMU_SIM: IMU ax=-15 ay=-7 az=995 gx=-44 gy=-25 gz=-18 ts=13684[0m
+[0;32mI (14117) IMU_SIM: IMU ax=-16 ay=-3 az=995 gx=-43 gy=-7 gz=-19 ts=13704[0m
+[0;32mI (14137) IMU_SIM: IMU ax=-18 ay=-1 az=995 gx=-59 gy=-6 gz=-19 ts=13724[0m
+[0;32mI (14157) IMU_SIM: IMU ax=-18 ay=1 az=994 gx=-58 gy=-4 gz=-19 ts=13744[0m
+[0;32mI (14177) IMU_SIM: IMU ax=-16 ay=4 az=994 gx=-40 gy=18 gz=-19 ts=13764[0m
+[0;32mI (14197) IMU_SIM: IMU ax=-16 ay=5 az=994 gx=-52 gy=11 gz=-20 ts=13785[0m
+[0;32mI (14217) IMU_SIM: IMU ax=-15 ay=9 az=994 gx=-50 gy=35 gz=-20 ts=13804[0m
+[0;32mI (14237) IMU_SIM: IMU ax=-13 ay=11 az=994 gx=-34 gy=31 gz=-20 ts=13824[0m
+[0;32mI (14257) IMU_SIM: IMU ax=-11 ay=12 az=994 gx=-30 gy=37 gz=-20 ts=13844[0m
+[0;32mI (14277) IMU_SIM: IMU ax=-9 ay=15 az=994 gx=-23 gy=51 gz=-20 ts=13864[0m
+[0;32mI (14297) IMU_SIM: IMU ax=-8 ay=16 az=994 gx=-26 gy=51 gz=-20 ts=13884[0m
+[0;32mI (14317) IMU_SIM: IMU ax=-5 ay=16 az=994 gx=-16 gy=47 gz=-20 ts=13904[0m
+[0;32mI (14337) IMU_SIM: IMU ax=-3 ay=18 az=994 gx=-8 gy=60 gz=-20 ts=13924[0m
+[0;32mI (14357) IMU_SIM: IMU ax=1 ay=16 az=994 gx=4 gy=47 gz=-20 ts=13944[0m
+[0;32mI (14377) IMU_SIM: IMU ax=3 ay=16 az=993 gx=10 gy=41 gz=-20 ts=13964[0m
+[0;32mI (14397) IMU_SIM: IMU ax=5 ay=16 az=993 gx=10 gy=47 gz=-20 ts=13984[0m
+[0;32mI (14417) IMU_SIM: IMU ax=7 ay=15 az=993 gx=17 gy=42 gz=-20 ts=14004[0m
+[0;32mI (14437) IMU_SIM: IMU ax=9 ay=15 az=993 gx=25 gy=48 gz=-20 ts=14024[0m
+[0;32mI (14457) IMU_SIM: IMU ax=12 ay=11 az=993 gx=38 gy=28 gz=-19 ts=14044[0m
+[0;32mI (14477) IMU_SIM: IMU ax=13 ay=11 az=993 gx=34 gy=37 gz=-19 ts=14064[0m
+[0;32mI (14497) IMU_SIM: IMU ax=15 ay=8 az=993 gx=50 gy=26 gz=-19 ts=14084[0m
+[0;32mI (14517) IMU_SIM: IMU ax=16 ay=5 az=993 gx=49 gy=9 gz=-19 ts=14104[0m
+[0;32mI (14537) IMU_SIM: IMU ax=16 ay=3 az=993 gx=43 gy=3 gz=-19 ts=14125[0m
+[0;32mI (14557) IMU_SIM: IMU ax=16 ay=2 az=992 gx=45 gy=9 gz=-18 ts=14144[0m
+[0;32mI (14577) IMU_SIM: IMU ax=18 ay=-1 az=992 gx=58 gy=1 gz=-18 ts=14164[0m
+[0;32mI (14597) IMU_SIM: IMU ax=17 ay=-4 az=992 gx=59 gy=-16 gz=-18 ts=14184[0m
+[0;32mI (14617) IMU_SIM: IMU ax=17 ay=-7 az=992 gx=56 gy=-29 gz=-17 ts=14204[0m
+[0;32mI (14637) IMU_SIM: IMU ax=14 ay=-9 az=992 gx=40 gy=-31 gz=-17 ts=14224[0m
+[0;32mI (14657) IMU_SIM: IMU ax=14 ay=-10 az=992 gx=48 gy=-24 gz=-17 ts=14244[0m
+[0;32mI (14677) IMU_SIM: IMU ax=12 ay=-12 az=992 gx=37 gy=-30 gz=-16 ts=14264[0m
+[0;32mI (14697) IMU_SIM: IMU ax=9 ay=-14 az=991 gx=22 gy=-43 gz=-16 ts=14284[0m
+[0;32mI (14717) IMU_SIM: IMU ax=8 ay=-15 az=991 gx=31 gy=-47 gz=-15 ts=14304[0m
+[0;32mI (14737) IMU_SIM: IMU ax=4 ay=-17 az=991 gx=9 gy=-58 gz=-15 ts=14324[0m
+[0;32mI (14757) IMU_SIM: IMU ax=3 ay=-17 az=991 gx=11 gy=-57 gz=-14 ts=14344[0m
+[0;32mI (14777) IMU_SIM: IMU ax=0 ay=-17 az=991 gx=-1 gy=-55 gz=-14 ts=14364[0m

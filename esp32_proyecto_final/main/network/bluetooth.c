@@ -127,7 +127,7 @@ static void ble_on_sync(void) {
   struct ble_hs_adv_fields fields;
   memset(&fields, 0, sizeof(fields));
   fields.flags = BLE_HS_ADV_F_DISC_GEN | BLE_HS_ADV_F_BREDR_UNSUP;
-  fields.name = (uint8_t *)"ESP32_NimBLE";
+  fields.name = (uint8_t *)"DAS_ESP";
   fields.name_len = strlen((char *)fields.name);
   fields.name_is_complete = 1;
 

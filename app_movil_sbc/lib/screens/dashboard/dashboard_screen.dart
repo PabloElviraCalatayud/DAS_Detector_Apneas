@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import '../../data/bluetooth/ble_manager.dart';
 import '../bluetooth/ble_page.dart';
+import '../debug/debug_screen.dart';
 import 'dashboard_content.dart';
+
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -11,11 +14,18 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   int _index = 0;
+  late List<Widget> _pages;
 
-  final List<Widget> _pages = const [
-    DashboardContent(),
-    BlePage(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+
+    _pages = [
+      const DashboardContent(),
+      const BLEPage(),
+      DebugScreen(packetStream: BleManager.instance.packetStream),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +33,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
       body: _pages[_index],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _index,
-        onTap: (i) => setState(() => _index = i),
+        onTap: (i) {
+          setState(() {
+            _index = i;
+          });
+        },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
@@ -32,6 +46,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.bluetooth),
             label: 'Dispositivo',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bug_report),
+            label: 'Debug',
           ),
         ],
       ),

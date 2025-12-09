@@ -2,9 +2,10 @@
 
 import 'dart:async';
 import 'dart:typed_data';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 
-import 'ble_constants.dart';
+import '../ble_constants.dart';
 
 /// Maneja:
 ///  - conexión BLE
@@ -41,11 +42,17 @@ class BleConnection {
   // -------------------------------------------------------------
   // SCAN
   // -------------------------------------------------------------
-  Future<Stream<DiscoveredDevice>> scan() async {
-    return _ble.scanForDevices(
+  Future<Stream<DiscoveredDevice>> scan({String targetName = "DAS_ESP"}) async {
+    // Creamos un stream transformado que filtre los eventos entrantes
+    final rawStream = _ble.scanForDevices(
       withServices: const [],
       scanMode: ScanMode.lowLatency,
     );
+
+    return rawStream.where((d) {
+      final name = d.name.trim().toLowerCase();
+      return name.contains(targetName.toLowerCase());
+    });
   }
 
   // -------------------------------------------------------------
@@ -106,7 +113,9 @@ class BleConnection {
     _notifySub = _ble.subscribeToCharacteristic(_notifyChar!).listen(
       _onNotificationFragment,
       onError: (e) {
-        print("BLE notify error: $e");
+        if (kDebugMode) {
+          print("BLE notify error: $e");
+        }
       },
     );
   }

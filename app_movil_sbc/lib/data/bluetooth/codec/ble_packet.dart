@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
 class ImuSample {
-  final int ax, ay, az;
-  final int gx, gy, gz;
+  final double ax, ay, az;
+  final double gx, gy, gz;
 
   ImuSample({
     required this.ax,
@@ -33,7 +33,6 @@ class BlePacket {
     final flags = bytes[offset];
     offset += 1;
 
-    // timestamp uint64 LE
     final ts = _readUint64(bytes, offset);
     offset += 8;
 
@@ -43,32 +42,33 @@ class BlePacket {
     final pulseCount = bytes[offset];
     offset += 1;
 
-    // Parse IMU samples
     final imuSamples = <ImuSample>[];
+
+    // ---- Parse IMU ----
     for (int i = 0; i < imuCount; i++) {
-      final ax = _readInt16(bytes, offset);
-      final ay = _readInt16(bytes, offset + 2);
-      final az = _readInt16(bytes, offset + 4);
-      final gx = _readInt16(bytes, offset + 6);
-      final gy = _readInt16(bytes, offset + 8);
-      final gz = _readInt16(bytes, offset + 10);
+      final rawAx = _readInt16(bytes, offset);
+      final rawAy = _readInt16(bytes, offset + 2);
+      final rawAz = _readInt16(bytes, offset + 4);
+      final rawGx = _readInt16(bytes, offset + 6);
+      final rawGy = _readInt16(bytes, offset + 8);
+      final rawGz = _readInt16(bytes, offset + 10);
       offset += 12;
 
+      // Convert x100 scale from ESP32
       imuSamples.add(ImuSample(
-        ax: ax,
-        ay: ay,
-        az: az,
-        gx: gx,
-        gy: gy,
-        gz: gz,
+        ax: rawAx / 100.0,
+        ay: rawAy / 100.0,
+        az: rawAz / 100.0,
+        gx: rawGx / 100.0,
+        gy: rawGy / 100.0,
+        gz: rawGz / 100.0,
       ));
     }
 
-    // Pulses uint16
+    // ---- Pulses ----
     final pulses = <int>[];
     for (int i = 0; i < pulseCount; i++) {
-      final p = _readUint16(bytes, offset);
-      pulses.add(p);
+      pulses.add(_readUint16(bytes, offset));
       offset += 2;
     }
 

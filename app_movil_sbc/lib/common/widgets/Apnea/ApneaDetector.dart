@@ -13,9 +13,7 @@ class ApneaDetector {
 
   final List<SensorData> _buffer = [];
 
-  Stream<int> get apneaEventsStream {
-    return _controller.stream;
-  }
+  Stream<int> get apneaEventsStream => _controller.stream;
 
   ApneaDetector({
     required this.sensorStream,
@@ -37,22 +35,26 @@ class ApneaDetector {
     }
 
     final movementAvg = _buffer.map((e) => e.movementIndex).reduce((a, b) => a + b) / _buffer.length;
-    final hrvAvg = _buffer.map((e) => e.hrv).reduce((a, b) => a + b) / _buffer.length;
     final hrList = _buffer.map((e) => e.heartRate).toList();
 
-    if (_isBradycardia(hrList) && movementAvg < 0.15 && hrvAvg < 0.12) {
+    if (_isApneaPattern(hrList, movementAvg)) {
       _events++;
       _controller.add(_events);
       _buffer.clear();
     }
   }
 
-  bool _isBradycardia(List<int> hr) {
+  bool _isApneaPattern(List<int> hr, double movementAvg) {
     if (hr.length < 4) {
       return false;
     }
+
     final first = hr.first;
     final last = hr.last;
-    return last < first - 4;
+
+    final drop = first - last;
+
+    return drop >= 5 && movementAvg < 0.15;
   }
 }
+

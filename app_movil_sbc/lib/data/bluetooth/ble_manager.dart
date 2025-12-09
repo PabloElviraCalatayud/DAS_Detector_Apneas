@@ -1,211 +1,94 @@
 import 'dart:async';
-import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
-
-import '../models/sensor_data_model.dart';
-import 'ble_constants.dart';
-import 'ble_decoder.dart';
-import 'ble_packet.dart';
+import 'connection/ble_connection.dart';
+import 'codec/ble_decoder.dart';
+import 'codec/ble_packet.dart';
 
 class BleManager extends ChangeNotifier {
-  // Singleton
   BleManager._internal();
   static final BleManager instance = BleManager._internal();
 
-  final FlutterReactiveBle _ble = FlutterReactiveBle();
+  final BleConnection _connection = BleConnection();
 
-  // Device info
-  DiscoveredDevice? connectedDevice;
-  String? connectedDeviceName;   // 🔵 <-- NOMBRE DEL DISPOSITIVO ACTUAL
+  final List<DiscoveredDevice> devices = [];
 
-  StreamSubscription<ConnectionStateUpdate>? _connSub;
-  StreamSubscription<List<int>>? _notifySub;
   StreamSubscription<DiscoveredDevice>? _scanSub;
+  StreamSubscription<Uint8List>? _rawSub;
+  StreamSubscription<DiscoveredDevice?>? _connChangedSub;
 
-  // Scan controller
-  StreamController<DiscoveredDevice>? _scanController;
-
-  // Raw packet stream
-  final StreamController<BlePacket> _rawPacketController =
+  final StreamController<BlePacket> _packetController =
   StreamController<BlePacket>.broadcast();
-  Stream<BlePacket> get rawPacketStream => _rawPacketController.stream;
 
-  // Connection status stream
-  final StreamController<bool> _connectionStatusController =
-  StreamController<bool>.broadcast();
-  Stream<bool> get connectionStatusStream =>
-      _connectionStatusController.stream;
+  Stream<BlePacket> get packetStream => _packetController.stream;
 
-  // Heartbeat tracking
-  int _latestHeartRate = 0;
-  int get latestHeartRate => _latestHeartRate;
+  bool get isConnected => _connection.isConnected;
+  String? get connectedDeviceName => _connection.connectedDevice?.name;
 
-  bool get isConnected => connectedDevice != null;
-
-  // ---------------------------------------------------------
-  // SCAN
-  // ---------------------------------------------------------
-  Stream<DiscoveredDevice> scan() {
-    try {
-      _ble.deinitialize();
-    } catch (_) {}
-
-    _scanSub?.cancel();
-
-    _scanController?.close();
-    _scanController = StreamController<DiscoveredDevice>.broadcast();
-
-    _ble.scanForDevices(
-      withServices: [],
-      scanMode: ScanMode.lowLatency,
-    ).listen(
-          (device) {
-        if (device.name.isNotEmpty) {
-          _scanController?.add(device);
-        }
-      },
-      onError: (e) => _scanController?.addError(e),
-      onDone: () => _scanController?.close(),
-    );
-
-    return _scanController!.stream;
+  Future<int> requestMtu(int size) async {
+    return await _connection.requestMtu(size);
   }
 
-  // ---------------------------------------------------------
-  // CONNECT
-  // ---------------------------------------------------------
-  Future<void> connect(DiscoveredDevice device) async {
-    await disconnect();
-
-    connectedDevice = device;
-    connectedDeviceName = device.name;   // 🔵 GUARDAMOS EL NOMBRE
-
-    _connSub = _ble.connectToDevice(
-      id: device.id,
-      connectionTimeout: const Duration(seconds: 6),
-    ).listen((update) {
-      if (update.connectionState == DeviceConnectionState.connected) {
-        _connectionStatusController.add(true);
-        _subscribeNotifications();
-        notifyListeners();
-      }
-
-      if (update.connectionState == DeviceConnectionState.disconnected) {
-        connectedDevice = null;
-        connectedDeviceName = null;     // ❌ BORRAR NOMBRE
-        _connectionStatusController.add(false);
+  Future<void> startScan() async {
+    final raw = await _connection.scan();
+    _scanSub = raw.listen((device) {
+      if (!devices.any((d) => d.id == device.id)) {
+        devices.add(device);
         notifyListeners();
       }
     });
   }
 
-  // ---------------------------------------------------------
-  // DISCONNECT
-  // ---------------------------------------------------------
-  Future<void> disconnect() async {
-    await _notifySub?.cancel();
-    await _connSub?.cancel();
-
-    _notifySub = null;
-    _connSub = null;
-
-    connectedDevice = null;
-    connectedDeviceName = null;   // ❌ BORRAR NOMBRE AL DESCONECTAR
-
-    _connectionStatusController.add(false);
-
-    notifyListeners();
-  }
-
-  // ---------------------------------------------------------
-  // NOTIFY SUBSCRIPTION
-  // ---------------------------------------------------------
-  void _subscribeNotifications() {
-    if (connectedDevice == null) return;
-
-    final characteristic = QualifiedCharacteristic(
-      serviceId: BleConstants.serviceUuid,
-      characteristicId: BleConstants.notifyCharacteristicUuid,
-      deviceId: connectedDevice!.id,
-    );
-
-    _notifySub = _ble.subscribeToCharacteristic(characteristic).listen(
-          (data) {
-        _handleIncoming(Uint8List.fromList(data));
-      },
-    );
-  }
-
-  // ---------------------------------------------------------
-  // PACKET PROCESSING
-  // ---------------------------------------------------------
-  void _handleIncoming(Uint8List bytes) {
-    final packet = decodePacketCompact(bytes);
-    if (packet == null) return;
-
-    _rawPacketController.add(packet);
-
-    final model = SensorDataModel.instance;
-    model.process(packet);
-
-    final d = model.lastData;
-    if (d != null) {
-      _latestHeartRate = d.heartRate;
-      notifyListeners();
-    }
-  }
-
-  // ---------------------------------------------------------
-  // BLE WRITE (OTA SUPPORT)
-  // ---------------------------------------------------------
-  Future<void> write(Uint8List data) async {
-    if (connectedDevice == null) {
-      throw Exception("Device not connected");
-    }
-
-    final characteristic = QualifiedCharacteristic(
-      serviceId: BleConstants.serviceUuid,
-      characteristicId: BleConstants.writeCharacteristicUuid,
-      deviceId: connectedDevice!.id,
-    );
-
-    await _ble.writeCharacteristicWithResponse(characteristic, value: data);
-  }
-
-  Future<void> send(String text) async {
-    await write(Uint8List.fromList(text.codeUnits));
-  }
-
-  // ---------------------------------------------------------
-  // MTU REQUEST (OTA)
-  // ---------------------------------------------------------
-  Future<int> requestMtu(int size) async {
-    if (connectedDevice == null) {
-      throw Exception("Device not connected");
-    }
-
-    return _ble.requestMtu(
-      deviceId: connectedDevice!.id,
-      mtu: size,
-    );
-  }
-
-  void stopScan() {
-    _scanSub?.cancel();
+  Future<void> stopScan() async {
+    await _scanSub?.cancel();
     _scanSub = null;
   }
 
-  // ---------------------------------------------------------
-  // CLEANUP
-  // ---------------------------------------------------------
+  Future<void> connect(DiscoveredDevice device) async {
+    await stopScan();
+    await _rawSub?.cancel();
+    await _connChangedSub?.cancel();
+
+    await _connection.connect(device);
+
+    _rawSub = _connection.onRawData.listen((bytes) {
+      final pkt = BleDecoder.decodeCompact(bytes);
+      if (pkt != null) {
+        _packetController.add(pkt);
+      }
+    });
+
+    _connChangedSub = _connection.onConnectionChanged.listen((_) {
+      notifyListeners();
+    });
+  }
+
+  Future<void> disconnect() async {
+    await _rawSub?.cancel();
+    _rawSub = null;
+
+    await _connChangedSub?.cancel();
+    _connChangedSub = null;
+
+    await _connection.disconnect();
+    notifyListeners();
+  }
+
+  Future<void> sendText(String text) async {
+    await _connection.send(text);
+  }
+
+  Future<void> writeBinary(Uint8List data) async {
+    await _connection.write(data);
+  }
+
   @override
   void dispose() {
-    stopScan();
-    _scanController?.close();
-    _rawPacketController.close();
-    _connectionStatusController.close();
-    disconnect();
+    _packetController.close();
+    _scanSub?.cancel();
+    _rawSub?.cancel();
+    _connChangedSub?.cancel();
+    _connection.dispose();
     super.dispose();
   }
 }

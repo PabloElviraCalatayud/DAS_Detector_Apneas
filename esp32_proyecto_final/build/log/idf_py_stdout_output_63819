@@ -1,0 +1,277 @@
+Command: /home/pelvira/.espressif/python_env/idf5.5_py3.13_env/bin/python /home/pelvira/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/esp32_proyecto_final.elf /home/pelvira/Documents/Universidad/7_Septimo_Semestre/SBC/ProyectoFinal/esp32_proyecto_final/build/bootloader/bootloader.elf -m '/home/pelvira/.espressif/python_env/idf5.5_py3.13_env/bin/python' '/home/pelvira/esp/esp-idf/tools/idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6380
+ho 0 tail 12 room 4
+load:0x40078000,len:15916
+load:0x40080400,len:3860
+entry 0x40080638
+[0;32mI (29) boot: ESP-IDF v5.5.1-dirty 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Nov 26 2025 12:32:20[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (38) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+[0;32mI (65) boot:  1 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (71) boot:  2 phy_init         RF data          01 01 00010000 00001000[0m
+[0;32mI (78) boot:  3 factory          factory app      00 00 00020000 00140000[0m
+[0;32mI (84) boot:  4 ota_0            OTA app          00 10 00160000 00140000[0m
+[0;32mI (91) boot:  5 ota_1            OTA app          00 11 002a0000 00140000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (101) boot: Defaulting to factory image[0m
+[0;32mI (104) esp_image: segment 0: paddr=00020020 vaddr=3f400020 size=137dch ( 79836) map[0m
+[0;32mI (139) esp_image: segment 1: paddr=00033804 vaddr=3ffbdb60 size=04a68h ( 19048) load[0m
+[0;32mI (146) esp_image: segment 2: paddr=00038274 vaddr=40080000 size=07da4h ( 32164) load[0m
+[0;32mI (159) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=545f4h (345588) map[0m
+[0;32mI (278) esp_image: segment 4: paddr=0009461c vaddr=40087da4 size=0fe80h ( 65152) load[0m
+[0;32mI (303) esp_image: segment 5: paddr=000a44a4 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (315) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (315) boot: Disabling RNG early entropy source...[0m
+[0;32mI (326) cpu_start: Multicore app[0m
+[0;32mI (334) cpu_start: Pro cpu start user code[0m
+[0;32mI (334) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (334) app_init: Application information:[0m
+[0;32mI (334) app_init: Project name:     esp32_proyecto_final[0m
+[0;32mI (339) app_init: App version:      22a525c-dirty[0m
+[0;32mI (344) app_init: Compile time:     Dec  8 2025 10:03:25[0m
+[0;32mI (349) app_init: ELF file SHA256:  e1e10fe1b...[0m
+[0;32mI (353) app_init: ESP-IDF:          v5.5.1-dirty[0m
+[0;32mI (357) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (361) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (365) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (369) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (376) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (380) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (386) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (391) heap_init: At 3FFC5208 len 0001ADF8 (107 KiB): DRAM[0m
+[0;32mI (396) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (401) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (407) heap_init: At 40097C24 len 000083DC (32 KiB): IRAM[0m
+[0;33mW (414) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (425) spi_flash: detected chip: generic[0m
+[0;32mI (429) spi_flash: flash io: dio[0m
+[0;32mI (433) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (437) main_task: Started on CPU0[0m
+[0;32mI (447) main_task: Calling app_main()[0m
+[0;32mI (447) MAIN: ==============================[0m
+[0;32mI (447) MAIN:     🧪 MODO SENSORES SIMULADOS[0m
+[0;32mI (447) MAIN: ==============================[0m
+[0;32mI (447) MAIN: ➡ Inicializando Bluetooth...[0m
+[0;32mI (457) BTDM_INIT: BT controller compile version [722c907][0m
+[0;32mI (467) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (467) BTDM_INIT: Bluetooth MAC: ec:e3:34:b3:be:72[0m
+[0;32mI (467) phy_init: phy_version 4861,b71b5ad,Aug  5 2025,11:16:06[0m
+[0;32mI (797) MAIN: ➡ Inicializando Packet Manager...[0m
+[0;32mI (807) PACKET_MGR: pm_task (synced) started[0m
+[0;33mW (807) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (807) PACKET_MGR: pm_init done[0m
+[0;32mI (807) MAIN: ➡ Inicializando IMU simulada...[0m
+[0;33mW (817) IMU_SIM: Starting IMU simulator...[0m
+[0;33mW (817) IMU_SIM: IMU simulator task started[0m
+[0;33mW (827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (827) MAIN: IMU simulada OK[0m
+[0;33mW (827) IMU_SIM: Simulated IMU calibration: 200 samples[0m
+[0;32mI (837) MAIN: ➡ Inicializando sensor de pulso simulado...[0m
+[0;32mI (837) BLE_BIDIRECTIONAL: Dirección BLE: EC:E3:34:B3:BE:72[0m
+[0;33mW (847) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (847) PULSE_SIM: Pulse simulator started[0m
+[0;32mI (857) BLE_BIDIRECTIONAL: 📢 Advertising iniciado...[0m
+[0;32mI (847) MAIN: Sistema funcionando (simulado)...[0m
+[0;33mW (867) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (887) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (907) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (927) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (947) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (967) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (987) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1007) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1027) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1047) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1067) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1087) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1107) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1127) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1147) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1167) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1187) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1207) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1227) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1247) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1267) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1287) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1307) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1347) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1367) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1387) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1407) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1427) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1447) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1467) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1487) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1507) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1527) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1547) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1567) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1587) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1607) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1627) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1647) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1667) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1687) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1707) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1727) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1747) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1767) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1787) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1807) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1847) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1867) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1887) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1907) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1927) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1947) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1967) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (1987) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2007) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2027) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2047) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2067) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2087) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2107) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2127) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2147) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2167) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2187) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2207) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2227) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2247) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2267) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2287) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2307) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2347) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2367) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2387) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2407) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2427) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2447) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2467) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2487) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2507) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2527) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2547) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2567) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2587) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2607) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2627) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2647) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2667) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2687) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2707) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2727) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2747) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2767) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2787) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2807) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2847) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2867) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2887) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2907) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2927) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2947) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2967) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (2987) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3007) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3027) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3047) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3067) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3087) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3107) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3127) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3147) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3167) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3187) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3207) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3227) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3247) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3267) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3287) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3307) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3347) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3367) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3387) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3407) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3427) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3447) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3467) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3487) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3507) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3527) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3547) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3567) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3587) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3607) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3627) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3647) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3667) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3687) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3707) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3727) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3747) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3767) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3787) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3807) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3827) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3847) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3867) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (3877) MAIN: Sistema funcionando (simulado)...[0m
+[0;33mW (3887) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3907) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3927) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3947) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3967) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (3987) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4007) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4027) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4047) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4067) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4087) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4107) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4127) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4147) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4167) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4187) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4207) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4227) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4247) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4267) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4287) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4307) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4327) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4347) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4367) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4387) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;33mW (4407) BLE_BIDIRECTIONAL: No hay cliente conectado para notificar binario.[0m
+[0;32mI (4417) BLE_BIDIRECTIONAL: ✅ Cliente conectado (handle=0).[0m
+[0;32mI (6877) MAIN: Sistema funcionando (simulado)...[0m
+[0;32mI (9877) MAIN: Sistema funcionando (simulado)...[0m
+[0;32mI (12877) MAIN: Sistema funcionando (simulado)...[0m
+[0;32mI (15877) MAIN: Sistema funcionando (simulado)...[0m
+[0;32mI (18877) MAIN: Sistema funcionando (simulado)...[0m
+[0;32mI (21877) MAIN: Sistema funcionando (simulado)...[0m
+[0;32mI (24877) MAIN: Sistema funcionando (simulado)...[0m
+[0;32mI (27877) MAIN: Sistema funcionando (simulado)...[0m
+[0;32mI (30877) MAIN: Sistema funcionando (simulado)...[0m

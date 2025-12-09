@@ -53,7 +53,8 @@ class _OtaPageState extends State<OtaPage> {
     }
 
     final ble = context.read<BleManager>();
-    if (ble.connectedDevice == null) {
+
+    if (!ble.isConnected) {
       setState(() {
         _status = "⚠️ No hay dispositivo conectado.";
       });
@@ -101,16 +102,18 @@ class _OtaPageState extends State<OtaPage> {
   @override
   Widget build(BuildContext context) {
     final ble = context.watch<BleManager>();
-    final isConnected = ble.connectedDevice != null;
+    final isConnected = ble.isConnected;
 
     final theme = Theme.of(context).brightness;
 
     final textColor = theme == Brightness.dark
         ? AppColors.darkText
         : AppColors.lightText;
+
     final surfaceColor = theme == Brightness.dark
         ? AppColors.darkSurface
         : AppColors.lightSecondary;
+
     final primaryColor = theme == Brightness.dark
         ? AppColors.darkPrimary
         : AppColors.lightPrimary;
@@ -136,16 +139,12 @@ class _OtaPageState extends State<OtaPage> {
             ),
             const SizedBox(height: 24),
 
-            // ❌ SI NO ESTÁ CONECTADO → solo mensaje
             if (!isConnected) ...{
               Text(
                 "Debes conectarte a un ESP32 antes de iniciar la actualización.",
                 style: TextStyle(color: textColor.withOpacity(0.6)),
               ),
-            }
-
-            // ✅ SI ESTÁ CONECTADO → mostrar botones directamente
-            else ...{
+            } else ...{
               PrimaryButton(
                 text: "Seleccionar archivo .bin",
                 onPressed: _uploading ? null : _selectFile,

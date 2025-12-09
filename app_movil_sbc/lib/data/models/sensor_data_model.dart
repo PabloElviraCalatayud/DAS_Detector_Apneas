@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'sensor_data.dart';
-import '../bluetooth/ble_packet.dart';
+import '../bluetooth/codec/ble_packet.dart';
+import 'dart:math';
 
 class HourlyHeartRate {
-  final int hourTimestamp; // inicio de la hora en segundos
+  final int hourTimestamp;
   double sum = 0;
   int count = 0;
 
@@ -30,12 +31,12 @@ class SensorDataModel {
   final List<HourlyHeartRate> hourlyHistory = [];
 
   void addHeartRate(int heartRate, int timestamp) {
-    final hourStart = timestamp - (timestamp % 3600); // inicio de hora en segundos
+    final hourStart = timestamp - (timestamp % 3600);
 
     if (hourlyHistory.isEmpty || hourlyHistory.last.hourTimestamp != hourStart) {
       hourlyHistory.add(HourlyHeartRate(hourStart));
       if (hourlyHistory.length > 12) {
-        hourlyHistory.removeAt(0); // mantener solo 12 horas
+        hourlyHistory.removeAt(0);
       }
     }
 
@@ -57,17 +58,27 @@ class SensorDataModel {
         final start = i * blockSize;
         final end = (start + blockSize).clamp(0, imu.length);
         if (start >= imu.length) break;
+
         double total = 0;
         for (int j = start; j < end; j++) {
           final s = imu[j];
-          total += (s.ax.abs() + s.ay.abs() + s.az.abs()) / 3.0;
+
+          final ax = s.ax;
+          final ay = s.ay;
+          final az = s.az - 1.0;
+
+          final mag = sqrt(ax * ax + ay * ay + az * az);
+          total += mag;
         }
-        movementActivity[i] = total / (end - start);
+
+        movementActivity[i] = (end - start) > 0 ? total / (end - start) : 0;
       }
-      final maxValue = movementActivity.reduce((a, b) => a > b ? a : b);
+
+      final maxValue =
+      movementActivity.reduce((a, b) => a > b ? a : b);
       if (maxValue > 0) {
         for (int i = 0; i < 24; i++) {
-          movementActivity[i] /= maxValue;
+          movementActivity[i] = movementActivity[i] / maxValue;
         }
       }
     }
@@ -76,9 +87,8 @@ class SensorDataModel {
       timestamp: ts,
       heartRate: bpm,
       oxygen: 0,
-      movementIndex: _calculateMovement(packet),
+      movementIndex: _calculateMovement(packet).clamp(0.0, 1.0),
       movementActivity: movementActivity,
-      hrv: _estimateHrv(packet),
       apneaEventsPerHour: 0,
     );
 
@@ -87,12 +97,20 @@ class SensorDataModel {
   }
 
   double _calculateMovement(BlePacket packet) {
-    double total = 0;
     final imu = packet.imuSamples;
     if (imu.isEmpty) return 0;
+
+    double total = 0;
+
     for (final s in imu) {
-      total += (s.ax.abs() + s.ay.abs() + s.az.abs()) / 3.0;
+      final ax = s.ax;
+      final ay = s.ay;
+      final az = s.az - 1.0;
+
+      final mag = sqrt(ax * ax + ay * ay + az * az);
+      total += mag;
     }
+
     return total / imu.length;
   }
 
