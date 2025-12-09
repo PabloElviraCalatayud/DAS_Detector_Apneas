@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../common/core/colors.dart';
 import '../../common/widgets/primary_button.dart';
-import '../../data/bluetooth/ble_manager.dart';
+import '../../data/bluetooth/manager/ble_manager.dart';
 import '../../services/ota_ble_service.dart';
 
 class OtaPage extends StatefulWidget {

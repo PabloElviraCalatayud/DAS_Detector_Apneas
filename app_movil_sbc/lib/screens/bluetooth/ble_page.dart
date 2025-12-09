@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../data/bluetooth/ble_manager.dart';
+import '../../data/bluetooth/manager/ble_manager.dart';
 
 class BLEPage extends StatefulWidget {
   const BLEPage({super.key});

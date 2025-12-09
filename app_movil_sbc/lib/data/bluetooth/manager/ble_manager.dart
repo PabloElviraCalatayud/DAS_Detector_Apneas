@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
-import 'connection/ble_connection.dart';
-import 'codec/ble_decoder.dart';
-import 'codec/ble_packet.dart';
+import '../codec/ble_decoder.dart';
+import '../codec/ble_packet.dart';
+import '../connection/ble_connection.dart';
+import '../manager/ble_permissions.dart';
 
 class BleManager extends ChangeNotifier {
   BleManager._internal();
@@ -30,6 +32,9 @@ class BleManager extends ChangeNotifier {
   }
 
   Future<void> startScan() async {
+    final ok = await BlePermissions.ensureBlePermissions();
+    if (!ok) return;
+
     final raw = await _connection.scan();
     _scanSub = raw.listen((device) {
       if (!devices.any((d) => d.id == device.id)) {
@@ -53,9 +58,7 @@ class BleManager extends ChangeNotifier {
 
     _rawSub = _connection.onRawData.listen((bytes) {
       final pkt = BleDecoder.decodeCompact(bytes);
-      if (pkt != null) {
-        _packetController.add(pkt);
-      }
+      if (pkt != null) _packetController.add(pkt);
     });
 
     _connChangedSub = _connection.onConnectionChanged.listen((_) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../data/bluetooth/ble_manager.dart';
+import '../../data/bluetooth/manager/ble_manager.dart';
 import '../bluetooth/ble_page.dart';
 import '../debug/debug_screen.dart';
 import 'dashboard_content.dart';

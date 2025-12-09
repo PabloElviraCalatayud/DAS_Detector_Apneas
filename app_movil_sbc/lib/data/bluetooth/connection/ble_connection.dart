@@ -1,32 +1,19 @@
-// lib/data/bluetooth/ble_connection.dart
-
 import 'dart:async';
 import 'dart:typed_data';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
-
 import '../ble_constants.dart';
+import 'ble_packet_reassembler.dart';
 
-/// Maneja:
-///  - conexión BLE
-///  - suscripción de notificaciones
-///  - reconstrucción de paquetes fragmentados
-///  - escritura en características
 class BleConnection {
-  final FlutterReactiveBle _ble = FlutterReactiveBle();
+  final _ble = FlutterReactiveBle();
 
   DiscoveredDevice? connectedDevice;
 
-  // Notificaciones reconstruidas (paquetes completos)
-  final StreamController<Uint8List> _rawController =
-  StreamController.broadcast();
-  Stream<Uint8List> get onRawData => _rawController.stream;
+  final _connController = StreamController<DiscoveredDevice?>.broadcast();
+  Stream<DiscoveredDevice?> get onConnectionChanged => _connController.stream;
 
-  // Cambios de conexión
-  final StreamController<DiscoveredDevice?> _connController =
-  StreamController.broadcast();
-  Stream<DiscoveredDevice?> get onConnectionChanged =>
-      _connController.stream;
+  final _reassembler = BlePacketReassembler();
+  Stream<Uint8List> get onRawData => _reassembler.stream;
 
   StreamSubscription<ConnectionStateUpdate>? _connSub;
   StreamSubscription<List<int>>? _notifySub;
@@ -34,30 +21,19 @@ class BleConnection {
   QualifiedCharacteristic? _notifyChar;
   QualifiedCharacteristic? _writeChar;
 
-  // Buffer interno para reconstruir paquetes
-  final List<int> _rxBuffer = [];
-
   bool get isConnected => connectedDevice != null;
 
-  // -------------------------------------------------------------
-  // SCAN
-  // -------------------------------------------------------------
   Future<Stream<DiscoveredDevice>> scan({String targetName = "DAS_ESP"}) async {
-    // Creamos un stream transformado que filtre los eventos entrantes
-    final rawStream = _ble.scanForDevices(
+    final raw = _ble.scanForDevices(
       withServices: const [],
       scanMode: ScanMode.lowLatency,
     );
 
-    return rawStream.where((d) {
-      final name = d.name.trim().toLowerCase();
-      return name.contains(targetName.toLowerCase());
-    });
+    return raw.where(
+          (d) => d.name.trim().toLowerCase().contains(targetName.toLowerCase()),
+    );
   }
 
-  // -------------------------------------------------------------
-  // CONNECT
-  // -------------------------------------------------------------
   Future<void> connect(DiscoveredDevice device) async {
     await _connSub?.cancel();
 
@@ -70,7 +46,7 @@ class BleConnection {
       switch (update.connectionState) {
         case DeviceConnectionState.connected:
           connectedDevice = device;
-          _connController.add(connectedDevice);
+          _connController.add(device);
 
           await _ble.discoverAllServices(device.id);
 
@@ -86,7 +62,7 @@ class BleConnection {
             characteristicId: BleConstants.notifyCharacteristicUuid,
           );
 
-          _subscribeToNotifications();
+          _subscribe();
           break;
 
         case DeviceConnectionState.disconnected:
@@ -96,6 +72,7 @@ class BleConnection {
           _notifySub = null;
           _notifyChar = null;
           _writeChar = null;
+          _reassembler.clear();
           break;
 
         default:
@@ -104,76 +81,16 @@ class BleConnection {
     });
   }
 
-  // -------------------------------------------------------------
-  // NOTIFICATION REASSEMBLY (RECONSTRUCTOR DE PAQUETES)
-  // -------------------------------------------------------------
-  void _subscribeToNotifications() {
+  void _subscribe() {
     if (_notifyChar == null) return;
 
     _notifySub = _ble.subscribeToCharacteristic(_notifyChar!).listen(
-      _onNotificationFragment,
-      onError: (e) {
-        if (kDebugMode) {
-          print("BLE notify error: $e");
-        }
-      },
+          (frag) => _reassembler.addFragment(frag),
     );
   }
 
-  /// Recibe FRAGMENTOS BLE y reconstruye paquetes completos.
-  void _onNotificationFragment(List<int> fragment) {
-    // Añadir fragmento recibido al buffer
-    _rxBuffer.addAll(fragment);
-
-    // Procesar mientras haya suficientes bytes
-    while (true) {
-      // Header mínimo = 11 bytes
-      if (_rxBuffer.length < 11) {
-        return;
-      }
-
-      final data = Uint8List.fromList(_rxBuffer);
-      final bd = ByteData.sublistView(data);
-
-      int offset = 0;
-
-      // flags
-      offset += 1;
-
-      // timestamp uint64
-      offset += 8;
-
-      // counts
-      final countImu = bd.getUint8(offset++);
-      final countPulse = bd.getUint8(offset++);
-
-      // tamaño esperado completo
-      final expected =
-          1 + 8 + 2 + (countImu * 12) + (countPulse * 2);
-
-      // No hay suficientes bytes aún
-      if (_rxBuffer.length < expected) {
-        return;
-      }
-
-      // Extraer paquete completo
-      final pkt = _rxBuffer.sublist(0, expected);
-      _rawController.add(Uint8List.fromList(pkt));
-
-      // Eliminar el paquete del buffer
-      _rxBuffer.removeRange(0, expected);
-
-      // Si queda basura o varios paquetes pegados, sigue
-    }
-  }
-
-  // -------------------------------------------------------------
-  // DISCONNECT
-  // -------------------------------------------------------------
   Future<void> disconnect() async {
     await _connSub?.cancel();
-    _connSub = null;
-
     connectedDevice = null;
     _connController.add(null);
 
@@ -183,12 +100,9 @@ class BleConnection {
     _notifyChar = null;
     _writeChar = null;
 
-    _rxBuffer.clear();
+    _reassembler.clear();
   }
 
-  // -------------------------------------------------------------
-  // WRITE (TEXT)
-  // -------------------------------------------------------------
   Future<void> send(String text) async {
     if (_writeChar == null) return;
     await _ble.writeCharacteristicWithResponse(
@@ -197,9 +111,6 @@ class BleConnection {
     );
   }
 
-  // -------------------------------------------------------------
-  // WRITE (BINARY)
-  // -------------------------------------------------------------
   Future<void> write(Uint8List data) async {
     if (_writeChar == null) return;
     await _ble.writeCharacteristicWithResponse(
@@ -208,24 +119,16 @@ class BleConnection {
     );
   }
 
-  // -------------------------------------------------------------
-  // MTU
-  // -------------------------------------------------------------
   Future<int> requestMtu(int mtu) async {
-    if (connectedDevice == null) throw Exception("No connected device");
-
-    final result =
-    await _ble.requestMtu(deviceId: connectedDevice!.id, mtu: mtu);
-
-    return result;
+    if (connectedDevice == null) {
+      throw Exception("No connected device");
+    }
+    return _ble.requestMtu(deviceId: connectedDevice!.id, mtu: mtu);
   }
 
-  // -------------------------------------------------------------
-  // DISPOSE
-  // -------------------------------------------------------------
   void dispose() {
-    _rawController.close();
     _connController.close();
+    _reassembler.dispose();
     _connSub?.cancel();
     _notifySub?.cancel();
   }

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'common/core/themes.dart';
 import 'app_router.dart';
-import 'data/bluetooth/ble_manager.dart';
+import 'data/bluetooth/manager/ble_manager.dart';
 
 void main() {
   runApp(

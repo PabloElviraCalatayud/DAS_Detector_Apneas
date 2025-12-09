@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../data/bluetooth/ble_manager.dart';
+import '../../data/bluetooth/manager/ble_manager.dart';
 
 class HeartBeatWidget extends StatefulWidget {
   const HeartBeatWidget({super.key});
