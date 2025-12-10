@@ -1,4 +1,4 @@
-import 'package:app_movil_sbc/screens/OTA/OTA_page.dart';
+import 'package:app_movil_sbc/screens/ota/ota_page.dart';
 import 'package:flutter/material.dart';
 import 'data/bluetooth/manager/ble_manager.dart';
 import 'screens/onboarding/onboarding_page.dart';
