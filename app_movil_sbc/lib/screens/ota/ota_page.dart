@@ -6,7 +6,9 @@ import 'package:provider/provider.dart';
 import '../../common/core/colors.dart';
 import '../../common/widgets/primary_button.dart';
 import '../../data/bluetooth/manager/ble_manager.dart';
-import '../../services/ota_ble_service.dart';
+import '../../data/bluetooth/ota/ota_service.dart';
+import '../../domain/ota/ota_usecase.dart';
+import 'ota_controller.dart';
 
 class OtaPage extends StatefulWidget {
   const OtaPage({super.key});
@@ -61,7 +63,11 @@ class _OtaPageState extends State<OtaPage> {
       return;
     }
 
-    final ota = OtaBleService(ble);
+    final controller = OtaController(
+      OtaUsecase(
+        OtaService(ble),
+      ),
+    );
 
     try {
       final file = File(_filePath!);
@@ -73,14 +79,14 @@ class _OtaPageState extends State<OtaPage> {
         _status = "Iniciando OTA...";
       });
 
-      await ota.startOta(
+      await controller.start(
         bytes,
-        onProgress: (p) {
+            (p) {
           setState(() {
             _progress = p;
           });
         },
-        onStatus: (s) {
+            (s) {
           setState(() {
             _status = s;
           });
@@ -138,7 +144,6 @@ class _OtaPageState extends State<OtaPage> {
               style: TextStyle(color: textColor),
             ),
             const SizedBox(height: 24),
-
             if (!isConnected) ...{
               Text(
                 "Debes conectarte a un ESP32 antes de iniciar la actualización.",
@@ -150,7 +155,6 @@ class _OtaPageState extends State<OtaPage> {
                 onPressed: _uploading ? null : _selectFile,
               ),
               const SizedBox(height: 12),
-
               if (_filePath != null)
                 Text(
                   _filePath!,
@@ -159,16 +163,12 @@ class _OtaPageState extends State<OtaPage> {
                     color: textColor.withOpacity(0.6),
                   ),
                 ),
-
               const SizedBox(height: 24),
-
               PrimaryButton(
                 text: _uploading ? "Enviando..." : "Iniciar actualización",
                 onPressed: _uploading ? null : _startOta,
               ),
-
               const SizedBox(height: 24),
-
               if (_uploading)
                 LinearProgressIndicator(
                   value: _progress,
