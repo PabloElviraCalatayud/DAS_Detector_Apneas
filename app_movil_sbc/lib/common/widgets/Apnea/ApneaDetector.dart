@@ -4,106 +4,153 @@ import '../../../data/models/sensor_data_model.dart';
 enum ApneaRisk { low, moderate, high }
 
 class ApneaDetector {
-  final Stream<SensorSnapshot> dataStream;
-  final Duration window;
-  final _eventsController = StreamController<int>.broadcast();
-  final _riskController = StreamController<ApneaRisk>.broadcast();
+  // -------------------------------------------------------
+  //                       SINGLETON
+  // -------------------------------------------------------
+  ApneaDetector._internal();
+  static final ApneaDetector instance = ApneaDetector._internal();
 
-  int _events = 0;
-  int get totalEvents => _events;
+  // -------------------------------------------------------
+  //          VARIABLES PRINCIPALES DEL DETECTOR
+  // -------------------------------------------------------
+  final Duration window = const Duration(seconds: 30);
+
+  int _eventsTotal = 0;
+  int get totalEvents => _eventsTotal;
 
   final List<SensorSnapshot> _buffer = [];
-  final List<int> _recentEventTimestamps = [];
+  final List<int> _eventTimestamps = [];
+
+  final _eventsController = StreamController<int>.broadcast();
+  final _riskController = StreamController<ApneaRisk>.broadcast();
 
   Stream<int> get apneaEventsStream => _eventsController.stream;
   Stream<ApneaRisk> get apneaRiskStream => _riskController.stream;
 
   StreamSubscription<SensorSnapshot>? _sub;
 
-  // Parámetros ajustables (tuneables)
-  final int dropThresholdBpm;        // caída mínima en bpm para considerar evento
-  final int recoveryThresholdBpm;    // subida posterior que confirma recuperación
-  final double movementThresh;      // movimiento medio máximo para considerar apnea
-  final Duration minEventSpacing;    // evitar detección doble inmediata
+  final int dropThresholdBpm = 8;
+  final int recoveryThresholdBpm = 5;
+  final double movementThresh = 0.12;
+  final Duration minEventSpacing = const Duration(seconds: 20);
 
-  ApneaDetector({
-    required this.dataStream,
-    this.window = const Duration(seconds: 30),
-    this.dropThresholdBpm = 8,
-    this.recoveryThresholdBpm = 5,
-    this.movementThresh = 0.12,
-    this.minEventSpacing = const Duration(seconds: 20),
-  }) {
-    _sub = dataStream.listen(_onData);
+  bool _initialized = false;
+
+  // Registros de tiempo para resets
+  int _lastHourlyReset = DateTime.now().hour;
+  int _lastDailyReset = DateTime.now().day;
+
+  // -------------------------------------------------------
+  //               INICIALIZAR EL DETECTOR
+  // -------------------------------------------------------
+  void initialize() {
+    if (_initialized) return;
+    _initialized = true;
+
+    _sub = SensorDataModel.instance.dataStream.listen(_onData);
   }
 
+  // -------------------------------------------------------
+  //            LÓGICA PRINCIPAL DE CADA MUESTRA
+  // -------------------------------------------------------
   void _onData(SensorSnapshot s) {
-    _buffer.add(s);
-    final now = s.timestamp;
+    _handleHourlyReset();
+    _handleDailyReset();
 
+    final now = s.timestamp;
+    _buffer.add(s);
+
+    // Mantener ventana de 30 s
     _buffer.removeWhere((d) => now - d.timestamp > window.inMilliseconds);
 
     if (_buffer.length < 4) return;
 
-    // cálculo sencillo: hr series y movement average
     final hrs = _buffer.map((e) => e.heartRate).where((v) => v > 0).toList();
     if (hrs.length < 3) return;
 
     final movementAvg = _buffer.fold<double>(0.0, (p, e) => p + e.movementIndex) / _buffer.length;
 
-    // detección: busca caída desde el primer valor a un mínimo y posterior recuperación
-    final firstHr = hrs.first;
+    final first = hrs.first;
     final minHr = hrs.reduce((a, b) => a < b ? a : b);
-    final lastHr = hrs.last;
+    final last = hrs.last;
 
-    final drop = firstHr - minHr;
-    final recovery = lastHr - minHr;
+    final drop = first - minHr;
+    final recovery = last - minHr;
 
-    final candidate = drop >= dropThresholdBpm && recovery >= recoveryThresholdBpm && movementAvg <= movementThresh;
+    final candidate = drop >= dropThresholdBpm &&
+        recovery >= recoveryThresholdBpm &&
+        movementAvg <= movementThresh;
 
     if (candidate) {
-      // evitar duplicados muy cercanos
-      final lastTs = _recentEventTimestamps.isNotEmpty ? _recentEventTimestamps.last : 0;
+      final lastTs = _eventTimestamps.isNotEmpty ? _eventTimestamps.last : 0;
+
       if (s.timestamp - lastTs > minEventSpacing.inMilliseconds) {
-        _events++;
-        _recentEventTimestamps.add(s.timestamp);
-        _eventsController.add(_events);
+        _eventsTotal++;
+        _eventTimestamps.add(now);
+
+        _eventsController.add(_eventsTotal);
         _updateRisk();
-        // limpiar buffer para evitar detecciones repetidas del mismo evento
+
         _buffer.clear();
       }
     }
 
-    // limpieza de timestamps antiguos (mantenemos solo últimas 6h)
-    final cutoff = DateTime.now().millisecondsSinceEpoch - Duration(hours: 6).inMilliseconds;
-    _recentEventTimestamps.removeWhere((t) => t < cutoff);
+    // mantener solo últimas 6 horas
+    final cutoff = DateTime.now().millisecondsSinceEpoch - 3600000 * 6;
+    _eventTimestamps.removeWhere((t) => t < cutoff);
   }
 
-  // devuelve eventos por hora aproximados (última hora)
+  // -------------------------------------------------------
+  //              RESET AUTOMÁTICO CADA HORA
+  // -------------------------------------------------------
+  void _handleHourlyReset() {
+    final currentHour = DateTime.now().hour;
+    if (currentHour != _lastHourlyReset) {
+      _eventTimestamps.clear();
+      _lastHourlyReset = currentHour;
+    }
+  }
+
+  // -------------------------------------------------------
+  //          RESET AUTOMÁTICO CADA 24 HORAS
+  // -------------------------------------------------------
+  void _handleDailyReset() {
+    final currentDay = DateTime.now().day;
+    if (currentDay != _lastDailyReset) {
+      _eventsTotal = 0;
+      _eventsController.add(_eventsTotal);
+      _lastDailyReset = currentDay;
+    }
+  }
+
+  // -------------------------------------------------------
+  //                 EVENTOS POR HORA (AHI)
+  // -------------------------------------------------------
   double eventsPerHour() {
-    final cutoff = DateTime.now().millisecondsSinceEpoch - Duration(hours: 1).inMilliseconds;
-    final recent = _recentEventTimestamps.where((t) => t >= cutoff).length;
-    return recent.toDouble();
+    final cutoff = DateTime.now().millisecondsSinceEpoch - 3600000;
+    return _eventTimestamps.where((t) => t >= cutoff).length.toDouble();
   }
 
+  // -------------------------------------------------------
+  //                     RIESGO
+  // -------------------------------------------------------
   void _updateRisk() {
-    final eph = eventsPerHour();
+    final ahi = eventsPerHour();
 
-    ApneaRisk r;
-    if (eph >= 15) {
-      r = ApneaRisk.high;
-    } else if (eph >= 5) {
-      r = ApneaRisk.moderate;
+    ApneaRisk risk;
+    if (ahi >= 15) {
+      risk = ApneaRisk.high;
+    } else if (ahi >= 5) {
+      risk = ApneaRisk.moderate;
     } else {
-      r = ApneaRisk.low;
+      risk = ApneaRisk.low;
     }
 
-    _riskController.add(r);
+    _riskController.add(risk);
   }
 
-  void dispose() {
-    _sub?.cancel();
-    _eventsController.close();
-    _riskController.close();
-  }
+  // -------------------------------------------------------
+  //      NO SE ELIMINA EL DETECTOR (PERSISTE SIEMPRE)
+  // -------------------------------------------------------
+  void dispose() {}
 }
