@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-
 import '../../common/widgets/Apnea/ApneaCard.dart';
 import '../../common/widgets/SleepScore/SleepScoreCard.dart';
 import '../../common/widgets/SleepScore/SleepScoreCalculator.dart';
 import '../../common/widgets/heartbeat_widget.dart';
 import '../../common/widgets/heatmap_widget.dart';
 import '../../common/charts/heart_rate_chart.dart';
-
 import '../../data/models/sensor_data_model.dart';
 import '../../common/widgets/Apnea/ApneaDetector.dart';
 
@@ -24,8 +22,10 @@ class _DashboardContentState extends State<DashboardContent> {
   void initState() {
     super.initState();
 
+    // Inicializamos el detector si aún no está
     _detector.initialize();
 
+    // Escuchamos cambios de apnea
     _detector.apneaEventsStream.listen((_) {
       if (mounted) setState(() {});
     });
@@ -34,6 +34,7 @@ class _DashboardContentState extends State<DashboardContent> {
       if (mounted) setState(() {});
     });
 
+    // Escuchamos los datos de sensor en tiempo real
     SensorDataModel.instance.dataStream.listen((_) {
       if (mounted) setState(() {});
     });
@@ -48,19 +49,6 @@ class _DashboardContentState extends State<DashboardContent> {
     final movementIndex = data?.movementIndex ?? 0.0;
     final heartRate = data?.heartRate ?? 0;
 
-    final sleepScore = SleepScoreCalculator.compute(
-      movementIndex: movementIndex,
-      apneaEventsPerHr: _detector.eventsPerHour(),
-      heartRate: heartRate,
-    );
-
-    final hourlyData = model.hourlyHistory.map((h) => h.average.toInt()).toList();
-    final hourlyLabels = model.hourlyHistory.map((h) {
-      int ts = h.hourTimestamp;
-      if (ts < 10000000000) ts *= 1000;
-      return DateTime.fromMillisecondsSinceEpoch(ts).hour;
-    }).toList();
-
     return SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -72,28 +60,24 @@ class _DashboardContentState extends State<DashboardContent> {
               movementIndex: movementIndex,
               heartRate: heartRate,
             ),
-
             const SizedBox(height: 24),
-
             SleepScoreCard(
               movementIndex: movementIndex,
               apneaEventsPerHr: _detector.eventsPerHour(),
               heartRate: heartRate,
             ),
-
             const SizedBox(height: 24),
-
             MovementHeatmap(activity: movementActivity),
-
             const SizedBox(height: 24),
-
             const HeartBeatWidget(),
-
             const SizedBox(height: 24),
-
             HeartRateChartWidget(
-              data: hourlyData,
-              hours: hourlyLabels,
+              data: model.hourlyHistory.map((h) => h.average.toInt()).toList(),
+              hours: model.hourlyHistory.map((h) {
+                int ts = h.hourTimestamp;
+                if (ts < 10000000000) ts *= 1000;
+                return DateTime.fromMillisecondsSinceEpoch(ts).hour;
+              }).toList(),
             ),
           ],
         ),
