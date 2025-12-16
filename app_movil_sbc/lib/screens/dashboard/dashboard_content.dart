@@ -54,12 +54,25 @@ class _DashboardContentState extends State<DashboardContent> {
       heartRate: heartRate,
     );
 
-    final hourlyData = model.hourlyHistory.map((h) => h.average.toInt()).toList();
-    final hourlyLabels = model.hourlyHistory.map((h) {
-      int ts = h.hourTimestamp;
-      if (ts < 10000000000) ts *= 1000;
-      return DateTime.fromMillisecondsSinceEpoch(ts).hour;
-    }).toList();
+    final hourlyData = List.generate(
+      24,
+          (i) {
+            final index = (i + SensorDataModel.instance.currentHourIndex) % 24;
+            return SensorDataModel.instance.hourlyHeartRate[index].average;
+      },
+    );
+
+
+    final hourlyLabels = List.generate(
+      24,
+          (i) {
+        final hour = (i + SensorDataModel.instance.currentHourIndex) % 24;
+        return hour;
+      },
+    );
+
+
+
 
     return SafeArea(
       child: SingleChildScrollView(

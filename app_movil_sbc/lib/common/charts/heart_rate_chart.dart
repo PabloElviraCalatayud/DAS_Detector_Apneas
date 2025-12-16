@@ -80,17 +80,32 @@ class HeartRateChartWidget extends StatelessWidget {
             bottomTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
-                getTitlesWidget: (v, _) {
-                  final hour = v.toInt();
-                  return Text(
-                    hour.toString().padLeft(2, '0'),
-                    style: TextStyle(
-                      fontSize: 10,
-                      color: theme.colorScheme.onSurface.withOpacity(0.5),
+                reservedSize: 26,
+                getTitlesWidget: (value, _) {
+                  final hour = value.toInt();
+
+                  return SizedBox(
+                    width: 24, // 👈 mismo ancho para TODO
+                    child: Center(
+                      child: hour % 4 == 0
+                          ? Text(
+                        hour.toString().padLeft(2, '0'),
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: theme.colorScheme.onSurface.withOpacity(0.6),
+                        ),
+                      )
+                          : Container(
+                        width: 4,
+                        height: 4,
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.onSurface.withOpacity(0.4),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
                     ),
                   );
                 },
-                reservedSize: 26,
               ),
             ),
           ),

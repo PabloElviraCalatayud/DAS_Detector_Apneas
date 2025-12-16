@@ -26,7 +26,38 @@ class SensorSnapshot {
   });
 }
 
+class HourlyHeartRateEntry {
+  final int hourTimestamp;
+  final int count;
+  final int sumBpm;
+
+  HourlyHeartRateEntry({
+    required this.hourTimestamp,
+    required this.count,
+    required this.sumBpm,
+  });
+
+  double get averageBpm => sumBpm / count;
+}
+
+class HourHeartAccumulator {
+  int count = 0;
+  int sumBpm = 0;
+
+  void add(int bpm) {
+    sumBpm += bpm;
+    count++;
+  }
+
+  int get average =>
+      count == 0 ? 0 : (sumBpm / count).round();
+}
+
+
+
+
 class SensorDataModel {
+  int _prevHour = -1;
   SensorDataModel._internal();
   static final SensorDataModel instance = SensorDataModel._internal();
 
@@ -36,6 +67,10 @@ class SensorDataModel {
   SensorSnapshot? lastData;
 
   final List<HourlyHistoryEntry> hourlyHistory = [];
+  int _currentHourIndex = 0;
+  int get currentHourIndex => _currentHourIndex;
+  final List<HourHeartAccumulator> hourlyHeartRate = List.generate(24, (_) => HourHeartAccumulator());
+
 
   final List<double> _dayActivity = List<double>.filled(24, 0);
 
@@ -44,8 +79,10 @@ class SensorDataModel {
 
   void updateFromPacket(BlePacket pkt) {
     final now = DateTime.now().millisecondsSinceEpoch;
-
+    _resetDailyIfNeeded(now);
     double movementIndex = 0;
+
+
 
     if (pkt.imuSamples.isNotEmpty) {
       final imu = pkt.imuSamples.first;
@@ -67,6 +104,8 @@ class SensorDataModel {
     if (pkt.pulses.isNotEmpty) {
       bpm = pkt.pulses.last;
     }
+    _updateHourlyHeartRate(now, bpm);
+
 
     final hour = DateTime.now().hour;
     _dayActivity[hour] = movementIndex;
@@ -82,6 +121,11 @@ class SensorDataModel {
     _controller.add(snapshot);
 
     _updateHourlyHistory(now, movementIndex);
+
+    if (hour != _prevHour) {
+      _currentHourIndex = (_currentHourIndex + 1) % 24;
+      _prevHour = hour;
+    }
   }
 
   void _updateHourlyHistory(int ts, double movement) {
@@ -102,4 +146,38 @@ class SensorDataModel {
       );
     }
   }
+
+  void _updateHourlyHeartRate(int ts, int bpm) {
+    if (bpm <= 0) return;
+
+    final hour = DateTime.fromMillisecondsSinceEpoch(ts).hour;
+
+    // Posición rotativa en la lista
+    final index = (hour + _currentHourIndex) % 24;
+    hourlyHeartRate[index].add(bpm);
+  }
+
+
+  void resetDailyHeartRate() {
+    for (final h in hourlyHeartRate) {
+      h.count = 0;
+      h.sumBpm = 0;
+    }
+  }
+
+  void _resetDailyIfNeeded(int ts) {
+    final hour = DateTime.fromMillisecondsSinceEpoch(ts).hour;
+
+    if (hour == 0 && _currentHourIndex != 0) {
+      // Nuevo día
+      _currentHourIndex = 0;
+      for (final h in hourlyHeartRate) {
+        h.count = 0;
+        h.sumBpm = 0;
+      }
+    }
+  }
+
+
+
 }
