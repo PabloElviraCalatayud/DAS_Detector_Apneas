@@ -82,8 +82,6 @@ class SensorDataModel {
     _resetDailyIfNeeded(now);
     double movementIndex = 0;
 
-
-
     if (pkt.imuSamples.isNotEmpty) {
       final imu = pkt.imuSamples.first;
 

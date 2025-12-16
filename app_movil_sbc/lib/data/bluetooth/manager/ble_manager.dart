@@ -2,15 +2,26 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
+
 import '../codec/ble_decoder.dart';
 import '../codec/ble_packet.dart';
 import '../connection/ble_connection.dart';
 import '../manager/ble_permissions.dart';
+import '../../models/sensor_data_model.dart';
 
 class BleManager extends ChangeNotifier {
-  BleManager._internal();
+  // --------------------------------------------------
+  // SINGLETON
+  // --------------------------------------------------
+  BleManager._internal() {
+    _bindPacketPipeline(); // 🔴 CLAVE: iniciar pipeline al arrancar la app
+  }
+
   static final BleManager instance = BleManager._internal();
 
+  // --------------------------------------------------
+  // DEPENDENCIAS
+  // --------------------------------------------------
   final BleConnection _connection = BleConnection();
 
   final List<DiscoveredDevice> devices = [];
@@ -24,16 +35,38 @@ class BleManager extends ChangeNotifier {
 
   Stream<BlePacket> get packetStream => _packetController.stream;
 
+  // --------------------------------------------------
+  // GETTERS
+  // --------------------------------------------------
   bool get isConnected => _connection.isConnected;
   String? get connectedDeviceName => _connection.connectedDevice?.name;
 
+  // --------------------------------------------------
+  // 🔗 PIPELINE GLOBAL (BLE → SensorDataModel)
+  // --------------------------------------------------
+  void _bindPacketPipeline() {
+    packetStream.listen((packet) {
+      // 🔥 AQUÍ ESTÁ LA MAGIA
+      SensorDataModel.instance.updateFromPacket(packet);
+    });
+  }
+
+  // --------------------------------------------------
+  // MTU
+  // --------------------------------------------------
   Future<int> requestMtu(int size) async {
     return await _connection.requestMtu(size);
   }
 
+  // --------------------------------------------------
+  // SCAN (SIN CAMBIOS)
+  // --------------------------------------------------
   Future<void> startScan() async {
     final ok = await BlePermissions.ensureBlePermissions();
     if (!ok) return;
+
+    devices.clear();
+    notifyListeners();
 
     final raw = await _connection.scan();
     _scanSub = raw.listen((device) {
@@ -49,6 +82,9 @@ class BleManager extends ChangeNotifier {
     _scanSub = null;
   }
 
+  // --------------------------------------------------
+  // CONNECT (SIN CAMBIOS)
+  // --------------------------------------------------
   Future<void> connect(DiscoveredDevice device) async {
     await stopScan();
     await _rawSub?.cancel();
@@ -58,7 +94,9 @@ class BleManager extends ChangeNotifier {
 
     _rawSub = _connection.onRawData.listen((bytes) {
       final pkt = BleDecoder.decodeCompact(bytes);
-      if (pkt != null) _packetController.add(pkt);
+      if (pkt != null) {
+        _packetController.add(pkt);
+      }
     });
 
     _connChangedSub = _connection.onConnectionChanged.listen((_) {
@@ -66,6 +104,9 @@ class BleManager extends ChangeNotifier {
     });
   }
 
+  // --------------------------------------------------
+  // DISCONNECT (SIN CAMBIOS)
+  // --------------------------------------------------
   Future<void> disconnect() async {
     await _rawSub?.cancel();
     _rawSub = null;
@@ -77,6 +118,9 @@ class BleManager extends ChangeNotifier {
     notifyListeners();
   }
 
+  // --------------------------------------------------
+  // WRITE
+  // --------------------------------------------------
   Future<void> sendText(String text) async {
     await _connection.send(text);
   }
@@ -85,6 +129,9 @@ class BleManager extends ChangeNotifier {
     await _connection.write(data);
   }
 
+  // --------------------------------------------------
+  // CLEANUP
+  // --------------------------------------------------
   @override
   void dispose() {
     _packetController.close();
